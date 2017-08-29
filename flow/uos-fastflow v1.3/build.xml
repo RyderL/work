@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MyTest" default="findbugs">
+	<property name="findbugs.home" value="G:/tools/findbugs-1.3.9" />
+	<path id="findbugs.path">
+		<fileset dir="G:/tools/findbugs-1.3.9">
+			<include name="lib/*.jar" />
+		</fileset>
+	</path>
+
+	<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask" classpathref="findbugs.path" />
+	<!-- 定义findbugs的home，findbugs的task要使用 -->
+	<target name="findbugs">
+		<mkdir dir="findbugs" />
+		<findbugs home="${findbugs.home}" output="xml" outputFile="d:/report.xml">
+			<!-- 以上定义findbugs查找的类路径 -->
+			<auxClasspath path="${findbugs.home}/lib/findbugs-ant.jar" />
+			<auxClasspath>
+				<fileset dir="lib" includes="*.jar" />
+			</auxClasspath>
+			<sourcePath path="uos-manager/src" />
+			<class location="uos-manager/target/classes" />
+		</findbugs>
+	</target>
+</project>

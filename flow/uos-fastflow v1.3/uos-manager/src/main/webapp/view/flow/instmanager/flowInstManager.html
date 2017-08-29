@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Cache-Controller" content="no-cache">
+    <title>流程实例管理</title>
+	<script type="text/javascript" src="../../../common/ext/boot.js"></script>
+    <script type="text/javascript" src="../../../common/js/raphael.js"></script>
+    <script type="text/javascript" src="../../../common/zflow/js/jquery.color.js"></script>
+    <script type="text/javascript" src="../../../common/zflow/js/jquery.zflow.js"></script>
+    <script type="text/javascript" src="../../../common/zflow/js/jquery.zflow.node-image.js"></script>
+    <style type="text/css">
+	   *{
+	   		/* font-family:sans-serif; */
+	   		font-family: "Microsoft YaHei","黑体","宋体","Arial",sans-serif;
+			font-size : 14px;
+	   } 
+        tspan,div{
+            -moz-user-select: auto; /*火狐*/
+            -webkit-user-select: auto;  /*webkit浏览器*/
+            -ms-user-select: auto;   /*IE10*/
+            -khtml-user-select: auto; /*早期浏览器*/
+            user-select: auto;
+        }
+        .title
+        {
+        	font-size:14px;
+        	font-weight:bold;
+        }
+        input{
+			width:150px;
+		}
+		td{
+			font-size: 14px;
+		}
+		
+    </style>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north',split:true" style="height:70px;">
+		<form id="qryForm" method="post">
+			<table cellpadding="5" style="padding:10px;">
+	    		<tr>
+	    			<td>流程实例</td>
+	    			<td><input class="easyui-textbox" id="processInstId"></td>
+	    			<td>开始时间</td>
+	    			<td><input id="startDate" type="text"></td>
+	    			<td>结束时间</td>
+	    			<td><input id="endDate" type="text"></td>
+	    			<td>状态</td>
+	    			<td><input id="pState" type="text"></td>
+	    			<td></td>
+					<td><a href="#" id="btnQry" class="easyui-linkbutton" iconCls="icon-search" plain="true">查询</a></td>
+	    		</tr>
+	    	</table>
+		</form>
+	</div>
+	<div data-options="region:'center'">
+		<table id="flowInstTable" height="100%"></table>
+		<div id="flowInstTb" style="padding-top:15px;padding-bottom:15px;padding-left:25px;">
+			<a id="btnQryGraph" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',disabled:true">流程图</a>&nbsp;
+			<a id="btnQryParentGraph" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',disabled:true">父流程图</a>&nbsp;
+			<a id="btnQryProcInstDetail" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',disabled:true">流程消息</a>&nbsp;
+			<a id="btnSuspendProcessInstance" href="#" class="easyui-linkbutton" data-options="disabled:true">挂起</a>&nbsp;
+			<a id="btnResumeProcessInstance" href="#" class="easyui-linkbutton" data-options="disabled:true">解挂</a>&nbsp;
+			<a id="btnCancelProcessInstance" href="#" class="easyui-linkbutton" data-options="disabled:true">撤单</a>&nbsp;
+			<a id="btnTerminateProcessInstance" href="#" class="easyui-linkbutton" data-options="disabled:true">终止流程</a>&nbsp;
+			<a id="btnQryShadowGraph" href="#" class="easyui-linkbutton" data-options="disabled:true">影子流程</a>
+			<!-- mod by che.zi 20160623 for zmp889947  -->
+			<!-- <a id="btnException" href="#" class="easyui-linkbutton" data-options="disabled:true">异常处理</a> -->
+		</div>
+	</div>
+	<div data-options="region:'south',split:true,minHeight:200,iconCls:'icon-large-smartart',title:'工作项'">
+		<table id="workItemTable" height="100%"></table>
+        <div id="workItemTb">
+			<a id="btnCompleteWorkItem" href="#" class="easyui-linkbutton" data-options="disabled:true">回单</a><!-- 提交工作项 -->
+			<a id="btnDisableWorkItem" href="#" class="easyui-linkbutton" data-options="disabled:true">退单</a><!-- 作废工作项 -->
+			<a id="btnJumpProcessInstance" href="#" class="easyui-linkbutton" data-options="disabled:true">流程跳转</a>
+			<a id="btnReSend" href="#" class="easyui-linkbutton" data-options="disabled:true">消息重投</a>
+			<!-- mod by che.zi 20160623 for zmp889947  -->
+			<!-- <a id="btnAddSubFlow" href="#" class="easyui-linkbutton" data-options="disabled:true">添加子流程</a> -->
+		</div>
+	</div>
+	<!-- 流程环节参数 begin-->
+	<div id="tacheFlowParamWin"  class="easyui-dialog" title="环节设置流程参数" style="width:600px;height:300px"
+			data-options="closed:true,maximizable:true,iconCls:'icon-save',buttons:'#tacheFlowParamWin-buttons',cache:false,modal:true">
+		<p id="flowCatalog" ></p>
+		<table id="tacheflowParamGrid" height="40%"></table>
+		<a href="#" id="tacheFlowParamModify" class="easyui-linkbutton edit" data-options="iconCls:'icon-edit',plain:true" style="display: none" title="修改"></a>
+		<div id="#tacheFlowParamWin-buttons">
+			<a id="tacheFlowParamWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">提交工作项</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#tacheFlowParamWin').dialog('close')">取消</a>
+		</div>
+	</div>
+	<!--修改流程参数值-->
+	<div id="tacheflowParamInfoWin" class="easyui-dialog" title="修改环节流程参数值" style="width:400px;height:300px"
+			data-options="closed:true,iconCls: 'icon-save',buttons: '#tacheflowParamInfoWin-buttons',cache:false,modal:true">
+		<div style="padding:10px 60px 20px 60px">
+			<form id="tacheflowParamInfoWin-form" method="post">
+		    	<table cellpadding="5">
+		    		<tr>
+		    			<td>参数编码：</td>
+		    			<td><input id="tacheflowParamInfoWin-code" class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'minLength[1]'"></input></td>
+		    		</tr>
+		    		<tr>
+		    			<td>参数值：</td>
+		    			<td><input id="tacheflowParamInfoWin-value" class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'minLength[1]'"></input></td>
+		    			<input id="tacheflowParamInfoWin-packageDefineId" type="text" style="display: none"></input>
+		    			<input id="tacheflowParamInfoWin-type" type="text" style="display: none"></input>
+		    			<input id="tacheflowParamInfoWin-tacheCode" type="text" style="display: none"></input>
+		    		</tr>
+		    	</table>
+	    	</form>
+	    </div>
+	</div>
+	<div id="tacheflowParamInfoWin-buttons">
+		<a id="tacheflowParamInfoWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#tacheflowParamInfoWin').dialog('close')">取消</a>
+	</div>
+	<!-- 流程环节参数 end -->
+	<!--流程图-->
+	<div id="flowGraphWin" class="easyui-dialog" title="流程图" style="width:800px;height:450px"
+			data-options="closed:true,iconCls: 'icon-large-chart',cache:false,modal:true,maximizable:true">
+		<div style="padding:10px;width:95%;">
+			<div id="state" style="height:50px;"></div>
+			<hr/>
+			<div>
+				<p class='title'>流程实例图</p>
+				<div id="inst" ></div>
+			</div>
+			<hr/>
+			<div>
+				<p class='title'>流程定义图</p>
+				<div id="def" ></div>
+			</div> 
+	    </div>
+	</div>
+	<!-- <div id="flowGraphWin-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#flowGraphWin').dialog('close')">关闭</a>
+	</div> -->
+	
+	<!--映射流程图-->
+	<div id="shadowFlowGraphWin" class="easyui-dialog" title="影子流程图" style="width:800px;height:250px"
+			data-options="closed:true,iconCls: 'icon-large-chart',cache:false,modal:true,maximizable:true">
+		<div style="padding:10px;width:95%;">
+			<div>
+				<p class='title'>影子流程图</p>
+				<div id="shadow" ></div>
+			</div> 
+	    </div>
+	</div>
+	<!--选择异常原因-->
+	<div id="exceptionWin" class="easyui-dialog" title="选择异常原因" style="width:600px;height:300px"
+			data-options="closed:true,iconCls:'icon-save',buttons:'#exceptionWin-buttons',cache:false,modal:true">
+		<table id="exceptionGrid" height="100%"></table>
+	</div>
+	<div id="exceptionWin-buttons">
+		<a id="exceptionWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#exceptionWin').dialog('close')">取消</a>
+	</div>
+	<!--添加子流程-->
+	<div id="addSubFlowWin" class="easyui-dialog" title="添加子流程" style="width:320px;height:150px"
+			data-options="closed:true,iconCls:'icon-add',buttons:'#addSubFlowWin-buttons',cache:false,modal:true">
+		<table cellpadding="5" style="padding:20px;">
+    		<tr>
+    			<td>子流程编码</td>
+    			<td><input class="easyui-textbox" id="subPackageDefineCode" data-options="required:true,validType:'minLength[1]'"></td>
+    		</tr>
+    	</table>
+	</div>
+	<div id="addSubFlowWin-buttons">
+		<a id="addSubFlowWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#addSubFlowWin').dialog('close')">取消</a>
+	</div>
+	<!-- 流程跳转页面 -->
+	<div id="jumpProcInstWin" class="easyui-dialog" title="选择流程跳转目标环节" style="width:400px;height:300px"
+			data-options="closed:true,iconCls: 'icon-save',buttons: '#jumpProcInstWin-buttons',cache:false,modal:true">
+		<div style="padding:10px 60px 20px 60px">
+			<form id="jumpProcInstWin-form" method="post">
+		    	<table>
+		    		<tr>
+		    			<td>跳转目标环节：</td>
+		    			<td>
+		    				<select id="jumpProcInstWin-targetActivity" class="easyui-combobox" editable="false" 
+		    					data-options="valueField:'id',textField:'text',panelHeight:80" style='width:150px'>
+							</select>
+						</td>
+		    		</tr>
+		    	</table>
+	    	</form>
+	    </div>
+	</div>
+	<div id="jumpProcInstWin-buttons">
+		<a id="jumpProcInstWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#jumpProcInstWin').dialog('close')">取消</a>
+	</div>
+	<!-- 流程实例详情 begin-->
+	<div id="procInstDetailWin"  class="easyui-dialog" title="接口消息交互记录" style="width:650px;height:350px"
+			data-options="closed:true,maximizable:true,iconCls:'icon-save',cache:false,modal:true">
+		<a id="btnReExcute" href="#" class="easyui-linkbutton" data-options="disabled:true">消息重投</a>
+		<table id="procInstDetailGrid" height="40%"></table>
+		<div id="detailInfoDiv" hidden="true">
+			<table>
+				<tr>
+					<td>消息请求：</td>
+					<td><input class="easyui-textbox" id="msgInfo" data-options="multiline:true" style="width:200px;height:150px"/></td>
+					<td>消息反馈：</td>
+					<td><input class="easyui-textbox" id="msgRetInfo" data-options="multiline:true" style="width:200px;height:150px"/></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/flowInstManager.js"></script>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkflowProcess>
+	<Activities>
+		<Activity id="A83727-48-85960-225-83471" isRuning="true"
+			type="Start" name="开始节点" tacheId="" direction="1" />
+		<Activity id="A79905-54-99681-799-906" isRuning="true" type="Tache"
+			name="测试-1" tacheId="1000038" direction="1" />
+		<Activity id="A36001-56-55869-375-42254" isRuning="true"
+			type="Tache" name="测试-2" tacheId="1000039" direction="1" />
+		<Activity id="A62372-58-32836-2-60899" isRuning="true" type="Tache"
+			name="测试-3" tacheId="1000040" direction="1" />
+		<Activity id="A56987-48-6125-226-3700" isRuning="true" type="Finish"
+			name="结束节点" tacheId="" direction="1" />
+	</Activities>
+	<Transitions>
+		<Transition id="A66808-54-65020-800-71647" from="A83727-48-85960-225-83471"
+			to="A79905-54-99681-799-906" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A76300-56-72702-378-70750" from="A79905-54-99681-799-906"
+			to="A36001-56-55869-375-42254" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A654-58-53316-4-35272" from="A36001-56-55869-375-42254"
+			to="A62372-58-32836-2-60899" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A21393-48-51578-228-56458" from="A62372-58-32836-2-60899"
+			to="A56987-48-6125-226-3700" isRunning="false" name="" lineType="Normal" />
+	</Transitions>
+</WorkflowProcess>

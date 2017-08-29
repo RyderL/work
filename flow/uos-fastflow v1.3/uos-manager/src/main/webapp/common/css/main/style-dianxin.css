@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+/*--top部分--*/
+.top_01 {
+	width: 111px;
+	height: 58px;
+	background: url('../../images/main/dianxin/top01.gif') no-repeat;
+}
+.top_02 {
+	width: 180px;
+	height: 58px;
+	background: url('../../images/main/dianxin/top_bg01.gif') repeat-x;
+	line-height: 58px;
+	padding-left: 6px;
+	color: #FFF;
+	font-size: 24px;
+	font-weight: bold;
+	font-family: 黑体;
+}
+.top_03 {
+	width: 49px;
+	height: 58px;
+	background: url('../../images/main/dianxin/top02.gif') no-repeat;
+}
+.top_04_1{
+	width:100%;
+	height:21px;
+	background:url('../../images/main/dianxin/top_top01.gif') repeat-x;
+}
+.top_04_2{
+	width:100%;
+	height:37px;
+	background:url('../../images/main/dianxin/top_bottom01.gif') repeat-x;
+}
+/*--bottom部分--*/
+.bottom_01{
+	width:85px;
+	height:27px;
+	background:url('../../images/main/dianxin/bottom01.gif');
+}
+.bottom_02{
+	background:url('../../images/main/dianxin/bottom_bg.gif') repeat-x;
+	color:#FFF;
+	font-size:12px;
+}
+.bottom_03{
+	background:url('../../images/main/dianxin/bottom02.gif');
+	width:85px;
+	height:27px;
+}
+/*--menu icon--*/
+.menu-tree-icon{
+	background: url('../../easyui/themes/metro/images/tree_icons.png') no-repeat -32px 0px;
+}
+.tree-title{
+	font-size:16px;
+	font-family:"宋体";
+}
+.panel-title{
+	font-size:18px;
+	font-family:"宋体";
+}

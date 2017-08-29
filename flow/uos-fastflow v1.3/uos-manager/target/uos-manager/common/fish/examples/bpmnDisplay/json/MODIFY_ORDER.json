@@ -1,0 +1,1006 @@
+{
+    "resourceId": "sid-2608F448-426C-41C2-B2A8-2F76A36F2E85",
+    "properties": {
+        "type": -1,
+        "name": "MODIFY_ORDER_NGNBN",
+        "notes": "",
+        "extProperties": {},
+        "version": "1.0",
+        "effDate": "2015-09-15 13:30:21",
+        "expDate": "2016-09-15 13:30:21",
+        "width": "2000",
+        "height": "960"
+    },
+    "stencil": {
+        "type": "BPMNDiagram"
+    },
+    "childShapes": [
+        {
+            "resourceId": "sid-581BFB5B-A3B4-42E8-A3E5-27E2C6811374",
+            "properties": {
+                "type": 29,
+                "name": "Start",
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "StartNoneEvent"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-628F9410-C842-4126-AE32-F1E4547EC4E1",
+                "sid-5EB38317-189E-4502-8C77-797EE20F3077",
+                "sid-0E0DFF33-D4AE-4084-AC88-848C60696F94",
+                "sid-4B6ACC56-1A50-4042-9F86-04E8787D1E21"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 40,
+                    "y": 130
+                },
+                "lowerRight": {
+                    "x": 80,
+                    "y": 170
+                }
+            }
+        },
+        {
+            "resourceId": "sid-550ED046-0DC4-468A-9F77-79E6F61931D0",
+            "properties": {
+                "type": 0,
+                "name": "BusinessChange",
+                "notes": "BusinessChange",
+                "extProperties": {},
+                "activityName": "BusinessChange"
+            },
+            "stencil": {
+                "type": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-0E59D135-6F5D-4833-BDE6-824840464FB1",
+                "sid-48A75E8E-19AD-4210-BF61-4F6943CC8D77",
+                "sid-4AFB016D-DA9B-4814-8FA1-8845646D7C12",
+                "sid-33BC8953-D2A5-42F5-BCB2-D914D23885D0"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 180,
+                    "y": 160
+                },
+                "lowerRight": {
+                    "x": 280,
+                    "y": 220
+                }
+            }
+        },
+        {
+            "resourceId": "sid-789CFB6B-703E-4185-8B61-62B014522618",
+            "properties": {
+                "type": 17,
+                "name": "",
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "ExclusiveGateway"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-13303A54-49B2-42A7-8481-4634D15BE5A8",
+                "sid-5A17D672-CABD-4198-A817-F3873251A053",
+                "sid-707BC484-DE08-4301-B847-4FCDB3330D96",
+                "sid-15BD782E-BDB5-4593-A933-1B6C71591F94"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 199.99999618530273,
+                    "y": 59.999996185302734
+                },
+                "lowerRight": {
+                    "x": 239.99999809265137,
+                    "y": 99.99999809265137
+                }
+            }
+        },
+        {
+            "resourceId": "sid-38A7E545-668B-4612-9997-72FAA2CF7106",
+            "properties": {
+                "type": 17,
+                "name": "",
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "ExclusiveGateway"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-27458517-9FAA-41C8-9EE1-6726D11C0D64",
+                "sid-145EC44C-74B3-42B0-AA73-16CF17F872F1",
+                "sid-0D17650B-AB7E-478D-9063-6DCF135782F2",
+                "sid-1C2BD61E-893C-4405-BC50-53C4F35B4776",
+                "sid-6EA9A549-4DBE-44C0-A736-B3DE35DE2343",
+                "sid-0F453143-53CA-4545-AAC7-4D5165E09817",
+                "sid-259A6056-2DA2-426A-BE27-6FC1B4F65F78",
+                "sid-20EC5686-284D-471E-9792-780B143A6E04"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 369.99999618530273,
+                    "y": 59.999996185302734
+                },
+                "lowerRight": {
+                    "x": 409.99999809265137,
+                    "y": 99.99999809265137
+                }
+            }
+        },
+        {
+            "resourceId": "sid-1E687E02-85E1-48DF-A447-AD5A11D44F03",
+            "properties": {
+                "type": 0,
+                "name": "Business Change(ShareLine)",
+                "notes": "Business Change(ShareLine)",
+                "extProperties": {},
+                "activityName": "Business Change"
+            },
+            "stencil": {
+                "type": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-69D66987-1BBB-40D2-AC83-EC06F4324220",
+                "sid-6453173F-0D41-403C-B330-DF4115723462",
+                "sid-54044E26-7E56-43A6-9EC7-8891181C9662",
+                "sid-48F87868-AFF7-4577-BE58-77DF779E3BB7"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 460,
+                    "y": 160
+                },
+                "lowerRight": {
+                    "x": 560,
+                    "y": 220
+                }
+            }
+        },
+        {
+            "resourceId": "sid-7203BF8B-BF9F-4099-9F18-FA98173C6417",
+            "properties": {
+                "type": 0,
+                "name": "BusinessChange(Fixed)",
+                "notes": "BusinessChange(Fixed)",
+                "extProperties": {},
+                "activityName": "BusinessChange(Fixed)"
+            },
+            "stencil": {
+                "type": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-684CFB0B-1738-4720-9598-5022389831C6",
+                "sid-33E07620-2DAE-44EC-A410-528318740527",
+                "sid-16311A7E-1B4C-480A-B7A5-A6BAC28A6C81",
+                "sid-2B88537D-BE0C-4329-B1E3-AC8C5716A8D5"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 680,
+                    "y": 160
+                },
+                "lowerRight": {
+                    "x": 780,
+                    "y": 220
+                }
+            }
+        },
+        {
+            "resourceId": "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982",
+            "properties": {
+                "type": 17,
+                "name": "",
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "ExclusiveGateway"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-77A1382A-4919-4057-B254-B39FA3434416",
+                "sid-5296C541-7C61-43F2-9B51-702D80ADA586",
+                "sid-6DA48016-8F80-4641-87C3-4108F5780AC5",
+                "sid-165F9034-AF16-44E4-8941-8368070172D7"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 369.99999618530273,
+                    "y": 269.99999618530273
+                },
+                "lowerRight": {
+                    "x": 409.99999809265137,
+                    "y": 309.99999809265137
+                }
+            }
+        },
+        {
+            "resourceId": "sid-9B42F973-0DD8-442F-B0E8-ACA891512EE1",
+            "properties": {
+                "type": 0,
+                "name": "QryOrderFee",
+                "notes": "",
+                "extProperties": {},
+                "activityName": "QryOrderFee"
+            },
+            "stencil": {
+                "type": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-24056068-339A-47AD-9A06-C28741CBADF8",
+                "sid-23EAF933-3A06-450F-89E3-EE9532752ED5",
+                "sid-525F0A16-0247-41BC-A0A1-46F7E46D61C7",
+                "sid-75F6087E-F01A-41E0-BCC4-0B8A95941D85"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 180,
+                    "y": 370
+                },
+                "lowerRight": {
+                    "x": 280,
+                    "y": 430
+                }
+            }
+        },
+        {
+            "resourceId": "sid-08E4D787-47F2-4741-9E70-F9A2648590A3",
+            "properties": {
+                "type": 0,
+                "name": "Chage Info",
+                "notes": "",
+                "extProperties": {},
+                "activityName": "Chage Info"
+            },
+            "stencil": {
+                "type": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-0FC82628-5F4A-40A0-B347-020CA3ACB5B8",
+                "sid-45BC1076-B406-45A1-ADB8-7746D1FEEE35",
+                "sid-5327349E-797B-48F4-BBC2-E5F7E42D0AA8",
+                "sid-3749CB1D-8200-436F-9D32-764A0425B0B6"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 180,
+                    "y": 470
+                },
+                "lowerRight": {
+                    "x": 280,
+                    "y": 530
+                }
+            }
+        },
+        {
+            "resourceId": "sid-24C8C058-071C-47CA-8464-E30088CB3211",
+            "properties": {
+                "type": 0,
+                "name": "SubmitOrderWithOutFee",
+                "notes": "",
+                "extProperties": {},
+                "activityName": "SubmitOrderWithOutFee"
+            },
+            "stencil": {
+                "type": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-7D9EEC42-3B85-4812-9BB8-97078760E915",
+                "sid-3C83AC54-C3AE-4363-B2E6-242101C0EE56",
+                "sid-58041919-07D2-4606-9E88-8625151B61C0",
+                "sid-8E8C5F63-A6D6-4308-9EC2-C08D33B4C503"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 180,
+                    "y": 570
+                },
+                "lowerRight": {
+                    "x": 280,
+                    "y": 630
+                }
+            }
+        },
+        {
+            "resourceId": "sid-79D5F11F-B103-435B-93B3-1420A68EECE2",
+            "properties": {
+                "type": 31,
+                "name": "EndNoneEvent",
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "EndNoneEvent"
+            },
+            "childShapes": [],
+            "outgoing": [],
+            "bounds": {
+                "upperLeft": {
+                    "x": 400,
+                    "y": 680
+                },
+                "lowerRight": {
+                    "x": 440,
+                    "y": 720
+                }
+            }
+        },
+        {
+            "resourceId": "sid-4B6ACC56-1A50-4042-9F86-04E8787D1E21",
+            "properties": {
+                "type": 14,
+                "name": null,
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-789CFB6B-703E-4185-8B61-62B014522618",
+                "sid-789CFB6B-703E-4185-8B61-62B014522618",
+                "sid-789CFB6B-703E-4185-8B61-62B014522618",
+                "sid-789CFB6B-703E-4185-8B61-62B014522618"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 202.5,
+                    "y": 152.5
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "right",
+                "ePos": "left"
+            },
+            "dockers": [
+                {
+                    "x": 80,
+                    "y": 150
+                },
+                {
+                    "x": 110,
+                    "y": 150
+                },
+                {
+                    "x": 110,
+                    "y": 80
+                },
+                {
+                    "x": 169.99999904632568,
+                    "y": 80
+                },
+                {
+                    "x": 199.99999904632568,
+                    "y": 80
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-15BD782E-BDB5-4593-A933-1B6C71591F94",
+            "properties": {
+                "type": 14,
+                "name": null,
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-38A7E545-668B-4612-9997-72FAA2CF7106",
+                "sid-38A7E545-668B-4612-9997-72FAA2CF7106",
+                "sid-38A7E545-668B-4612-9997-72FAA2CF7106",
+                "sid-38A7E545-668B-4612-9997-72FAA2CF7106"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 372.5,
+                    "y": 86.66666650772095
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "right",
+                "ePos": "left"
+            },
+            "dockers": [
+                {
+                    "x": 240.00000095367432,
+                    "y": 80
+                },
+                {
+                    "x": 270.0000009536743,
+                    "y": 80
+                },
+                {
+                    "x": 339.9999990463257,
+                    "y": 80
+                },
+                {
+                    "x": 369.9999990463257,
+                    "y": 80
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-259A6056-2DA2-426A-BE27-6FC1B4F65F78",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-1E687E02-85E1-48DF-A447-AD5A11D44F03",
+                "sid-1E687E02-85E1-48DF-A447-AD5A11D44F03",
+                "sid-1E687E02-85E1-48DF-A447-AD5A11D44F03",
+                "sid-1E687E02-85E1-48DF-A447-AD5A11D44F03"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 516.666666507721,
+                    "y": 162.5
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "bottom",
+                "ePos": "top"
+            },
+            "dockers": [
+                {
+                    "x": 390,
+                    "y": 100.00000095367432
+                },
+                {
+                    "x": 390,
+                    "y": 130.00000095367432
+                },
+                {
+                    "x": 450,
+                    "y": 130.00000095367432
+                },
+                {
+                    "x": 450,
+                    "y": 130
+                },
+                {
+                    "x": 510,
+                    "y": 130
+                },
+                {
+                    "x": 510,
+                    "y": 160
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-20EC5686-284D-471E-9792-780B143A6E04",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-7203BF8B-BF9F-4099-9F18-FA98173C6417",
+                "sid-7203BF8B-BF9F-4099-9F18-FA98173C6417",
+                "sid-7203BF8B-BF9F-4099-9F18-FA98173C6417",
+                "sid-7203BF8B-BF9F-4099-9F18-FA98173C6417"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 736.666666507721,
+                    "y": 162.5
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "top",
+                "ePos": "top"
+            },
+            "dockers": [
+                {
+                    "x": 390,
+                    "y": 59.999999046325684
+                },
+                {
+                    "x": 390,
+                    "y": 29.999999046325684
+                },
+                {
+                    "x": 730,
+                    "y": 29.999999046325684
+                },
+                {
+                    "x": 730,
+                    "y": 130
+                },
+                {
+                    "x": 730,
+                    "y": 160
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-33BC8953-D2A5-42F5-BCB2-D914D23885D0",
+            "properties": {
+                "type": 14,
+                "name": null,
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982",
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982",
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982",
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 372.5,
+                    "y": 296.66666650772095
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "right",
+                "ePos": "left"
+            },
+            "dockers": [
+                {
+                    "x": 280,
+                    "y": 190
+                },
+                {
+                    "x": 310,
+                    "y": 190
+                },
+                {
+                    "x": 310,
+                    "y": 290
+                },
+                {
+                    "x": 339.9999990463257,
+                    "y": 290
+                },
+                {
+                    "x": 369.9999990463257,
+                    "y": 290
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-48F87868-AFF7-4577-BE58-77DF779E3BB7",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982",
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982",
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982",
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 512.5,
+                    "y": 296.66666650772095
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "bottom",
+                "ePos": "right"
+            },
+            "dockers": [
+                {
+                    "x": 510,
+                    "y": 220
+                },
+                {
+                    "x": 510,
+                    "y": 250
+                },
+                {
+                    "x": 510,
+                    "y": 290
+                },
+                {
+                    "x": 440.0000009536743,
+                    "y": 290
+                },
+                {
+                    "x": 410.0000009536743,
+                    "y": 290
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-2B88537D-BE0C-4329-B1E3-AC8C5716A8D5",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982",
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982",
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982",
+                "sid-30DF6818-9323-4531-AFA5-4FFAC34A7982"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 732.5,
+                    "y": 296.66666650772095
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "bottom",
+                "ePos": "right"
+            },
+            "dockers": [
+                {
+                    "x": 730,
+                    "y": 220
+                },
+                {
+                    "x": 730,
+                    "y": 250
+                },
+                {
+                    "x": 730,
+                    "y": 290
+                },
+                {
+                    "x": 440.0000009536743,
+                    "y": 290
+                },
+                {
+                    "x": 410.0000009536743,
+                    "y": 290
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-165F9034-AF16-44E4-8941-8368070172D7",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-9B42F973-0DD8-442F-B0E8-ACA891512EE1",
+                "sid-9B42F973-0DD8-442F-B0E8-ACA891512EE1",
+                "sid-9B42F973-0DD8-442F-B0E8-ACA891512EE1",
+                "sid-9B42F973-0DD8-442F-B0E8-ACA891512EE1"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 392.5,
+                    "y": 372.5
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "bottom",
+                "ePos": "top"
+            },
+            "dockers": [
+                {
+                    "x": 390,
+                    "y": 310.0000009536743
+                },
+                {
+                    "x": 390,
+                    "y": 340.0000009536743
+                },
+                {
+                    "x": 310,
+                    "y": 340.0000009536743
+                },
+                {
+                    "x": 310,
+                    "y": 340
+                },
+                {
+                    "x": 230,
+                    "y": 340
+                },
+                {
+                    "x": 230,
+                    "y": 370
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-75F6087E-F01A-41E0-BCC4-0B8A95941D85",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-08E4D787-47F2-4741-9E70-F9A2648590A3",
+                "sid-08E4D787-47F2-4741-9E70-F9A2648590A3",
+                "sid-08E4D787-47F2-4741-9E70-F9A2648590A3",
+                "sid-08E4D787-47F2-4741-9E70-F9A2648590A3"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 236.66666650772095,
+                    "y": 472.5
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "bottom",
+                "ePos": "top"
+            },
+            "dockers": [
+                {
+                    "x": 230,
+                    "y": 430
+                },
+                {
+                    "x": 230,
+                    "y": 460
+                },
+                {
+                    "x": 230,
+                    "y": 460
+                },
+                {
+                    "x": 230,
+                    "y": 440
+                },
+                {
+                    "x": 230,
+                    "y": 440
+                },
+                {
+                    "x": 230,
+                    "y": 470
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-3749CB1D-8200-436F-9D32-764A0425B0B6",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-24C8C058-071C-47CA-8464-E30088CB3211",
+                "sid-24C8C058-071C-47CA-8464-E30088CB3211",
+                "sid-24C8C058-071C-47CA-8464-E30088CB3211",
+                "sid-24C8C058-071C-47CA-8464-E30088CB3211"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 236.66666650772095,
+                    "y": 572.5
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "bottom",
+                "ePos": "top"
+            },
+            "dockers": [
+                {
+                    "x": 230,
+                    "y": 530
+                },
+                {
+                    "x": 230,
+                    "y": 560
+                },
+                {
+                    "x": 230,
+                    "y": 560
+                },
+                {
+                    "x": 230,
+                    "y": 540
+                },
+                {
+                    "x": 230,
+                    "y": 540
+                },
+                {
+                    "x": 230,
+                    "y": 570
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-8E8C5F63-A6D6-4308-9EC2-C08D33B4C503",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-79D5F11F-B103-435B-93B3-1420A68EECE2",
+                "sid-79D5F11F-B103-435B-93B3-1420A68EECE2",
+                "sid-79D5F11F-B103-435B-93B3-1420A68EECE2",
+                "sid-79D5F11F-B103-435B-93B3-1420A68EECE2"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 402.5,
+                    "y": 706.666666507721
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "bottom",
+                "ePos": "left"
+            },
+            "dockers": [
+                {
+                    "x": 230,
+                    "y": 630
+                },
+                {
+                    "x": 230,
+                    "y": 660
+                },
+                {
+                    "x": 230,
+                    "y": 700
+                },
+                {
+                    "x": 370,
+                    "y": 700
+                },
+                {
+                    "x": 400,
+                    "y": 700
+                }
+            ]
+        }
+    ],
+    "outgoing": [],
+    "bounds": {
+        "upperLeft": {
+            "x": 0,
+            "y": 0
+        },
+        "lowerRight": {
+            "x": "2000",
+            "y": "960"
+        }
+    }
+}

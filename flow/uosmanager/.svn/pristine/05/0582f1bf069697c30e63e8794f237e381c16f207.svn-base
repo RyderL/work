@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Cache-Controller" content="no-cache">
+    <title>流程实例管理(历史)</title>
+	<script type="text/javascript" src="../../../common/ext/boot.js"></script>
+    <script type="text/javascript" src="../../../common/js/raphael.js"></script>
+    <script type="text/javascript" src="../../../common/zflow/js/jquery.color.js"></script>
+    <script type="text/javascript" src="../../../common/zflow/js/jquery.zflow.js"></script>
+    <script type="text/javascript" src="../../../common/zflow/js/jquery.zflow.node-image.js"></script>
+    <style type="text/css">
+	   *{
+	   		/* font-family:sans-serif; */
+	   		font-family: "Microsoft YaHei","黑体","宋体","Arial",sans-serif;
+			font-size : 14px;
+	   } 
+        tspan,div{
+            -moz-user-select: auto; /*火狐*/
+            -webkit-user-select: auto;  /*webkit浏览器*/
+            -ms-user-select: auto;   /*IE10*/
+            -khtml-user-select: auto; /*早期浏览器*/
+            user-select: auto;
+        }
+        .title
+        {
+        	font-size:14px;
+        	font-weight:bold;
+        }
+        input{
+			width:150px;
+		}
+		td{
+			font-size: 14px;
+		}
+		
+    </style>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north',split:true" style="height:70px;">
+		<form id="qryForm" method="post">
+			<table cellpadding="5" style="padding:10px;">
+	    		<tr>
+	    			<td>流程实例</td>
+	    			<td><input class="easyui-textbox" id="processInstId"></td>
+	    			<td>开始时间</td>
+	    			<td><input id="startDate" type="text"></td>
+	    			<td>结束时间</td>
+	    			<td><input id="endDate" type="text"></td>
+	    			<td>状态</td>
+	    			<td><input id="pState" type="text"></td>
+	    			<td></td>
+					<td><a href="#" id="btnQry" class="easyui-linkbutton" iconCls="icon-search" plain="true">查询</a></td>
+	    		</tr>
+	    	</table>
+		</form>
+	</div>
+	<div data-options="region:'center'">
+		<table id="flowInstTable" height="100%"></table>
+		<div id="flowInstTb" style="padding-top:15px;padding-bottom:15px;padding-left:25px;">
+			<a id="btnQryGraph" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',disabled:true">流程图</a>&nbsp;
+			<a id="btnQryParentGraph" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',disabled:true">父流程图</a>&nbsp;
+			<a id="btnQryProcInstDetail" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',disabled:true">流程消息</a>&nbsp;
+			<a id="btnQryShadowGraph" href="#" class="easyui-linkbutton" data-options="disabled:true">影子流程</a>
+		</div>
+	</div>
+	<div data-options="region:'south',split:true,minHeight:200,iconCls:'icon-large-smartart',title:'工作项'">
+		<table id="workItemTable" height="100%"></table>
+	</div>
+	<!--流程图-->
+	<div id="flowGraphWin" class="easyui-dialog" title="流程图" style="width:800px;height:450px"
+			data-options="closed:true,iconCls: 'icon-large-chart',cache:false,modal:true,maximizable:true">
+		<div style="padding:10px;width:95%;">
+			<div id="state" style="height:50px;"></div>
+			<hr/>
+			<div>
+				<p class='title'>流程实例图</p>
+				<div id="inst" ></div>
+			</div>
+			<hr/>
+			<div>
+				<p class='title'>流程定义图</p>
+				<div id="def" ></div>
+			</div> 
+	    </div>
+	</div>
+	<!--映射流程图-->
+	<div id="shadowFlowGraphWin" class="easyui-dialog" title="影子流程图" style="width:800px;height:250px"
+			data-options="closed:true,iconCls: 'icon-large-chart',cache:false,modal:true,maximizable:true">
+		<div style="padding:10px;width:95%;">
+			<div>
+				<p class='title'>影子流程图</p>
+				<div id="shadow" ></div>
+			</div> 
+	    </div>
+	</div>
+	<!-- 流程实例详情 begin-->
+	<div id="procInstDetailWin"  class="easyui-dialog" title="接口消息交互记录" style="width:650px;height:350px"
+			data-options="closed:true,maximizable:true,iconCls:'icon-save',cache:false,modal:true">
+		<table id="procInstDetailGrid" height="40%"></table>
+		<div id="detailInfoDiv" hidden="true">
+			<table>
+				<tr>
+					<td>消息请求：</td>
+					<td><input class="easyui-textbox" id="msgInfo" data-options="multiline:true" style="width:200px;height:150px"/></td>
+					<td>消息反馈：</td>
+					<td><input class="easyui-textbox" id="msgRetInfo" data-options="multiline:true" style="width:200px;height:150px"/></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/flowInstManagerHis.js"></script>
+</html>

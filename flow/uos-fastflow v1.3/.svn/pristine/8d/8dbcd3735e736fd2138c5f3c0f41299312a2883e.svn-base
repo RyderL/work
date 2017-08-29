@@ -1,0 +1,11 @@
+<div class="ui-dialog dialog-md">
+    <div class="modal-header">
+        <h4 class="modal-title">导出流程图JSON</h4>
+    </div>
+    <div class="modal-body">
+		<textarea rows="20" style="width:100%; height: 100%" id="taJson"/>
+    </div>
+    <div class="modal-footer">
+         <button type="button" class="btn btn-primary"  id="save-button">关闭</button>
+    </div>
+</div>

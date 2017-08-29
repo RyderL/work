@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Model Design</title>
+	<script src="../../../../common/ext/boot.js"></script>
+</head>
+<body>
+ 	<div id = "menu" class = "bodyBackground" style="text-align: center;">
+		<a id="addNewLine" href="#" class="easyui-linkbutton"
+           data-options="iconCls:'icon-add'" >新增一行</a>
+		<a id="addNewLineAfterOne" href="#" class="easyui-linkbutton"
+           data-options="iconCls:'icon-add'">新增一行（在指定的行之后）</a>
+		<select id = "lineNumber" class = "easyui-combobox" style="padding:0px 5px 5px 5px"
+				data-options="panelHeight='auto'">
+			<option>1行</option>
+			<option>2行</option>
+		</select>
+		<a id="removeOneLine" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除一行</a>
+		<a id="closedWindow" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">关闭窗口</a>
+	</div>
+
+	<!-- 新增一行的对话框弹窗 -->
+	<div id="addNewLineDialog" class="easyui-dialog" data-options="closed:true, buttons:addNewLineButtons">
+		<div class = "bodyBackground">
+			<a id="addProperties" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增属性</a>
+			<table id = "propertiesTable" class = "easyui-datagrid" style="width: 'auto'; height: auto; min-height: 200px;" striped = "true" singleSelect = "true">
+				<thead>
+					<tr>
+						<th field = 'label' width = "22%">控件标签</th>
+						<th field = 'code' width = "21%">控件编码</th>
+						<th field = 'backfill' width = "15%">是否回填项</th>
+						<th field = 'required' width = "10%">是否必填</th>
+						<th field = 'enable' width = "10%">是否使能</th>
+						<th field = 'display' width = "10%">是否显示</th>
+						<th field = 'assignment' width = "15%">是否赋初值</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- 新增一行对话框中的确定和取消按钮 -->
+	<div id = "addNewLineButtons" class = "dialogButtons">
+		<a href="#" id = "addNewLineOK" class="easyui-linkbutton">确定</a>
+		<a href="#" id = "addNewLineCancel" class="easyui-linkbutton">取消</a>
+	</div>
+
+	<!-- 新增属性对话框弹窗 -->
+	<div id="addPropertiesDialog" class="easyui-dialog" data-options="closed:true, buttons:addPropertiesButtons">
+		<div class = "bodyBackground">
+			<form action="" id = "selectElementType">
+				<div style="margin-bottom: 5px;">
+					<label for="elementType">选择元素:</label>
+					<select id="elementType" name = "elementType" class="easyui-combobox" panelHeight = "auto">
+						<option value="man">选择人员</option>
+						<option value="area">选择区域</option>
+						<option value="office">选择局向</option>
+						<option value="date">选择日期</option>
+						<option value="result">施工结果</option>
+						<option value="reason">超时原因</option>
+						<option value="addons">附件</option>
+					</select>
+				</div>
+				<table id = "elementEditTable">
+					<tr style = "background:#efefef;">
+						<th style="width: 40%; ">属性</th>
+						<th style="width: 60%;">值</th>
+					</tr>
+					<tr>
+						<td>显示标签</td>
+						<td>
+							<input id = "showLabel" type="text"> 
+						</td>
+					</tr>
+					<tr>
+						<td>控件编码</td>
+						<td>
+							<input id = "widgetCode" type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>对齐方式</td>
+						<td>
+							<select name="align" id="align">
+								<option value="left">左对齐</option>
+								<option value="right">右对齐</option>
+								<option value="center">居中</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>是否回填</td>
+						<td>
+							<select name="backfill" id="backfill">
+								<option value="yes">是</option>
+								<option value="no">否</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>是否必填</td>
+						<td>
+							<select name="required" id="required">
+								<option value="yes">是</option>
+								<option value="no">否</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>是否使能</td>
+						<td>
+							<select name="enable" id="enable">
+								<option value="yes">是</option>
+								<option value="no">否</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>是否显示</td>
+						<td>
+							<select name="display" id="display">
+								<option value="yes">是</option>
+								<option value="no">否</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>是否赋初值</td>
+						<td>
+							<select name="assignment" id="assignment">
+								<option value="yes">是</option>
+								<option value="no">否</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</form>
+			
+		</div>
+	</div>
+
+<!-- 新增一行对话框中的确定和取消按钮 -->
+	<div id = "addPropertiesButtons" class="dialogButtons">
+		<a href="#" id = "addPropertiesOK" class="easyui-linkbutton">确定</a>
+		<a href="#" id = "addPropertiesCancel" class="easyui-linkbutton">取消</a>
+	</div>
+
+	<script type="text/javascript" src="js/modelDesign.js"></script>
+</body>
+</html>

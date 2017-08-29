@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>流程实例管理</title>
+	<script type="text/javascript" src="./common/ext/boot.js"></script>
+    <script type="text/javascript" src="./common/js/raphael.js"></script>
+    <script type="text/javascript" src="./common/zflow/js/jquery.color.js"></script>
+    <script type="text/javascript" src="./common/zflow/js/jquery.zflow.js"></script>
+    <script type="text/javascript" src="./common/zflow/js/jquery.zflow.node-image.js"></script>
+    <style type="text/css">
+	   *{
+	   		font-family:sans-serif;
+	   }
+        tspan,div{
+            -moz-user-select: none; /*火狐*/
+            -webkit-user-select: none;  /*webkit浏览器*/
+            -ms-user-select: none;   /*IE10*/
+            -khtml-user-select: none; /*早期浏览器*/
+            user-select: none;
+        }
+        .title
+        {
+        	font-size:18px;
+        	font-weight:bold;
+        }
+    </style>
+</head>
+<body style="background:#fafafa;">
+	<div id="state" style="height:50px;"></div>
+	<hr/>
+	<div>
+		<p class='title'>流程实例图</p>
+		<div id="inst" />
+	</div>
+	<hr/>
+	<div>
+		<p class='title' id="title"></p>
+		<div id="def" />
+	</div>
+</body>
+<script language="JavaScript">
+	$(function($) {
+		var getQueryString = function(name)
+		{
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		}
+		
+		var processInstId = getQueryString("processInstId");
+		var isHistory = getQueryString("isHistory");
+		if(isHistory == null){
+			isHistory = false;
+		}
+		
+		$.zflow.initStateImage($("#state"));
+		
+		var inst = $.callSyn("FlowInstServ","qryProcessInstanceForTrace",{processInstanceId:processInstId,isHistory:isHistory});
+		$("#inst").empty();
+		$("#inst").zflow(inst,{mode:"inst",direction:"horizontal"});
+		
+		var def = $.callSyn("FlowInstServ","qryProcessDefineForTrace",{processInstanceId:processInstId,isHistory:isHistory});
+		$("#def").empty();
+	    $("#def").zflow(def,{mode:"def",direction:"horizontal"});
+
+	    var path = $.callSyn("FlowInstServ","qryPackageDefinePath",{processInstanceId:processInstId,isHistory:isHistory});
+	    $("#title").text('流程定义图:' + path.path);
+	});
+</script>
+</html>

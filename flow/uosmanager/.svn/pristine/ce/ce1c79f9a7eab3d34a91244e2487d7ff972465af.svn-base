@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>节假日休息制度管理</title>
+	<script type="text/javascript" src="../../../common/ext/boot.js"></script>
+	<style>
+		input{
+			width:150px;
+		}
+	</style>
+</head>
+
+<body class="easyui-layout" style="height:470px;">
+	<div data-options="region:'west',title:'区域',split:true"
+		style="width:200px;">
+		<ul id="holidayAreaTree" class="easyui-tree"></ul>
+	</div>
+	<div data-options="region:'center'">
+		<div class="easyui-layout" id="main" data-options="fit:true">
+			<div data-options="region:'center',title:'节假日模板列表'" style="height:200px;">
+				<table id="holidayModelTable" width="100%"  height="100%"></table>
+				<div id="holidayModelTb">
+					<div>
+						<a href="#" id="btnAddHolidayModel" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,disabled:true" title="新增"></a>
+						<a href="#" id="btnModHolidayModel" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true,disabled:true" title="修改"></a>
+						<a href="#" id="btnDelHolidayModel" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true,disabled:true" title="删除"></a>
+					</div>
+				</div>
+			</div>
+			<div data-options="region:'south',title:'节假日列表'" style="height:250px;">
+				<table id="holidaySystemTable" width="100%" height="100%"></table>
+				<div id="holidaySystemTb">
+					<a href="#" id="btnAddHolidaySystem" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,disabled:true" title="新增"></a>
+					<a href="#" id="btnModHolidaySystem" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true,disabled:true" title="修改"></a>
+					<a href="#" id="btnDelHolidaySystem" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true,disabled:true" title="删除"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- WINDOW -->
+	<div id="holidayModelDlg" class="easyui-dialog" data-options="closed:true">
+		<form id="holidayModelForm" method="post" style="padding:20px 10px 10px 20px;">
+			<table cellpadding="0">
+	    		<tr>
+	    			<td style="width:100px;">名称<span style="color:red;">*</span></td>
+	    			<td>
+	    				<input class="easyui-textbox" type="text" id="holidayModelName" data-options="required:true,validType:'minLength[1]'" />
+	    				<input type="hidden" id="holidayModelId"/>
+	    			</td>
+	    			<td>时间单位<span style="color:red;">*</span></td>
+	    			<td>
+	    				<input type="radio" id="holidayModelTimeUnit" name="holidayModelTimeUnit" value="0" checked style="width:30px;">月日
+						<input type="radio" id="holidayModelTimeUnit" name="holidayModelTimeUnit" value="1" style="width:30px;">周
+					</td>	
+	    		</tr>
+	    		<tr id ="timeUnitWeek">
+	    			<td>开始时间<span style="color:red;">*</span></td>
+	    			<td><select id="holidayModelStartWeek" name="holidayModelStartWeek" style=”width:200px;”>
+							<option selected value="1">周一</option>
+							<option value="2">周二</option>
+							<option value="3">周三</option>
+							<option value="4">周四</option>
+							<option value="5">周五</option>
+							<option value="6">周六</option>
+							<option value="7">周日</option>	      	
+						</select>
+					</td>
+	    			<td>结束时间<span style="color:red;">*</span></td>
+	    			<td><select id="holidayModelEndWeek" name="holidayModelEndWeek" style=”width:200px;”>
+							<option selected value="1">周一</option>
+							<option value="2">周二</option>
+							<option value="3">周三</option>
+							<option value="4">周四</option>
+							<option value="5">周五</option>
+							<option value="6">周六</option>
+							<option value="7">周日</option>	      	
+						</select>
+					</td>
+	    		</tr>
+	    		<tr id ="timeUnitMonth">
+	    			<td>开始时间<span style="color:red;">*</span></td>
+	    			<td>
+		    			<select id="holidayModelStartMonth" name="holidayModelStartMonth" style=”width:200px;”>
+		    				<option value="0" selected>-月-</option>
+		    			</select>
+						<select id="holidayModelStartDay" name="holidayModelStartDay" style=”width:200px;”>
+							<option value="0" selected>-日-</option>
+						</select>
+					</td>
+	    			<td>结束时间<span style="color:red;">*</span></td>
+	    			<td>
+						<select id="holidayModelEndMonth" name="holidayModelEndMonth" style=”width:200px;”>
+		    				<option value="0" selected>-月-</option>
+		    			</select>
+						<select id="holidayModelEndDay" name="holidayModelEndDay" style=”width:200px;”>
+							<option value="0" selected>-日-</option>
+						</select>
+					</td>
+	    		</tr>
+	    		<tr>
+	    			<td>生效时间<span style="color:red;">*</span></td>
+	    			<td><input class="easyui-datebox" id="holidayModelEffDate" name="holidayModelEffDate" data-options="required:true"/></td>
+	    			<td>失效时间<span style="color:red;">*</span></td>
+	    			<td><input class="easyui-datebox" id="holidayModelExpDate" name="holidayModelExpDate" data-options="required:true"/></td>
+	    		</tr>
+	    		<tr>
+	    			<td>状态<span style="color:red;">*</span></td>
+	    			<td>
+	    				<input type="radio" name="holidayModelState" value="10A" checked style="width:30px;">生效
+						<input type="radio" name="holidayModelState" value="10X" style="width:30px;">失效
+					</td>
+					<td>时间段<span style="color:red;">*</span></td>
+			    	<td><input class="easyui-textbox" id="holidayMdWorkTimeRule" name="holidayMdWorkTimeRule" ></td>
+	    		</tr>
+	    		<tr>
+	    			<td>备注<span style="color:red;">*</span></td>
+	    			<td conspan=3><input class="easyui-textbox" id="holidayModelComments" name="holidayModelComments" data-options="multiline:true" style="width:200px;height:50px"/>
+	    			</td>
+	    		</tr>
+	    	</table>
+		</form>	
+	</div>
+
+	
+	
+	
+	<div id="timeDetailWin" class="easyui-dialog" title="选择时间段" style="width:600px;height:500px"
+			data-options="closed:true,maximizable:true,iconCls:'icon-save',buttons:'#timeDetailWin-buttons',cache:false,modal:true">
+		<div class="easyui-layout" data-options="fit:true">
+           	<table id="timeDetailGrid" data-options="fit:true"></table>
+           	<div id="timeDetailTb">
+				<a id="btnAddTd" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true"></a>
+				<a id="btnModTd" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true"></a>
+				<a id="btnDelTd" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true"></a>
+			</div>
+		</div>	
+	</div>
+	<div id="timeDetailWin-buttons">
+		<a id="timeDetailWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#timeDetailWin').dialog('close')">取消</a>
+	</div>
+	<div id="dlg" class="easyui-dialog" data-options="closed:true">
+		<form id="timeDetailInfoForm">
+           	<table >
+           		<tr>
+	    			<td>上班时间<span style="color:red;">*</span></td>
+	    			<td>
+		    			<input class="easyui-textbox" type="text" id="startHour" data-options="required:true,validType:'minLength[1]'"/>
+		    			<span>时</span>
+		    			<input class="easyui-textbox" type="text" id="startMinute" data-options="required:true,validType:'minLength[1]'"/>
+		    			<span>分</span>
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td>下班时间<span style="color:red;">*</span></td>
+	    			<td>
+		    			<input class="easyui-textbox" type="text" id="endHour" data-options="required:true,validType:'minLength[1]'"/>
+		    			<span>时</span>
+		    			<input class="easyui-textbox" type="text" id="endMinute" data-options="required:true,validType:'minLength[1]'"/>
+		    			<span>分</span>
+					</td>
+	    		</tr>
+           	</table>
+          	</form>
+	</div>
+	
+	<!-- 节假日dialogs -->
+	<div id="holidaySystemDlg" class="easyui-dialog" data-options="closed:true">
+		<form id="holidaySystemForm" method="post" style="padding:20px 10px 10px 20px;">
+			<table cellpadding="0">
+	    		<tr>
+	    			<td>名称<span style="color:red;">*</span></td>
+	    			<td>
+	    				<input class="easyui-textbox" type="text" id="holidaySystemName" data-options="required:true,validType:'minLength[1]'" />
+	    				<input type="hidden" id="holidaySystemId" />
+	    			</td>
+	    			<td>类型<span style="color:red;">*</span></td>
+	    			<td>
+	    				<input type="radio" id="holidaySystemOperType" name="holidaySystemOperType" value="0" checked style="width:30px;"><span style:"padding:0px;">休息日</span>
+						<input type="radio" id="holidaySystemOperType" name="holidaySystemOperType" value="1" style="width:30px;"><span style:"padding:0px;">工作日</span>
+					</td>	
+	    		</tr>
+	    		<tr>
+	    			<td>开始日期<span style="color:red;">*</span></td>
+	    			<td><input class="easyui-datebox" id="holidaySystemStartDate" name="holidayModelEffDate" data-options="required:true"/></td>
+	    			<td>结束日期<span style="color:red;">*</span></td>
+	    			<td><input class="easyui-datebox" id="holidaySystemEndDate" name="holidayModelExpDate" data-options="required:true"/></td>
+	    		</tr>
+	    	<!-- <tr>
+	    			<td>生效时间<span style="color:red;">*</span></td>
+	    			<td><input class="easyui-datebox" id="holidaySystemEffDate" name="holidayModelEffDate" data-options="required:true"/></td>
+	    			<td>失效时间<span style="color:red;">*</span></td>
+	    			<td><input class="easyui-datebox" id="holidaySystemExpDate" name="holidayModelExpDate" data-options="required:true"/></td>
+	    		</tr> -->
+	    		<tr>
+	    			<td>备注<span style="color:red;">*</span></td>
+	    			<td conspan=3><input class="easyui-textbox" id="holidaySystemComments" name="holidaySystemComments" data-options="multiline:true" style="width:200px;height:50px"/>
+	    			</td>
+	    		</tr>
+	    	</table>
+		</form>	
+	</div>
+	
+	
+	
+</body>
+
+<script type="text/javascript" src="js/holidayManager.js"></script>
+</html>

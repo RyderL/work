@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment name="defaultClientConfig"
+	xmlns:java="http://xml.apache.org/axis/wsdd/providers/java"
+	xmlns:handler="http://xml.apache.org/axis/wsdd/providers/handler"
+	xmlns="http://xml.apache.org/axis/wsdd/">
+	<globalConfiguration name="defaultClientConfig">
+		<requestFlow name="RequestFlow1" type="">
+			<handler name="Handler1" type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="session" />
+			</handler>
+			<handler name="Handler2" type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="request" />
+				<parameter name="extension" value=".jwr" />
+			</handler>
+		</requestFlow>
+	</globalConfiguration>
+	<handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper" />
+	<handler name="LocalResponder"
+		type="java:org.apache.axis.transport.local.LocalResponder" />
+	<handler name="Authenticate"
+		type="java:org.apache.axis.handlers.SimpleAuthenticationHandler" />
+	<transport name="http" type="">
+		<requestFlow name="RequestFlow1" type="">
+			<handler name="Handler1" type="URLMapper" />
+			<handler name="Handler2"
+				type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+	</transport>
+	<transport name="local" type="">
+		<responseFlow name="ResponseFlow1" type="">
+			<handler name="Handler1" type="LocalResponder" />
+		</responseFlow>
+	</transport>
+	<service name="WorkFlowServicePort" provider="java:RPC" style="wrapped"
+		use="literal">
+		<parameter name="wsdlTargetNamespace" value="http://exe.com/" />
+		<parameter name="wsdlServiceElement" value="WorkFlowServiceService" />
+		<parameter name="schemaUnqualified" value="http://exe.com/" />
+		<parameter name="wsdlServicePort" value="WorkFlowServicePort" />
+		<parameter name="className"
+			value="com.ztesoft.uosflow.inf.server.ws.WorkFlowServicePortBindingImpl" />
+		<parameter name="wsdlPortType" value="WorkFlowService" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<operation name="methodInvoke" qname="operNS:methodInvoke"
+			xmlns:operNS="http://exe.com/" returnQName="return" returnType="rtns:string"
+			xmlns:rtns="http://www.w3.org/2001/XMLSchema">
+			<parameter qname="jsonParams" type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<parameter name="allowedMethods" value="methodInvoke" />
+	</service>
+</deployment>

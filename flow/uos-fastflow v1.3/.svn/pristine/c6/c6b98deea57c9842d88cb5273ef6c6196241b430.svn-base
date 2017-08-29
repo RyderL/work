@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>流程图显示界面</title>
+    <link rel="stylesheet" href="../libs/fish-desktop/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../libs/fish-desktop/css/fish-desktop-portal.css">
+    <script src="http://fish.ztesoft.com/fish-desktop/dist/fish-desktop/js/fish-desktop-all.js"></script>
+    <script src="http://fish.ztesoft.com/fish-desktop/dist/fish-desktop/locale/fish-desktop-locale.zh.js"></script>
+    <script src="http://fish.ztesoft.com/fish-desktop/dist/fish-desktop/js/fish-desktop-require.js" data-main="config"></script>
+
+    <!--[if IE 8]>
+    <script type="text/javascript" src="../libs/fish-desktop/libs/bootstrap/respond.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div id="app" class="container-fluid"></div>
+</body>
+</html>

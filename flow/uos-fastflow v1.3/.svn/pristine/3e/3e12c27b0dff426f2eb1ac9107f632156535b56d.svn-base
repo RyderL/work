@@ -1,0 +1,67 @@
+.row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.row > .col-md-1,
+.row > .col-md-2,
+.row > .col-md-3,
+.row > .col-md-4,
+.row > .col-md-5,
+.row > .col-md-6,
+.row > .col-md-7,
+.row > .col-md-8,
+.row > .col-md-9,
+.row > .col-md-10,
+.row > .col-md-11,
+.row > .col-md-12 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+
+.ztree li span.button.glyphicon {
+    background-image: none;
+    vertical-align: initial;
+    width: auto;
+    height: auto;
+    margin-right: 5px;
+    color: #3896d5;
+}
+
+.ztree li span.button.fa {
+    background-image: none;
+    vertical-align: initial;
+    width: auto;
+    height: auto;
+    margin-right: 5px;
+    color: #3896d5;
+}
+
+.show_box {
+    position: absolute;
+    top: 42%;
+    left: -5px;
+    z-index: 1;
+}
+
+.show_box span {
+    border: 1px solid #ddd;
+    width: 10px;
+    height: 50px;
+    background: #fff;
+    display: block;
+}
+
+.show_box span i{
+    margin-top: 18px;
+    margin-left: 1px;
+    z-index: 1;
+}
+
+.cs-block {
+	background: #fff;
+	margin-bottom: 6px;
+	box-shadow: 0 0 1px 1px #dadata;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>templateManage</title>
+    <script src="../../../../common/ext/boot.js"></script>
+    <style>
+        .addTemplateInput{
+            padding: 5px;
+        }
+        .label{
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
+</head>
+<body class="easyui-layout">
+<div id="layoutCenter" data-options="region:'center',title:'模板列表',height:'300px',fit:true">
+    <table id="templateTable"></table>
+</div>
+<div data-options="region:'south',title:'',height:'300px',width:'auto'">
+    <div id = "templateSetting" class="easyui-tabs"
+         data-options="width:'100%', height: '100%'">
+        <div class="templateSetting" id="templateDetail" title="模板详情">
+            <table id="templateDetailTable"></table>
+        </div>
+        <div class="templateSetting" id="templateRule" title="模板使用条件配置">
+            <div>
+                <a href="#" id="addRule" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" title="增加"></a>
+                <a href="#" id="changeRule" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" title="修改"></a>
+                <a href="#" id="delRule" class="easyui-linkbutton" data-options="iconCls:'icon-del',plain:true    " title="删除"></a>
+            </div>
+            <div>
+                <table id="templateRuleTable"></table>
+            </div>
+        </div>
+        <div class="templateSetting" id="templateConstraint" title="模板约束条件配置">
+            <div>
+                <a href="#" id="addConstraint" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" title="增加"></a>
+                <a href="#" id="changeConstraint" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" title="修改"></a>
+                <a href="#" id="delConstraint" class="easyui-linkbutton" data-options="iconCls:'icon-del',plain:true" title="删除"></a>
+            </div>
+            <div>
+                <table id="templateConstraintTable"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 菜单 -->
+<div id="templateMenu" class="easyui-menu">
+    <div id="addTemplate" data-options="iconCls:'icon-add'">增加模板</div>
+    <div id="changeTemplate" data-options="iconCls:'icon-edit'">修改模板</div>
+    <div id="delTemplate" data-options="iconCls:'icon-remove'">删除模板</div>
+    <div class="menu-sep"></div>
+    <div id="designTemplate" >设计模板</div>
+</div>
+
+<!-- 增加模板弹窗 -->
+<div id="addTemplateDialog" class="easyui-dialog"
+     data-options="closed:true, buttons:addTemplateButtons">
+    <form action="" id="editTemplateInfo" style="padding: 10px;">
+        <div class="addTemplateInput">
+            <label for="templateName" class="label">模板名称</label>
+            <input  id="templateName" class="easyui-textbox"
+                    data-options="width:'200px', required:true">
+            <span style="color: red;">*</span>
+        </div>
+        <div class="addTemplateInput">
+            <label for="templateCode" class="label">模板编码</label>
+            <input id="templateCode" class="easyui-textbox"
+                   data-options="width:'200px', required:true">
+            <span style="color: red;">*</span>
+        </div>
+        <div class="addTemplateInput">
+            <label for = "comments" class="label">备注</label>
+            <input id="comments" class="easyui-textbox"
+                   data-options="multiline:true, width:'200px',height:'100px'" >
+        </div>
+    </form>
+</div>
+<!-- 增加模板弹窗的确定、取消按钮 -->
+<div id="addTemplateButtons">
+    <a href="#" id="addTemplateOK" class="easyui-linkbutton"
+       data-options="iconCls:'icon-ok'">确定</a>
+    <a href="#" id="addTemplateCancel" class="easyui-linkbutton"
+       data-options="iconCls:'icon-cancel'">取消</a>
+</div>
+
+<script src="js/templateManager.js"></script>
+</body>
+</html>

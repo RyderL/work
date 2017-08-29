@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Cache-Controller" content="no-cache">
+    <title>流程异常管理</title>
+	<script type="text/javascript" src="../../../common/ext/boot.js"></script>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north',split:true" style="height:70px;">
+		<form id="qryForm" method="post">
+			<table cellpadding="5" style="padding:10px;">
+	    		<tr>
+	    			<td>流程实例</td>
+	    			<td><input class="easyui-textbox" id="processInstId"></td>
+	    			<td>开始时间</td>
+	    			<td><input id="startDate" type="text"></td>
+	    			<td>结束时间</td>
+	    			<td><input id="endDate" type="text"></td>
+	    			<td></td>
+					<td><a href="#" id="btnQry" class="easyui-linkbutton" iconCls="icon-search" plain="true">查询</a></td>
+	    		</tr>
+	    	</table>
+		</form>
+	</div>
+	<div data-options="region:'center'">
+		<div id="commandErrorTb" style="padding-top:15px;padding-bottom:15px;padding-left:25px;">
+<!-- 			<a id="btnException" href="#" class="easyui-linkbutton" ></a> -->
+			&nbsp;
+			<a id="btnReSend" href="#" class="easyui-linkbutton" >消息重投</a>
+		</div>
+		<table id="commandErrorTable" height="85%"></table>
+	</div>
+</body>
+<script type="text/javascript" src="js/commandErrorManager.js"></script>
+</html>

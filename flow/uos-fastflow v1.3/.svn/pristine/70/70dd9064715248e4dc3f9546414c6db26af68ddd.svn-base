@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>server监控</title>
+    <script type="text/javascript" src="../../common/ext/boot.js">
+    </script>
+    <!-- <script src="../../common/js/jquery.min.js"></script> -->
+    <script src="../../common/echarts/echarts.common.min.js">
+    </script>
+    </script>
+    <script src="js/serverMonitor.js">
+    </script>
+</head>
+<body>
+    <div id="north" region="north" style="overflow:hidden;height:32px;">
+        <a id="btnClearStatics" href="#" class="easyui-linkbutton" data-options="disabled:false">清理静态缓存</a>
+        <a id="btnViewCounter" href="#" class="easyui-linkbutton" data-options="disabled:false">查看统计信息</a>
+        <a id="btnClearCounter" href="#" class="easyui-linkbutton" data-options="disabled:false">清理统计信息</a>
+    </div>
+    <div id="center" region="center" class="easyui-layout" border="false" style="padding-left:2px;padding-right:2px;">
+        <table id="serverThreadTable" width="100%">
+        </table>
+        <br>
+        <br>
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div id="counterChart" style="height: 400px;">
+        </div>
+        <br>
+        <hr>
+        <br>
+    </div>
+</body>

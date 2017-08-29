@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+		
+	<!--  activemq映射规则 -->
+	<bean id="mqQueueRule" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="mqQueueConfig" />
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<!--  fq映射规则 -->
+	<bean id="fqueueQueueRule" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="fqueueQueueConfig" />
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<!--  fq 配置 -->
+	<bean id="fqueueQueueConfig"
+		class="com.ztesoft.uosflow.util.mq.producer.common.QueueRuleConfig">
+		<property name="from" value="0" />
+		<property name="to" value="1023" />
+		<property name="queue" ref="fqueueQueue" />
+	</bean>
+	<bean id="fqueueQueue" class="com.ztesoft.uosflow.util.mq.producer.fqueue.FqueueProducer">
+		<property name="fqueueServer" ref="fqueueServer" />
+		<property name="producerName" value="流程引擎默认生产者" />
+	</bean>
+	
+	<!--  activeMq 配置 -->
+	<bean id="mqQueueConfig"
+		class="com.ztesoft.uosflow.util.mq.producer.common.QueueRuleConfig">
+		<property name="from" value="0" />
+		<property name="to" value="1023" />
+		<property name="queue" ref="mqQueue" />
+	</bean>
+	<bean id="mqQueue" 
+	    class="com.ztesoft.uosflow.util.mq.producer.activemq.ActiveMqProducer" init-method="start">
+		<property name="activeMqServer" ref="activeMqServer" />
+		<property name="maxConnections" value="20" />
+		<property name="maximumActiveSessionPerConnection" value="300" />
+		<property name="persistent"><bean class="java.lang.Boolean"><constructor-arg index="0" value="false"></constructor-arg></bean></property>
+		<property name="producerName" value="流程引擎默认生产者" />
+		<property name="queueName" value="WorkFlowQueue" />
+		<property name="threadNum" value="20" />
+		<property name="useAsyncSend"><bean class="java.lang.Boolean"><constructor-arg index="0" value="true"></constructor-arg></bean></property>
+	</bean>
+	
+	<bean id="mqProducer" class="com.ztesoft.uosflow.util.mq.producer.common.QueueProducer">
+		<property name="commandCfgService" ref="commandCfgService"></property>
+	</bean>
+	
+</beans>

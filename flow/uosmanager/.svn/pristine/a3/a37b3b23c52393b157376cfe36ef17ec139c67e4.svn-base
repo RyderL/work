@@ -1,0 +1,22 @@
+<div class="row" id="pageContent">
+    <!-- 左边树目录-->
+    <div class="col-md-2 " id="divLeft">
+        <div class="panel  panel-default">
+            <div class="panel-heading"><h3 class="panel-title">左边树目录</h3></div>
+            <div id="leftTree"></div>
+        </div>
+    </div>
+    <!-- 右边区域-->
+    <div class="col-md-10 " id="divRight" style="overflow:auto">
+        <div class="show_box" id="divSplitLine">
+            <span role="button" data-toggle="collapse">
+                <i class="fa fa-angle-left"></i>
+            </span>
+        </div>
+        <div class="panel  panel-default" id="divRight-panel">
+           <div class="panel-heading"><h3 class="panel-title">右侧内容</h3></div>
+            <div id="flowEditorIns" style="height: 100%;overflow:hidden">
+            </div>
+        </div>
+    </div>
+</div>

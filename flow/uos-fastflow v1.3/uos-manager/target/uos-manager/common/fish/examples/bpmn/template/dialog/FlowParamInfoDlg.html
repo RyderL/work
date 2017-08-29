@@ -1,0 +1,49 @@
+<div class="ui-dialog dialog-md">
+    <div class="modal-header">
+        <h4 class="modal-title">配置流程参数</h4>
+    </div>
+    <div class="modal-body">
+		<form id="flowParamInfoWin-form" method="post">
+			<div class="form-group required">
+	            <label for="_bpmTxtParamCode" class="control-label">参数编码：</label>
+	
+	            <div class="input-group" style="width: 100%">
+	                <input id="flowParamInfoWin-code" class="form-control" type="text" maxlength="100"/>
+	            </div>
+	        </div>
+			<div class="form-group required">
+	            <label for="_bpmTxtParamName" class="control-label">参数名称：</label>
+	
+	            <div class="input-group" style="width: 100%">
+	                <input id="flowParamInfoWin-name" class="form-control" type="text" maxlength="100"/>
+	            </div>
+	        </div>
+			<div class="form-group required">
+	            <label for="_bpmTxtParamValue" class="control-label">参数值：</label>
+	
+	            <div class="input-group" style="width: 100%">
+	                <input id="flowParamInfoWin-value" class="form-control" type="text" maxlength="100"/>
+	            </div>
+	        </div>
+			<div class="form-group required">
+	            <label for="_bpmTxtIsVariable" class="control-label">是否可变：</label>
+	
+	            <div class="input-group" style="width: 100%">
+	                <input id="flowParamInfoWin-isVariable" class="form-control" type="text" maxlength="100"/>
+	            </div>
+	        </div>
+			<div class="form-group">
+	            <label for="_bpmTxtComments" class="control-label">备注：</label>
+	
+	            <div class="input-group" style="width: 100%">
+	                <textarea id="flowParamInfoWin-comments" class="form-control" rows="8" maxlength="500"
+                          style="width:100%"></textarea>
+	            </div>
+	        </div>
+    	</form>
+    </div>
+    <div class="modal-footer">
+         <button type="button" class="btn btn-primary"  id="save-button">确定</button>
+         <button type="button" class="btn btn-primary"  id="close-button">关闭</button>
+    </div>
+</div>

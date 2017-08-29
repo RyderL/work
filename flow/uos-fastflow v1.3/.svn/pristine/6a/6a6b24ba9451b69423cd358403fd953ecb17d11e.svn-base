@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkflowProcess>
+	<Activities>
+		<Activity id="A52619-5-28700-350-10879" isRuning="true" type="Start"
+			name="开始节点" tacheId="" direction="1" />
+		<Activity id="A36593-9-24977-545-65264" isRuning="true" type="Tache"
+			name="测试-1" tacheId="1000038" direction="1" />
+		<Activity id="A3061-11-59880-191-61956" isRuning="true" type="Parallel"
+			name="并行节点" tacheId="" direction="1" />
+		<Parallel>
+			<Branch />
+			<Branch>
+				<Activity id="A97450-13-22484-823-95457" isRuning="true"
+					type="Tache" name="测试-2" tacheId="1000039" direction="1" />
+			</Branch>
+		</Parallel>
+		<Activity id="A81125-11-25237-191-40611" isRuning="true"
+			type="Relation" name="合并条件" tacheId="" direction="1" />
+		<Activity id="A18814-15-11875-291-39261" isRuning="true"
+			type="Tache" name="测试-3" tacheId="1000040" direction="1" />
+		<Activity id="A27242-5-13167-351-7091" isRuning="true" type="Finish"
+			name="结束节点" tacheId="" direction="1" />
+	</Activities>
+	<Transitions>
+		<Transition id="A88442-9-44941-548-81997" from="A52619-5-28700-350-10879"
+			to="A36593-9-24977-545-65264" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A46880-11-59156-207-42585" from="A36593-9-24977-545-65264"
+			to="A3061-11-59880-191-61956" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A16129-11-93629-196-34366" from="A3061-11-59880-191-61956"
+			to="A97450-13-22484-823-95457" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A77940-12-66700-29-40252" from="A3061-11-59880-191-61956"
+			to="A81125-11-25237-191-40611" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A60939-13-79728-826-61178" from="A97450-13-22484-823-95457"
+			to="A81125-11-25237-191-40611" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A45365-15-45398-293-80775" from="A81125-11-25237-191-40611"
+			to="A18814-15-11875-291-39261" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A28599-5-37855-355-69985" from="A18814-15-11875-291-39261"
+			to="A27242-5-13167-351-7091" isRunning="false" name="" lineType="Normal" />
+	</Transitions>
+</WorkflowProcess>

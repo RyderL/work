@@ -1,0 +1,7 @@
+<context>
+	<test name="三环节串行流程" defId="" defCode="" instanceId="">
+		<execute method="createProcessInstance" args="${defCode},xx,xx" />
+		<assert msg="assert1" expect="0"
+			real="select state from uos_processinstance where processInstanceId = ${instanceId}" />
+	</test>
+</context>

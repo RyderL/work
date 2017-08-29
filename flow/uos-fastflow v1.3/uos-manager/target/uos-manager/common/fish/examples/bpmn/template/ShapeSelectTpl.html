@@ -1,0 +1,10 @@
+<ul id="activitiList" class="list-group">
+	 {{#each shapes}}
+		<li data-itemType="{{type}}" class="list-group-item">
+			<div class="dragTemplate" style="padding-left:17px;cursor:move">
+				<img src="{{../iconPrefixUrl}}/{{iconsrc}}"></img>
+				 {{title}}
+			</div>			
+		</li>
+	{{/each}}	
+</ul>

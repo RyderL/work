@@ -1,0 +1,70 @@
+    <div class="demo_html" id="div_bpmn_main">
+        <div id="div_bpmn_splitter" style="height: 800px;">
+        <!-- bpm图形组件 -->
+        <div style="overflow-y: auto;overflow-x: hidden; ">
+            <div class="flowShapePanel" style=" overflow-y: auto">
+                <div class="ui-tabs" style=" width:100%;position: relative">
+                    <ul class="ui-tabs-nav">
+                        <li><a href="#flowShapesPanel">流程图形组件</a></li>
+                    </ul>
+                    <div id="flowShapesPanel" class="ui-tabs-panel">
+                        <div id="shapesNodeAccordion" class="ui-accordion">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中间编辑器 -->        
+        <div id="div_bpmn_editor"  style="height:700px;">
+            <div id="bpm_template_editor_tools" class="search-bar" role="toolbar">
+                <div class="btn-group" role="group">
+                  <!--   <button id="btnExport" type="button" class="btn btn-default " title="export">
+                        <i class="glyphicon glyphicon-open"></i>导出JSON
+                    </button>
+                    <button id="btnImport" type="button" class="btn btn-default " title="import">
+                        <i class="glyphicon glyphicon-save"></i>导入
+                    </button>  -->       
+   					<button id="btnSaveXpdl" type="button" class="btn btn-default " title="save">
+                        <i class="glyphicon glyphicon-open"></i>保存Xpdl
+                    </button>   
+   					<button id="btnSetFlowParam" type="button" class="btn btn-default " title="setFlowParam">
+                        <i class="glyphicon glyphicon-open"></i>设置流程参数
+                    </button>
+
+                </div>
+
+                <div class="btn-group" role="group">
+                    <button id="btnTrash" type="button" class="btn btn-default " title="delete">
+                        <i class="fa fa-trash-o"></i>全部删除
+                    </button>
+                </div>
+                <div class="btn-group" role="group">
+                    <input id="btnGridLine" type="checkbox" class="btn btn-default " title="GridLine"/>
+                    是否禁用网格线
+                </div>
+                <div class="btn-group" role="group">
+                    <input id="btnEdit" type="checkbox" class="btn btn-default " title="Edit"/>
+                    是否禁用编辑功能
+                </div>
+                <div class="btn-group" role="group">
+                    <button id="btnBack" type="button" class="btn btn-default " title="Back">
+                        <i class="glyphicon glyphicon-backward"></i>后退
+                    </button> 
+                    <button id="btnForward" type="button" class="btn btn-default " title="Forward">
+                        <i class="glyphicon glyphicon-forward"></i>前进
+                    </button>
+                </div>
+
+            </div>
+            <div id="flowEditorIns" style="height: 680px;overflow:hidden">
+            </div>            
+
+        </div>
+
+        <!-- 右边属性编辑器 -->
+        <div class="flowPropertyPanel" style="height: 500px;overflow-y: auto;margin-bottom: 0;">
+                                 
+        </div>
+    </div>

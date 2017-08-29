@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+        ">  
+    <dubbo:application name="uos-manager-app" />  
+    
+  	<dubbo:module name="module-provider" version="1.0"  multiversion="true"/>
+  	
+    <dubbo:registry protocol="zookeeper" address="${dubbo-zk}" />
+    
+    <dubbo:protocol name="dubbo" port="9527" /> 
+    
+    <dubbo:provider filter="default" timeout="12000"/>
+   
+    <dubbo:consumer timeout="12000" retries="0"/>  
+   
+	<dubbo:reference id="flowDubboService"
+		interface="com.ztesoft.uosflow.dubbo.inf.client.FlowDubboServiceInf" />
+	
+	<!-- 新gid服务配置 -->
+	<dubbo:reference id="sequenceGenerator" interface="com.ztesoft.gidServer.inf.SequenceGenerator"/>
+	
+	<dubbo:reference id="workFlowService" interface="com.ztesoft.uosflow.dubbo.inf.server.WorkFlowServerInf"/>
+
+	<dubbo:reference id="flowManagerService" interface="com.ztesoft.uosflow.dubbo.inf.manager.FlowManagerInf"  cluster="broadcast"/>
+</beans> 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>流程实例展示</title>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/raphael.js"></script>
+    <script type="text/javascript" src="../../zflow/js/jquery.color.js"></script>
+    <script type="text/javascript" src="../../zflow/js/jquery.zflow.js"></script>
+    <script type="text/javascript" src="../../zflow/js/jquery.zflow.node.js"></script>
+    <script type="text/javascript">
+    	//描绘图例        	
+	    $(function($){
+	    	$.zflow.initState($("#state"));
+	    	
+    	    var inst = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<WorkflowProcess><Activities><Activity id=\"314532277228\" isRuning=\"true\" type=\"Start\" name=\"开始节点\" tacheId=\"\" direction=\"1\" defId=\"A10745-22-89789-495-76878\"/><Activity id=\"314532287228\" isRuning=\"true\" type=\"Tache\" name=\"自动回单\" tacheId=\"1000019\" direction=\"1\" defId=\"A18909-28-30541-67-4212\" state=\"10F\"/><Activity id=\"314592277228\" isRuning=\"true\" type=\"Parallel\" name=\"并行节点\" tacheId=\"\" direction=\"1\" defId=\"A83610-31-57690-523-64690\" state=\"10F\"/><Parallel><Branch><Activity id=\"314592287228\" isRuning=\"true\" type=\"Tache\" name=\"自动回单1\" tacheId=\"1000020\" direction=\"1\" defId=\"A56594-33-99964-650-75073\" state=\"10F\"/></Branch><Branch><Activity id=\"314592297228\" isRuning=\"true\" type=\"Tache\" name=\"自动回单2\" tacheId=\"1000021\" direction=\"1\" defId=\"A14797-40-57282-231-32879\" state=\"10F\"/></Branch><Branch><Activity id=\"314592307228\" isRuning=\"true\" type=\"Tache\" name=\"自动回单3\" tacheId=\"1000022\" direction=\"1\" defId=\"A54262-43-85698-380-75555\" state=\"10F\"/></Branch></Parallel><Activity id=\"314652277228\" isRuning=\"true\" type=\"Relation\" name=\"合并条件\" tacheId=\"\" direction=\"1\" defId=\"A30795-31-39812-523-57792\"/><Activity id=\"0000000000\" isRuning=\"false\" type=\"Control\" name=\"待执行\" tacheId=\"\" direction=\"1\"/></Activities><Transitions><Transition id=\"282032277228\" from=\"314532277228\" to=\"314532287228\" isRunning=\"true\" name=\"\" direction=\"1\" lineType=\"Normal\"/><Transition id=\"282092277228\" from=\"314532287228\" to=\"314592277228\" isRunning=\"true\" name=\"\" direction=\"1\" lineType=\"Normal\"/><Transition id=\"282092287228\" from=\"314592277228\" to=\"314592287228\" isRunning=\"true\" name=\"\" direction=\"1\" lineType=\"Normal\"/><Transition id=\"282092297228\" from=\"314592277228\" to=\"314592297228\" isRunning=\"true\" name=\"\" direction=\"1\" lineType=\"Normal\"/><Transition id=\"282092307228\" from=\"314592277228\" to=\"314592307228\" isRunning=\"true\" name=\"\" direction=\"1\" lineType=\"Normal\"/><Transition id=\"282152277228\" from=\"314592287228\" to=\"314652277228\" isRunning=\"true\" name=\"\" direction=\"1\" lineType=\"Normal\"/><Transition id=\"282152287228\" from=\"314592297228\" to=\"314652277228\" isRunning=\"true\" name=\"\" direction=\"1\" lineType=\"Normal\"/><Transition id=\"282152297228\" from=\"314592307228\" to=\"314652277228\" isRunning=\"true\" name=\"\" direction=\"1\" lineType=\"Normal\"/><Transition id=\"V000000000\" from=\"314652277228\" to=\"0000000000\" isRunning=\"true\" name=\"虚拟线\" direction=\"1\" lineType=\"Virtual\"/><Transition id=\"V000000000\" from=\"314652277228\" to=\"0000000000\" isRunning=\"true\" name=\"虚拟线\" direction=\"1\" lineType=\"Virtual\"/><Transition id=\"V000000000\" from=\"314652277228\" to=\"0000000000\" isRunning=\"true\" name=\"虚拟线\" direction=\"1\" lineType=\"Virtual\"/></Transitions></WorkflowProcess>";
+	    	$("#inst").zflow(inst,{mode:"inst",direction:"horizontal"});
+	    	
+	    	var loadDefXML = function(name)
+	    	{
+	    		$.ajax({
+	                url:"xml/"+name+"-定义.xml",
+	                dataType:(!!(document.all && navigator.userAgent.indexOf('Opera') === -1))?"text":"xml",
+	                type:'get',
+	                error:function(xml){
+	                    alert("出现未知错误");
+	                },
+	                success:function(xml){
+	                    var xmlStr = "";
+	                    if((typeof xml) == "string"){
+	                        xmlStr = xml;
+	                    }else
+	                    {
+	                        xmlStr = xml.documentElement.outerHTML;
+	                    }
+	                    $("#def").empty();
+	                    $("#def").zflow(xmlStr,{mode:"def",direction:$(".direction .node-checked").attr("id")});
+	                    //$("#def").zflow(xmlStr,{mode:"def",direction:"vertical"});
+	                }
+	            });
+	    	};
+	    	
+	    	$(".tool-node").click(function(event)
+	    	{
+	    		var val = $(this).text();
+	    		$(".toolbar .node-checked").removeClass("node-checked");
+	    		$(this).addClass("node-checked");
+	    		loadDefXML(val);
+	    	});
+	    	
+	    	$(".direction-node").click(function(event)
+	    	{
+	    		$(".direction .node-checked").removeClass("node-checked");
+	    		$(this).addClass("node-checked");
+	    		loadDefXML($(".toolbar .node-checked").text());
+	    	});
+	    	
+	    	loadDefXML($(".toolbar .node-checked").text());
+        });
+    </script>
+    <style type="text/css">
+	   *{
+	   		font-family:sans-serif;
+	   }
+        tspan,div{
+            -moz-user-select: none; /*火狐*/
+            -webkit-user-select: none;  /*webkit浏览器*/
+            -ms-user-select: none;   /*IE10*/
+            -khtml-user-select: none; /*早期浏览器*/
+            user-select: none;
+        }
+       	.direction .direction-node{
+        	cursor:pointer;
+        	float:left;
+        	padding:5px;
+        	margin:5px;
+        }
+        .direction .direction-node:hover{
+        	background-color: #e6d67c;
+        }
+        .direction .node-checked
+        {
+        	background-color:#b7f0e7;
+        }
+        .toolbar .tool-node{
+        	cursor:pointer;
+        	float:left;
+        	padding:5px;
+        	margin:5px;
+        }
+        .toolbar .tool-node:hover{
+        	background-color: #e6d67c;
+        }
+        .toolbar .node-checked
+        {
+        	background-color:#b7f0e7;
+        }
+        #def,.toolbar,.direction
+        {
+        	clear:both;
+        }
+        .title
+        {
+        	font-size:18px;
+        	font-weight:bold;
+        }
+    </style>
+</head>
+<body style="background:#fafafa;">
+	<div id="state" style="height:50px;"></div>
+	<hr/>
+	<div>
+		<p class='title'>流程实例图</p>
+		<div id="inst" />
+	</div>
+	<hr/>
+	<div>
+		<p class='title'>流程定义图</p>
+		<div class="direction">
+			<div class="direction-node node-checked" id="horizontal">水平</div>
+			<div class="direction-node" id="vertical">垂直</div>
+		</div>
+		<div class="toolbar">
+			<div class="tool-node node-checked">串行</div>
+			<div class="tool-node">并行无空分支</div>
+			<div class="tool-node">并行含空分支</div>
+			<div class="tool-node">串行+控制线条</div>
+			<div class="tool-node">并行+控制线条</div>
+			<div class="tool-node">并行节点嵌套</div>
+			<div class="tool-node">并行节点嵌套+控制线条</div>
+		</div>
+		<div id="def" />
+	</div>
+</body>
+</html>

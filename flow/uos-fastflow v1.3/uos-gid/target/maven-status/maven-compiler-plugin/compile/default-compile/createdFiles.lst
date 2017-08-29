@@ -1,0 +1,5 @@
+com\zterc\uos\gid\dao\SequenceDAO.class
+com\zterc\uos\gid\dao\SequenceDAOImpl.class
+com\zterc\uos\gid\service\SequenceServiceGid.class
+com\zterc\uos\gid\service\SequenceServiceGid$SequenceHandler.class
+com\zterc\uos\gid\service\GidConfig.class

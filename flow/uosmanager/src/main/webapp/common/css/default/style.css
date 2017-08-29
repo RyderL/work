@@ -1,0 +1,73 @@
+@CHARSET "UTF-8";
+/*--menu icon--*/
+.icon-blank{
+	background: transparent;
+}
+.icon-folder{
+	background: url('../../easyui/themes/metro/images/tree_icons.png') no-repeat -208px 0;
+}
+*{
+	font-family:Microsoft YaHei,'宋体',arial,tahoma,sans-serif;
+	font-size:14px;
+}
+body{
+	background:#fafafa;
+}
+.tree-title{
+	font-size:14px;
+	font-family:Microsoft YaHei;
+}
+.panel-title{
+	font-size:18px;
+	font-family:Microsoft YaHei;
+}
+.tabs-title{
+	font-size:14px;
+	font-family:Microsoft YaHei;
+}
+.l-btn-text{
+	font-size:14px;
+	font-family:Microsoft YaHei;
+	font-color:#FFFFFF;
+}
+.l-btn-left{
+	height:26px;
+}
+.easyui-textbox{
+	font-size:14px;
+	font-family:Microsoft YaHei;
+}
+.textbox .textbox-text {
+	font-size:14px;
+}
+.td{
+	font-size:14px;
+	font-family:Microsoft YaHei;
+}
+.datagrid{
+	font-size:14px;
+	font-family:Microsoft YaHei;
+}
+tr.datagrid-header-row .datagrid-cell span{
+	font-size:14px;
+	font-family:Microsoft YaHei;
+}
+.pagination span {
+	font-size:14px;
+	font-family:Microsoft YaHei;
+}
+.pagination-info {
+	font-size:14px;
+	font-family:Microsoft YaHei;
+}
+.panel-body {
+	font-size:14px;
+	font-family:Microsoft YaHei;
+}
+.datagrid-cell,
+.datagrid-cell-group,
+.datagrid-header-rownumber,
+.datagrid-cell-rownumber {
+	font-size:14px;
+	font-family:Microsoft YaHei;
+}

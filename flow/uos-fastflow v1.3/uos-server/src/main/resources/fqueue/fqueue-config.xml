@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+	<!-- 默认流程引擎队列地址 -->
+	<bean id="fqueueServer" class="com.ztesoft.uosflow.jmx.server.FqueueServer" init-method="init">
+		<property name="filePath" value="${fqueue-filePath}" />
+		<property name="filesize" value="10000000" />
+		<property name="address" value="127.0.0.1" />
+		<property name="commandCfgService" ref="commandCfgService"/>
+	</bean>
+</beans>

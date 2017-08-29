@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+           http://www.springframework.org/schema/context     
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx.xsd 
+		   http://www.springframework.org/schema/cache   
+           http://www.springframework.org/schema/cache/spring-cache.xsd
+           http://www.springframework.org/schema/aop   
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<bean class="com.zterc.uos.fastflow.config.FastflowConfig">
+		<property name="isCacheModel" value="${isCacheModel}"></property>
+		<property name="tacheTableName" value="${tacheTableName}"></property>
+		<property name="commandCfgTableName" value="${commandCfgTableName}"></property>
+		<property name="useTableName" value="${useTableName}"></property>
+		<property name="useTimeLimit" value="${useTimeLimit}"></property>
+		<property name="loadStaticCache" value="${loadStaticCache}"></property>
+		<property name="useInvocation" value="${useInvocation}"></property>
+		<property name="useHis" value="${useHis}"></property>
+		<property name="usePersistSelf" value="${usePersistSelf}"></property>
+		<property name="sqlPersistQueueCount" value="${sqlPersistQueueCount}"></property>
+		<property name="maxBatchDealCount" value="${maxBatchDealCount}"></property>
+		<property name="freeSleepTime" value="${freeSleepTime}"></property>
+		<property name="rollbackBySingle" value="${rollbackBySingle}"></property>
+		<property name="getTacheParamImm" value="${getTacheParamImm}"></property>
+		<property name="needLockCommand" value="${needLockCommand}"></property>
+	</bean>
+
+	<!-- ehcache注入 -->
+	<bean id="cacheManagerFactory"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache/ehcache.xml" />
+	</bean>
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="cacheManagerFactory" />
+	</bean>
+	<bean class="com.zterc.uos.base.helper.StaticCacheHelper">
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="staticCacheType" value="${staticCacheType}"></property>
+		<property name="uosCacheClient" ref="uosCacheClient"></property>
+	</bean>
+
+	<!-- Redis注入内存模式的时候需要放开,数据库模式需要注释掉 -->
+	<bean id="uosCacheClient" class="com.zterc.uos.base.cache.redis.UosJedisClient"
+		init-method="init">
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+		<property name="jedisAddrs" value="${redis-addrs}"></property>
+		<property name="expireTime" value="${redis-expireTime}"></property>
+	</bean>
+	<!-- Redis 哨兵模式的缓存注入
+	<bean id="uosCacheClient" class="com.zterc.uos.base.cache.redis.UosJedisSentinelClient" 
+		init-method="init"> <property name="poolConfig" ref="jedisPoolConfig"></property> 
+		<property name="jedisAddrs" value="${redis-addrs}"></property>
+		<property name="expireTime" value="${redis-expireTime}"></property> </bean> -->
+	<!-- Redis注入内存模式的时候需要放开,数据库模式需要注释掉	 -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="64" />
+		<property name="maxIdle" value="32" />
+		<property name="numTestsPerEvictionRun" value="1024" />
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+		<property name="minEvictableIdleTimeMillis" value="-1" />
+		<property name="softMinEvictableIdleTimeMillis" value="10000" />
+		<property name="maxWaitMillis" value="1500" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnReturn" value="false" />
+		<property name="jmxEnabled" value="true" />
+		<property name="jmxNamePrefix" value="youyuan" />
+		<property name="blockWhenExhausted" value="false" />
+	</bean>
+
+	<!-- zcache模式的缓存 注入 begin -->
+	<!-- <bean id="uosCacheClient" class="com.zterc.uos.base.cache.zcache.UosZcacheClient"
+		init-method="init">
+		<property name="zcacheConfig" ref="zcacheConfig"></property>
+		<property name="expireTime" value="${redis-expireTime}"></property>
+	</bean>
+	<bean id="zcacheConfig" class="com.ztesoft.zcache.client.etc.ZcacheConfig">
+		<property name="nodes" value="${redis-addrs}" />格式： 10.45.47.187:7380,10.45.47.187:7381,10.45.47.187:7382
+		<property name="maxTotal" value="32" />
+		<property name="maxIdle" value="16" />
+		<property name="minIdle" value="4" />
+		<property name="maxWaitMillis" value="1500" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="maxRedirections" value="5" />
+	</bean> -->
+	<!-- zcache模式的缓存 注入 end -->
+
+	<!-- JDBCHelper注入 -->
+	<bean class="com.zterc.uos.base.jdbc.JDBCHelper">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate" />
+		</property>
+		<property name="transactionManager" ref="transactionManager"></property>
+		<property name="beanMapperHandler">
+			<bean class="com.zterc.uos.fastflow.jdbc.BeanMapperHandlerImpl"
+				init-method="init" />
+		</property>
+		<property name="dialect">
+			<bean class="${config.dialect}" />
+		</property>
+	</bean>
+
+	<!-- fastflowRunner -->
+	<!-- <bean id="workflowStateReport"
+		class="com.zterc.uos.fastflow.inf.impl.DefaultWorkflowStateReport">
+		<property name="tacheService" ref="tacheService"></property>
+		<property name="fastflowRunner" ref="fastflowRunner"></property>
+	</bean> -->
+	<bean id="workflowStateReport" class="com.ztesoft.uosflow.core.uosflow.ExtWorkflowStateReport">
+	</bean>
+
+	<bean id="fastflowRunner" class="com.zterc.uos.fastflow.core.FastflowRunner">
+		<property name="processDefinitionService" ref="processDefinitionService"></property>
+		<property name="processInstanceService" ref="processInstanceService"></property>
+		<property name="processParamService" ref="processParamService"></property>
+		<property name="processAttrService" ref="processAttrService"></property>
+		<property name="activityInstanceService" ref="activityInstanceService"></property>
+		<property name="transitionInstanceService" ref="transitionInstanceService"></property>
+		<property name="workItemService" ref="workItemService"></property>
+		<property name="tacheService" ref="tacheService"></property>
+		<property name="workflowStateReport" ref="workflowStateReport"></property>
+		<property name="processParamDefService" ref="processParamDefService"></property>
+		<property name="returnReasonService" ref="returnReasonService"></property>
+		<property name="exceptionService" ref="exceptionService"></property>
+		<property name="processPackageService" ref="processPackageService"></property>
+		<property name="tacheLimitService" ref="tacheLimitService"></property>
+		<property name="timeLimitClient" ref="timeLimitClient"></property>
+		<property name="flowLimitService" ref="flowLimitService"></property>
+	</bean>
+	<!-- fastflowTrace -->
+	<bean id="fastflowTrace" class="com.zterc.uos.fastflow.core.FastflowTrace">
+		<property name="processInstanceService" ref="processInstanceService"></property>
+		<property name="processDefinitionService" ref="processDefinitionService"></property>
+		<property name="transitionInstanceService" ref="transitionInstanceService"></property>
+		<property name="workItemService" ref="workItemService"></property>
+		<property name="tacheService" ref="tacheService"></property>
+		<property name="activityInstanceService" ref="activityInstanceService"></property>
+	</bean>
+	<bean id="holidayRuleClient" class="com.zterc.uos.fastflow.core.HolidayRuleClient">
+		<property name="holidayService" ref="holidayService"></property>
+		<property name="workTimeService" ref="workTimeService"></property>
+	</bean>
+	<bean id="timeLimitClient" class="com.zterc.uos.fastflow.core.TimeLimitClient">
+		<property name="holidayRuleClient" ref="holidayRuleClient"></property>
+	</bean>
+	<bean id="fastflowTraceHis" class="com.zterc.uos.fastflow.core.FastflowTraceHis">
+		<property name="processInstanceHisService" ref="processInstanceHisService"></property>
+		<property name="processDefinitionService" ref="processDefinitionService"></property>
+		<property name="transitionInstanceHisService" ref="transitionInstanceHisService"></property>
+		<property name="tacheService" ref="tacheService"></property>
+	</bean>
+	<bean id="dataToHisService" class="com.zterc.uos.fastflow.service.DataToHisService">
+		<property name="processInstanceHisDAO" ref="processInstanceHisDAO"></property>
+		<property name="activityInstanceHisDAO" ref="activityInstanceHisDAO"></property>
+		<property name="workItemHisDAO" ref="workItemHisDAO"></property>
+		<property name="transitionInstanceHisDAO" ref="transitionInstanceHisDAO"></property>
+		<property name="exceptionHisDAO" ref="exceptionHisDAO"></property>
+		<property name="commandQueueHisDAO" ref="commandQueueHisDAO"></property>
+		<property name="processAttrHisDAO" ref="processAttrHisDAO"></property>
+		<property name="processParamHisDAO" ref="processParamHisDAO"></property>
+		<property name="processInstanceService" ref="processInstanceService"></property>
+		<property name="activityInstanceService" ref="activityInstanceService"></property>
+		<property name="transitionInstanceService" ref="transitionInstanceService"></property>
+		<property name="workItemService" ref="workItemService"></property>
+		<property name="exceptionService" ref="exceptionService"></property>
+		<property name="commandQueueService" ref="commandQueueService"></property>
+		<property name="processAttrService" ref="processAttrService"></property>
+		<property name="processParamService" ref="processParamService"></property>
+	</bean>
+	<!-- dao -->
+	<!-- dao 规格类 -->
+	<bean id="processDefinitionDAO"
+		class="com.zterc.uos.fastflow.dao.process.impl.ProcessDefinitionDAOImpl"></bean>
+	<bean id="tacheDAO"
+		class="com.zterc.uos.fastflow.dao.specification.impl.TacheDAOImpl"></bean>
+	<bean id="dispatchRuleDAO"
+		class="com.zterc.uos.fastflow.dao.specification.impl.DispatchRuleDAOImpl"></bean>
+	<bean id="returnReasonDAO"
+		class="com.zterc.uos.fastflow.dao.specification.impl.ReturnReasonDAOImpl"></bean>
+	<bean id="areaDAO"
+		class="com.zterc.uos.fastflow.dao.specification.impl.AreaDAOImpl"></bean>
+	<bean id="processPackageDAO"
+		class="com.zterc.uos.fastflow.dao.specification.impl.ProcessPackageDAOImpl"></bean>
+	<bean id="staffDAO"
+		class="com.zterc.uos.fastflow.dao.specification.impl.StaffDAOImpl"></bean>
+	<bean id="costTimeDAO"
+		class="com.zterc.uos.fastflow.dao.specification.impl.CostTimeDAOImpl"></bean>
+	<bean id="commandCfgDAO"
+		class="com.zterc.uos.fastflow.dao.specification.impl.CommandCfgDAOImpl"></bean>
+	<bean id="appCfgDAO"
+		class="com.zterc.uos.fastflow.dao.specification.impl.AppCfgDAOImpl"></bean>
+	<bean id="privlegeDAO"
+		class="com.zterc.uos.fastflow.dao.specification.impl.PrivlegeDAOImpl"></bean>
+	<bean id="workTimeDAO" class="com.zterc.uos.fastflow.dao.specification.impl.WorkTimeDAOImpl"></bean>
+	<bean id="flowLimitDAO" class="com.zterc.uos.fastflow.dao.specification.impl.FlowLimitDAOImpl"></bean>
+	<bean id="holidayDAO" class="com.zterc.uos.fastflow.dao.specification.impl.HolidayDAOImpl"></bean>
+	<bean id="holidaySystemDAO" class="com.zterc.uos.fastflow.dao.specification.impl.HolidaySystemDAOImpl"></bean>
+	<bean id="tacheLimitDAO" class="com.zterc.uos.fastflow.dao.specification.impl.TacheLimitDAOImpl"></bean>
+	<bean id="tacheLimitRuleDAO" class="com.zterc.uos.fastflow.dao.specification.impl.TacheLimitRuleDAOImpl"></bean>
+	<bean id="processParamDefDAO"
+		class="com.zterc.uos.fastflow.dao.process.impl.ProcessParamDefDAOImpl"></bean>
+	<bean id="multiClientDAO" class="com.zterc.uos.fastflow.dao.specification.impl.MultiClientDAOImpl"></bean>
+	<bean id="formManagerDAO" class="com.zterc.uos.fastflow.dao.specification.impl.FormManagerDAOImpl"></bean>
+
+	<!-- dao 实例类 -->
+	<bean id="processInstanceDAO"
+		class="com.zterc.uos.fastflow.dao.process.impl.ProcessInstanceDAOImpl"></bean>
+	<bean id="processParamDAO"
+		class="com.zterc.uos.fastflow.dao.process.impl.ProcessParamDAOImpl"></bean>
+	<bean id="activityInstanceDAO"
+		class="com.zterc.uos.fastflow.dao.process.impl.ActivityInstanceDAOImpl"></bean>
+	<bean id="transitionInstanceDAO"
+		class="com.zterc.uos.fastflow.dao.process.impl.TransitionInstanceDAOImpl"></bean>
+	<bean id="workItemDAO" class="com.zterc.uos.fastflow.dao.process.impl.WorkItemDAOImpl"></bean>
+	<bean id="processAttrDAO"
+		class="com.zterc.uos.fastflow.dao.process.impl.ProcessAttrDAOImpl"></bean>
+	<bean id="exceptionDAO"
+		class="com.zterc.uos.fastflow.dao.process.impl.ExceptionDAOImpl"></bean>
+	<bean id="commandQueueDAO"
+		class="com.zterc.uos.fastflow.dao.process.impl.CommandQueueDAOImpl"></bean>
+	<bean id="processInstanceHisDAO"
+		class="com.zterc.uos.fastflow.dao.process.his.impl.ProcessInstanceHisDAOImpl"></bean>
+	<bean id="processParamHisDAO"
+		class="com.zterc.uos.fastflow.dao.process.his.impl.ProcessParamHisDAOImpl"></bean>
+	<bean id="activityInstanceHisDAO"
+		class="com.zterc.uos.fastflow.dao.process.his.impl.ActivityInstanceHisDAOImpl"></bean>
+	<bean id="transitionInstanceHisDAO"
+		class="com.zterc.uos.fastflow.dao.process.his.impl.TransitionInstanceHisDAOImpl"></bean>
+	<bean id="workItemHisDAO" class="com.zterc.uos.fastflow.dao.process.his.impl.WorkItemHisDAOImpl"></bean>
+	<bean id="processAttrHisDAO"
+		class="com.zterc.uos.fastflow.dao.process.his.impl.ProcessAttrHisDAOImpl"></bean>
+	<bean id="exceptionHisDAO"
+		class="com.zterc.uos.fastflow.dao.process.his.impl.ExceptionHisDAOImpl"></bean>
+	<bean id="commandQueueHisDAO"
+		class="com.zterc.uos.fastflow.dao.process.his.impl.CommandQueueHisDAOImpl"></bean>
+	<bean id="dbPersitExceptionDAO"
+		class="com.zterc.uos.fastflow.dao.process.impl.DbPersitExceptionDAOImpl"></bean>
+	<!-- service -->
+	<!-- service 规格类 -->
+	<bean id="processDefinitionService" class="com.zterc.uos.fastflow.service.ProcessDefinitionService">
+		<property name="processDefinitionDAO" ref="processDefinitionDAO"></property>
+	</bean>
+	<bean id="tacheService" class="com.zterc.uos.fastflow.service.TacheService">
+		<property name="tacheDAO" ref="tacheDAO"></property>
+	</bean>
+	<bean id="processParamDefService" class="com.zterc.uos.fastflow.service.ProcessParamDefService">
+		<property name="processParamDefDAO" ref="processParamDefDAO"></property>
+	</bean>
+
+	<bean id="areaService" class="com.zterc.uos.fastflow.service.AreaService">
+		<property name="areaDAO" ref="areaDAO"></property>
+	</bean>
+	<bean id="returnReasonService" class="com.zterc.uos.fastflow.service.ReturnReasonService">
+		<property name="returnReasonDAO" ref="returnReasonDAO"></property>
+	</bean>
+	<bean id="staffService" class="com.zterc.uos.fastflow.service.StaffService">
+		<property name="staffDAO" ref="staffDAO"></property>
+	</bean>
+	<bean id="commandCfgService" class="com.zterc.uos.fastflow.service.CommandCfgService">
+		<property name="commandCfgDAO" ref="commandCfgDAO"></property>
+	</bean>
+	<bean id="processPackageService" class="com.zterc.uos.fastflow.service.ProcessPackageService">
+		<property name="processPackageDAO" ref="processPackageDAO"></property>
+	</bean>
+	<bean id="appCfgService" class="com.zterc.uos.fastflow.service.AppCfgService">
+		<property name="appCfgDAO" ref="appCfgDAO"></property>
+	</bean>
+	<bean id="dispatchRuleService" class="com.zterc.uos.fastflow.service.DispatchRuleService">
+		<property name="dispatchRuleDAO" ref="dispatchRuleDAO"></property>
+	</bean>
+	<bean id="multiClientService" class="com.zterc.uos.fastflow.service.MultiClientService">
+		<property name="multiClientDAO" ref="multiClientDAO"></property>
+	</bean>
+	<bean id="formManagerService" class="com.zterc.uos.fastflow.service.FormManagerService">
+		<property name="formManagerDAO" ref="formManagerDAO"></property>
+	</bean>
+	<!-- service 实例类 -->
+	<bean id="processAttrService" class="com.zterc.uos.fastflow.service.ProcessAttrService">
+		<property name="processAttrDAO" ref="processAttrDAO"></property>
+	</bean>
+	<bean id="workItemService" class="com.zterc.uos.fastflow.service.WorkItemService">
+		<property name="workItemDAO" ref="workItemDAO"></property>
+		<property name="dispatchRuleDAO" ref="dispatchRuleDAO"></property>
+	</bean>
+	<bean id="exceptionService" class="com.zterc.uos.fastflow.service.ExceptionService">
+		<property name="exceptionDAO" ref="exceptionDAO"></property>
+	</bean>
+	<bean id="processInstanceService" class="com.zterc.uos.fastflow.service.ProcessInstanceService">
+		<property name="processInstanceDAO" ref="processInstanceDAO"></property>
+	</bean>
+	<bean id="processParamService" class="com.zterc.uos.fastflow.service.ProcessParamService">
+		<property name="processParamDAO" ref="processParamDAO"></property>
+		<property name="processParamDefService" ref="processParamDefService"></property>
+	</bean>
+	<bean id="activityInstanceService" class="com.zterc.uos.fastflow.service.ActivityInstanceService">
+		<property name="activityInstanceDAO" ref="activityInstanceDAO"></property>
+	</bean>
+	<bean id="transitionInstanceService"
+		class="com.zterc.uos.fastflow.service.TransitionInstanceService">
+		<property name="transitionInstanceDAO" ref="transitionInstanceDAO"></property>
+		<property name="activityInstanceDAO" ref="activityInstanceDAO"></property>
+	</bean>
+	<bean id="commandQueueService" class="com.zterc.uos.fastflow.service.CommandQueueService">
+		<property name="commandQueueDAO" ref="commandQueueDAO"></property>
+	</bean>
+	<bean id="privlegeService" class="com.zterc.uos.fastflow.service.PrivlegeService">
+		<property name="privlegeDAO" ref="privlegeDAO"></property>
+	</bean>
+	<bean id="workTimeService" class="com.zterc.uos.fastflow.service.WorkTimeService">
+		<property name="workTimeDAO" ref="workTimeDAO"></property>
+	</bean>
+	<bean id="flowLimitService" class="com.zterc.uos.fastflow.service.FlowLimitService">
+		<property name="flowLimitDAO" ref="flowLimitDAO"></property>
+	</bean>
+	<bean id="holidayService" class="com.zterc.uos.fastflow.service.HolidayService">
+		<property name="holidayDAO" ref="holidayDAO"></property>
+		<property name="holidaySystemDAO" ref="holidaySystemDAO"></property>
+	</bean>
+	<bean id="tacheLimitService" class="com.zterc.uos.fastflow.service.TacheLimitService">
+		<property name="tacheLimitDAO" ref="tacheLimitDAO"></property>
+		<property name="tacheLimitRuleDAO" ref="tacheLimitRuleDAO"></property>
+	</bean>
+	<bean id="workItemHisService" class="com.zterc.uos.fastflow.service.WorkItemHisService">
+		<property name="workItemHisDAO" ref="workItemHisDAO"></property>
+	</bean>
+	<bean id="exceptionHisService" class="com.zterc.uos.fastflow.service.ExceptionHisService">
+		<property name="exceptionHisDAO" ref="exceptionHisDAO"></property>
+	</bean>
+	<bean id="processInstanceHisService" class="com.zterc.uos.fastflow.service.ProcessInstanceHisService">
+		<property name="processInstanceHisDAO" ref="processInstanceHisDAO"></property>
+	</bean>
+	<bean id="activityInstanceHisService" class="com.zterc.uos.fastflow.service.ActivityInstanceHisService">
+		<property name="activityInstanceHisDAO" ref="activityInstanceHisDAO"></property>
+	</bean>
+	<bean id="transitionInstanceHisService"
+		class="com.zterc.uos.fastflow.service.TransitionInstanceHisService">
+		<property name="transitionInstanceHisDAO" ref="transitionInstanceHisDAO"></property>
+	</bean>
+	<bean id="commandQueueHisService" class="com.zterc.uos.fastflow.service.CommandQueueHisService">
+		<property name="commandQueueHisDAO" ref="commandQueueHisDAO"></property>
+	</bean>
+	<bean id="dbPersitExceptionService" class="com.zterc.uos.fastflow.service.DbPersistExceptionService">
+		<property name="dbPersitExceptionDAO" ref="dbPersitExceptionDAO"></property>
+	</bean>
+	
+</beans>  

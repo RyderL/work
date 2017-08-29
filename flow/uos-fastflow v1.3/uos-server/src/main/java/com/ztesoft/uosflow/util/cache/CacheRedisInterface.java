@@ -1,0 +1,14 @@
+package com.ztesoft.uosflow.util.cache;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.util.Pool;
+
+public interface CacheRedisInterface  extends CacheInterface{
+	
+	/**
+	 * ªÒ»°jedisPool
+	 * @return
+	 * zhong.kaijie	  …œŒÁ11:24:40
+	 */
+	public Pool<Jedis> getPool();
+}

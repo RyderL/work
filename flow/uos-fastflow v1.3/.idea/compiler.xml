@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="uos-base" />
+        <module name="uos-dubbo" />
+        <module name="uos-fastflow" />
+        <module name="uos-gid" />
+        <module name="uos-manager" />
+        <module name="uos-server" />
+        <module name="uos-test" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="uos-base" target="1.7" />
+      <module name="uos-dubbo" target="1.7" />
+      <module name="uos-fastflow" target="1.7" />
+      <module name="uos-gid" target="1.7" />
+      <module name="uos-manager" target="1.7" />
+      <module name="uos-server" target="1.7" />
+      <module name="uos-test" target="1.7" />
+      <module name="uosfast" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面元素管理</title>
+   	 <script src="../../common/ext/boot.js"></script>
+
+    <style>
+    	h3{
+    		border-bottom: 2px solid blue;
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+    	}
+    	#elementInfoForm{
+    		padding: 10px;
+    	}
+    	.first{
+    		display: inline-block;
+    		margin-right: 50px;
+    	}
+    	.second{
+    		display: inline-block;
+    	}
+    	.label{
+    		display: inline-block;
+    		width: 80px;
+    	}
+    	.row{
+    		margin-bottom: 15px;
+    	}
+    </style>
+</head>
+<body>
+    <h3>元素列表</h3>
+    <form action="" style="text-align:right; margin-bottom: 5px;">
+		<a id="add" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" >增加</a>
+		<a id="change" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+		<a id="remove" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+    </form>
+    <table id = "elementList"></table>
+
+
+    <!--增加元素对话框弹窗 -->
+    <div id="addElementDialog" class="easyui-dialog" data-options="closed:true, buttons:addElementButtons">
+   		<form action="" id = "elementInfoForm">
+   			<div class="row">
+   				<div class = "first">
+   					<label class="label" for="elementCode">元素编码</label>
+   					<input type="text" name="elementCode" id = "elementCode">
+   				</div>
+   				<div class="second">
+   					<label class="label" for="elementName">元素名称</label>
+   					<input type="text" id = "elementName" name="elementName">
+   				</div>
+   			</div>
+   			<div class = "row">
+   				<div class = "first">
+   					<label class="label" for="elementCode">初值生成类</label>
+   					<input type="text" name="elementCode" id = "initClass">
+   				</div>
+   				<div class="second">
+   					<label class="label" for="elementName">初值生成方法</label>
+   					<input type="text" id = "elementName" name="initMethod">
+   				</div>
+   			</div>
+   			<div class = "row">
+   				<div class = "first">
+   					<label class="label" for="elementCode">元素类型</label>
+   					<input type="text" name="elementCode" id = "elementType">
+   				</div>
+   				<div class="second">
+   					<label class="label" for="elementName">备注</label>
+   					<input type="text" id = "elementName" name="remark">
+   				</div>
+   			</div>
+			<div class = "row">
+   				<div class = "first">
+   					<label class="label" for="elementCode">选项数据类</label>
+   					<input type="text" name="elementCode" id = "dataClass">
+   				</div>
+   				<div class="second">
+   					<label class="label" for="elementName">选项数据方法</label>
+   					<input type="text" id = "dataMethod" name="remark">
+   				</div>
+   			</div>
+			<div class = "row">
+   				<div class = "first">
+   					<label class="label" for="elementCode">弹出页面高度</label>
+   					<input type="text" name="elementCode" id = "pageHeight">
+   				</div>
+   				<div class="second">
+   					<label class="label" for="elementName">弹出页面宽度</label>
+   					<input type="text" id = "pageWidth" name="remark">
+   				</div>
+   			</div>
+  		</form>
+    </div>
+
+    <!-- 新增一行对话框中的确定和取消按钮 -->
+	<div id = "addElementButtons">
+		<a href="#" id = "addElementOK" class="easyui-linkbutton">确定</a>
+		<a href="#" id = "addElementCancel" class="easyui-linkbutton">取消</a>
+	</div>
+
+    <script type="text/javascript" src = "js/elementList.js"></script>
+</body>
+</html>

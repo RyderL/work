@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="uos-manager:war">
+    <output-path>$PROJECT_DIR$/uos-manager/target</output-path>
+    <root id="archive" name="uos-manager.war">
+      <element id="artifact" artifact-name="uos-manager:war exploded" />
+    </root>
+  </artifact>
+</component>

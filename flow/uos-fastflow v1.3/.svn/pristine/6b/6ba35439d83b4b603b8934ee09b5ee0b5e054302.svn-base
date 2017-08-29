@@ -1,0 +1,198 @@
+<div class="rootPanel panel-body" style="display:none; height: 100%">
+    <form id="bpm_template_form_vs">
+        <div class="form-group required">
+            <label for="_bpmTxtTmplName" class="control-label">模板名称</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmTxtTmplName" class="form-control" type="text" maxlength="100"/>
+            </div>
+        </div>
+
+        <div class="form-group required">
+            <label for="_bpmTxtTmplVersion" class="control-label">模板版本</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmTxtTmplVersion" class="form-control"  value="1.0" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group required">
+            <label for="_bpmTxtTmplEffDate" class="control-label">生效时间</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmTxtTmplEffDate" class="form-control" type="text" data-rule="datetime"/>
+            </div>
+        </div>
+
+        <div class="form-group required">
+            <label for="_bpmTxtTmplExpDate" class="control-label">失效时间</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmTxtTmplExpDate" class="form-control" type="text" data-rule="datetime"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="_bpmWidth" class="control-label">宽度</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmWidth" class="form-control" type="text" maxlength="100"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="_bpmHeight" class="control-label">高度</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmHeight" class="form-control" type="text" maxlength="100"/>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="activitiPanel  panel-body" style="display: none;height: 100%;">
+    <form>
+        <div id="_attrActivityName" class="form-group required">
+            <label for="_bpmTxtActivityName" class="control-label">节点名称</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmTxtActivityName" class="form-control" type="text" maxlength="100"/>
+            </div>
+        </div>
+
+        <div id="_attrActivityActivityName" class="form-group required">
+            <label for="_bpmTxtActivityActivityName" class="control-label">环节编码</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmTxtActivityActivityName" class="form-control" type="text" maxlength="100"
+                       />
+            </div>
+        </div>
+
+        <div id="_attrScriptType" class="form-group">
+            <label for="_bpmCboScriptType" class="control-label">脚本类型</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmCboScriptType" class="form-control" type="text" readonly/>
+            </div>
+        </div>
+
+        <div id="_attrScript" class="form-group">
+            <label for="_bpmTxtScript" class="control-label">脚本</label>
+
+            <div class="input-group" style="width:100%">
+                <textarea id="_bpmTxtScript" class="form-control" rows="8" maxlength="500"
+                          style="width:100%"></textarea>
+            </div>
+        </div>
+
+        <div id="_attrActivityNotes" class="form-group">
+            <label for="_bpmTxtActivityNotes" class="control-label">备注</label>
+
+            <div class="input-group" style="width:100%">
+                <textarea id="_bpmTxtActivityNotes" class="form-control" rows="8" maxlength="500"
+                          style="width:100%"></textarea>
+            </div>
+        </div>
+        
+        <div >
+       		<button type="button" class="btn btn-primary" id="setTacheFlowParam">配置环节流程参数</button>
+        </div>
+    </form>
+</div>
+
+<div class="gatewayPanel panel-body" style="display: none;height: 100%;">
+    <form>
+        <div class="form-group required">
+            <label for="_bpmTxtGatewayName" class="control-label">网关名称</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmTxtGatewayName" class="form-control" type="text" maxlength="100"/>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="eventPanel  panel-body" style="display: none;height: 100%;">
+    <form>
+        <div id="_attrEventName" class="form-group required">
+            <label for="_bpmTxtEventName" class="control-label">节点名称</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmTxtEventName" class="form-control" type="text" maxlength="100"/>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="subProcessPanel  panel-body" style="display: none;height: 100%;">
+    <form>
+        <div id="_attrSubProcessName" class="form-group required">
+            <label for="_bpmTxtSubProcessName" class="control-label">bpm name</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmTxtSubProcessName" class="form-control" type="text" maxlength="100"/>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="connectPanel  panel-body" style="display: none;height: 100%;">
+    <form>
+        <div id="_attrConnectName" class="form-group required">
+            <label for="_bpmTxtConnectName" class="control-label">线条名称</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmTxtConnectName" class="form-control" type="text" maxlength="100"/>
+            </div>
+        </div>
+
+        <div id="_attrExpression" class="form-group">
+            <label for="_bpmTxtExpression" class="control-label">线条表达式</label>
+
+            <div class="input-group" style="width:100%">
+                <textarea id="_bpmTxtExpression" class="form-control" rows="8" maxlength="500"
+                          style="width:100%"></textarea>
+            </div>
+        </div>
+
+<!--         <div  class="form-group">
+            <label for="_bpmLineType" class="control-label">line type</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmLineType" class="form-control" type="text" readonly="readonly"/>
+            </div>
+        </div> -->
+
+        <div id="_attrIsLoop" class="form-group">
+            <label for="_bpmCboIsLoop" class="control-label">是否循环</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmCboIsLoop" class="form-control" type="text" readonly="readonly"/>
+            </div>
+        </div>
+
+        <div id="_attrIsDefault" class="form-group">
+            <label for="_bpmCboIsDefault" class="control-label">是否默认</label>
+
+            <div class="input-group" style="width: 100%">
+                <input id="_bpmCboIsDefault" class="form-control" type="text" readonly="readonly"/>
+            </div>
+        </div>
+
+        <div id="_attrTmplNotes" class="form-group">
+            <label for="_bpmTxtTmplNotes" class="control-label">备注</label>
+
+            <div class="input-group" style="width:100%">
+                <textarea id="_bpmTxtTmplNotes" class="form-control" rows="8" maxlength="500"
+                          style="width:100%"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="nonePanel panel-body " style="display: none;height: 100%;">
+    <form>
+        <div style="height: 100%;" class="text-center">
+            <label class="control-label"></label>
+        </div>
+    </form>
+</div>

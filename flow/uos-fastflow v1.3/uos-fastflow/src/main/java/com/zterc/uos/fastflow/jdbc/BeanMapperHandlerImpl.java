@@ -1,0 +1,144 @@
+package com.zterc.uos.fastflow.jdbc;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.converters.IntegerConverter;
+import org.apache.commons.beanutils.converters.LongConverter;
+import org.apache.commons.beanutils.converters.SqlTimestampConverter;
+import org.apache.commons.beanutils.converters.StringConverter;
+
+import com.zterc.uos.base.jdbc.BeanMapperHandler;
+import com.zterc.uos.fastflow.dto.process.ActivityInstanceDto;
+import com.zterc.uos.fastflow.dto.process.CommandQueueDto;
+import com.zterc.uos.fastflow.dto.process.ExceptionDto;
+import com.zterc.uos.fastflow.dto.process.ProInstAttrDto;
+import com.zterc.uos.fastflow.dto.process.ProInstParamDto;
+import com.zterc.uos.fastflow.dto.process.ProcessDefinitionDto;
+import com.zterc.uos.fastflow.dto.process.ProcessInstanceDto;
+import com.zterc.uos.fastflow.dto.process.ProcessParamDefDto;
+import com.zterc.uos.fastflow.dto.process.TransitionInstanceDto;
+import com.zterc.uos.fastflow.dto.process.WorkItemDto;
+import com.zterc.uos.fastflow.dto.specification.AppCfgDto;
+import com.zterc.uos.fastflow.dto.specification.AreaDto;
+import com.zterc.uos.fastflow.dto.specification.ComboboxDto;
+import com.zterc.uos.fastflow.dto.specification.CommandCfgDto;
+import com.zterc.uos.fastflow.dto.specification.DispatchRuleDto;
+import com.zterc.uos.fastflow.dto.specification.FlowLimitDto;
+import com.zterc.uos.fastflow.dto.specification.HolidayDto;
+import com.zterc.uos.fastflow.dto.specification.HolidaySystemDto;
+import com.zterc.uos.fastflow.dto.specification.MultiClientDto;
+import com.zterc.uos.fastflow.dto.specification.PackageCatalogDto;
+import com.zterc.uos.fastflow.dto.specification.PackageDto;
+import com.zterc.uos.fastflow.dto.specification.PageConstraintDto;
+import com.zterc.uos.fastflow.dto.specification.PageConstraintTypeDto;
+import com.zterc.uos.fastflow.dto.specification.PageElementDto;
+import com.zterc.uos.fastflow.dto.specification.PageElementTypeDto;
+import com.zterc.uos.fastflow.dto.specification.PageRetInstDto;
+import com.zterc.uos.fastflow.dto.specification.PageTemplateDetailDto;
+import com.zterc.uos.fastflow.dto.specification.PageTemplateDto;
+import com.zterc.uos.fastflow.dto.specification.PageTemplateRuleDto;
+import com.zterc.uos.fastflow.dto.specification.ProcessParamDefRelDto;
+import com.zterc.uos.fastflow.dto.specification.ReturnReasonCatalogDto;
+import com.zterc.uos.fastflow.dto.specification.ReturnReasonConfigDto;
+import com.zterc.uos.fastflow.dto.specification.ReturnReasonDto;
+import com.zterc.uos.fastflow.dto.specification.StaffDto;
+import com.zterc.uos.fastflow.dto.specification.SynRuleDto;
+import com.zterc.uos.fastflow.dto.specification.TacheCatalogDto;
+import com.zterc.uos.fastflow.dto.specification.TacheDto;
+import com.zterc.uos.fastflow.dto.specification.TacheLimitDto;
+import com.zterc.uos.fastflow.dto.specification.TacheLimitRuleDto;
+import com.zterc.uos.fastflow.dto.specification.TacheReturnReasonDto;
+import com.zterc.uos.fastflow.dto.specification.WorkTimeDetailDto;
+import com.zterc.uos.fastflow.dto.specification.WorkTimeDto;
+
+public class BeanMapperHandlerImpl implements BeanMapperHandler {
+
+	protected Map<String, Map<String, String>> columnPropMap = new HashMap<String, Map<String, String>>();
+
+	public void init() {
+		ConvertUtils.register(new SqlTimestampConverter(null),
+				java.sql.Timestamp.class);
+		ConvertUtils.register(new LongConverter(null) ,Long.class);
+		ConvertUtils.register(new IntegerConverter(null) ,Integer.class);
+		ConvertUtils.register(new StringConverter(null) ,String.class);
+		
+
+		columnPropMap.put(ProcessDefinitionDto.class.getName(),
+				ProcessDefinitionDto.getMapper());
+		columnPropMap.put(ActivityInstanceDto.class.getName(),
+				ActivityInstanceDto.getMapper());
+		columnPropMap.put(ProInstParamDto.class.getName(),
+				ProInstParamDto.getMapper());
+		columnPropMap.put(ProcessInstanceDto.class.getName(),
+				ProcessInstanceDto.getMapper());
+
+		columnPropMap.put(TacheDto.class.getName(), TacheDto.getMapper());
+		columnPropMap.put(TransitionInstanceDto.class.getName(),
+				TransitionInstanceDto.getMapper());
+		columnPropMap.put(WorkItemDto.class.getName(), WorkItemDto.getMapper());
+		columnPropMap.put(ProcessParamDefDto.class.getName(),
+				ProcessParamDefDto.getMapper());
+		columnPropMap.put(ExceptionDto.class.getName(),
+				ExceptionDto.getMapper());
+
+		columnPropMap.put(AreaDto.class.getName(), AreaDto.getMapper());
+		columnPropMap.put(DispatchRuleDto.class.getName(),
+				DispatchRuleDto.getMapper());
+		columnPropMap.put(ProcessParamDefRelDto.class.getName(),
+				ProcessParamDefRelDto.getMapper());
+		columnPropMap.put(PackageCatalogDto.class.getName(),
+				PackageCatalogDto.getMapper());
+		columnPropMap.put(PackageDto.class.getName(), PackageDto.getMapper());
+		columnPropMap.put(ReturnReasonCatalogDto.class.getName(),
+				ReturnReasonCatalogDto.getMapper());
+		columnPropMap.put(ReturnReasonConfigDto.class.getName(),
+				ReturnReasonConfigDto.getMapper());
+		columnPropMap.put(ReturnReasonDto.class.getName(),
+				ReturnReasonDto.getMapper());
+		columnPropMap.put(StaffDto.class.getName(), StaffDto.getMapper());
+		columnPropMap.put(SynRuleDto.class.getName(), SynRuleDto.getMapper());
+		columnPropMap.put(TacheCatalogDto.class.getName(),
+				TacheCatalogDto.getMapper());
+		columnPropMap.put(TacheReturnReasonDto.class.getName(),
+				TacheReturnReasonDto.getMapper());
+		columnPropMap.put(CommandCfgDto.class.getName(),
+				CommandCfgDto.getMapper());
+		columnPropMap.put(AppCfgDto.class.getName(), AppCfgDto.getMapper());
+		
+		columnPropMap.put(WorkTimeDto.class.getName(), WorkTimeDto.getMapper());
+		columnPropMap.put(FlowLimitDto.class.getName(), FlowLimitDto.getMapper());
+		columnPropMap.put(HolidayDto.class.getName(), HolidayDto.getMapper());
+		columnPropMap.put(HolidaySystemDto.class.getName(), HolidaySystemDto.getMapper());
+		columnPropMap.put(TacheLimitDto.class.getName(), TacheLimitDto.getMapper());
+		columnPropMap.put(TacheLimitRuleDto.class.getName(), TacheLimitRuleDto.getMapper());
+		columnPropMap.put(WorkTimeDetailDto.class.getName(), WorkTimeDetailDto.getMapper());
+		columnPropMap.put(CommandQueueDto.class.getName(), CommandQueueDto.getMapper());
+		columnPropMap.put(ProInstAttrDto.class.getName(), ProInstAttrDto.getMapper());
+		columnPropMap.put(MultiClientDto.class.getName(), MultiClientDto.getMapper());
+		
+		//add by zheng.fengting 20170816 begin
+		columnPropMap.put(PageConstraintDto.class.getName(), PageConstraintDto.getMapper());
+		columnPropMap.put(PageConstraintTypeDto.class.getName(), PageConstraintTypeDto.getMapper());
+		columnPropMap.put(PageElementDto.class.getName(), PageElementDto.getMapper());
+		columnPropMap.put(PageElementTypeDto.class.getName(), PageElementTypeDto.getMapper());
+		columnPropMap.put(PageRetInstDto.class.getName(), PageRetInstDto.getMapper());
+		columnPropMap.put(PageTemplateDetailDto.class.getName(), PageTemplateDetailDto.getMapper());
+		columnPropMap.put(PageTemplateDto.class.getName(), PageTemplateDto.getMapper());
+		columnPropMap.put(PageTemplateRuleDto.class.getName(), PageTemplateRuleDto.getMapper());
+		columnPropMap.put(ComboboxDto.class.getName(), ComboboxDto.getMapper());
+		//add by zheng.fengting 20170816 end
+		
+	}
+
+	@Override
+	public String getColumnNameFromPropName(Class<?> clazz, String propName) {
+		Map<String, String> clazzMap = columnPropMap.get(clazz.getName());
+		if (clazzMap == null) {
+			throw new RuntimeException(clazz.getName() + "的属性映射没有加载！");
+		}
+		String columnName = clazzMap.get(propName);
+		return columnName;
+	}
+}

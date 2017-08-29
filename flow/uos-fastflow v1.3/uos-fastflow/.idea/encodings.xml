@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/dao/specification/FormManagerDAO.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/dto/specification/ComboboxDto.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/dto/specification/PageConstraintTypeDto.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/dto/specification/PageElementDto.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/dto/specification/PageElementTypeDto.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/dto/specification/PageRetInstDto.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/dto/specification/PageTemplateDetailDto.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/dto/specification/PageTemplateDto.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/dto/specification/PageTemplateRuleDto.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/jdbc/BeanMapperHandlerImpl.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/zterc/uos/fastflow/service/FormManagerService.java" charset="GBK" />
+  </component>
+</project>

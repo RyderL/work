@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- apache.dbcp连接池的配置 -->
+ 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> 
+			<property name="url" value="jdbc:oracle:thin:@10.45.47.202:1521:orcl"></property> 
+			<property name="username" value="flow7"></property> <property name="password" 
+			value="flow7"></property> 
+		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+		value="jdbc:mysql://10.45.47.130:3306/fastflow_1?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=utf8"></property>
+		<property name="username" value="test"></property>
+		<property name="password" value="test"></property> -->
+		<!-- <property name="url"
+		value="jdbc:mysql://localhost:3306/fastflow_1?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=utf8"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="mysql"></property> -->
+		<property name="maxActive" value="5"></property>
+		<property name="maxIdle" value="5"></property>
+		<property name="maxWait" value="5"></property>
+		<property name="defaultAutoCommit" value="false"></property>
+	</bean>
+
+	
+	<!-- <bean id="defaultDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://10.45.47.187:8066/fastflow?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=utf8"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="123"></property>
+		<property name="maxActive" value="4"></property>
+		<property name="maxIdle" value="4"></property>
+		<property name="maxWait" value="4"></property>
+		<property name="defaultAutoCommit" value="false"></property>
+	</bean>
+
+	<bean id="dbProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:dbs.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+    <bean id="dataSource" class="com.zterc.uos.base.jdbc.DynamicDataSource">
+		<property name="dbProperties" ref="dbProperties" />
+		<property name="dbConfigs">
+			<list>
+				<value><![CDATA[com.mysql.jdbc.Driver;jdbc:mysql://10.45.47.130:3306/fastflow_1?useUnicode=true&characterEncoding=utf-8;test;test]]></value>
+				<value><![CDATA[com.mysql.jdbc.Driver;jdbc:mysql://10.45.47.130:3306/fastflow_2?useUnicode=true&characterEncoding=utf-8;test;test]]></value>
+			</list>
+		</property>
+		<property name="defaultTargetDataSource" ref="defaultDataSource" />
+		<property name="archievedDataSource" ref="defaultDataSource" />
+		<property name="historyDataSource" ref="defaultDataSource" />
+	</bean> -->
+
+	<!-- jdbc注入 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<bean id="propertyConfigurer"
+		class="com.zterc.uos.fastflow.appcfg.UosPropertyPlaceholderConfigurer"
+		init-method="init">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+		<property name="locations">
+			<list>
+				<value>classpath:config.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="beanContextProxy" class="com.zterc.uos.base.bean.BeanContextProxy"></bean>
+</beans>

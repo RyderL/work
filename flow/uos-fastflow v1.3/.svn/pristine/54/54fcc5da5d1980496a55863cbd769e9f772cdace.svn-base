@@ -1,0 +1,18 @@
+initialSize=16
+maxActive=16
+maxIdle=16
+minIdle=5
+maxWait=60000
+validationQuery=SELECT 1 FROM DUAL
+minEvictableIdleTimeMillis=30000
+timeBetweenEvictionRunsMillis=0
+poolPreparedStatements=true
+removeAbandoned=true
+removeAbandonedTimeout=180
+testOnBorrow=false
+testOnReturn=false
+testWhileIdle=true
+
+
+
+

@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+	<bean class="com.ztesoft.uosflow.core.config.ConfigContext">
+		<property name="needInfPersist" value="${needInfPersist}"></property>
+		<property name="persistAfterDone" value="${persistAfterDone}"></property>
+	</bean>
+
+	<!-- SCAN component -->
+	<context:component-scan base-package="com.ztesoft.uosflow.core.common"
+		use-default-filters="true"></context:component-scan>
+	<context:component-scan base-package="com.ztesoft.uosflow.inf.server.common"
+		use-default-filters="true"></context:component-scan>
+	<context:component-scan base-package="com.ztesoft.uosflow.inf.client"
+		use-default-filters="true"></context:component-scan>
+	<context:component-scan base-package="com.ztesoft.uosflow.util.mq.producer.common"
+		use-default-filters="true"></context:component-scan>
+	<context:component-scan base-package="com.ztesoft.uosflow.util.mq.consumer.common"
+		use-default-filters="true"></context:component-scan>
+	<context:component-scan base-package="com.ztesoft.uosflow.inf.persist.client"
+		use-default-filters="true"></context:component-scan>
+	<context:component-scan base-package="com.ztesoft.uosflow.core.dbpersist"
+		use-default-filters="true"></context:component-scan>
+
+	<!-- Client -->
+	<!--客户端 ws接口和dubbo接口 合并在一起，根据uos_multi_client_cfg表中的配置，不同的客户端调用不同的接口方式-->
+	<bean id="infClient" class="com.ztesoft.uosflow.inf.client.inf.FlowClient" init-method="init"></bean>
+	<!-- 性能测试自动回单  <bean id="infClient" class="com.ztesoft.uosflow.inf.client.test.AutoCompleteClient">
+	</bean> -->
+	<!-- 功能测试不自动回单  <bean id="infClient" class="com.ztesoft.uosflow.inf.client.test.ManulCompleteClient">
+	</bean> -->
+
+	<!-- inf -->
+	<bean id="workflowStateReport" class="com.ztesoft.uosflow.core.uosflow.ExtWorkflowStateReport">
+	</bean>
+
+	<!-- SequenceHelper注入 -->
+	<!-- db模式的gid配置=单server模式可用，多server模式 ====start -->
+	<!-- <bean class="com.zterc.uos.base.helper.SequenceHelper ">
+		<property name="sequenceService">
+			<bean class="com.zterc.uos.base.sequence.impl.SequenceServiceDB">
+			</bean>
+		</property>
+	</bean> -->
+	<!-- db模式的gid配置=====end -->
+	<!-- oracle存过模式的gid配置=====start -->
+	<!-- <bean class="com.zterc.uos.base.helper.SequenceHelper ">
+		<property name="sequenceService">
+			<bean class="com.zterc.uos.base.sequence.impl.SequenceServiceOracle">
+			</bean>
+		</property>
+	</bean>-->
+	<!-- oracle 先直接取序列值，没有找到再执行存过获取序列值 -->
+	<bean class="com.zterc.uos.base.helper.SequenceHelper ">
+		<property name="sequenceService">
+			<bean class="com.zterc.uos.base.sequence.impl.SequenceServiceOracleNew">
+			</bean>
+		</property>
+	</bean>
+	<!-- oracle存过模式的gid配置=====end -->
+	
+	<!-- gid配置=====start -->
+	<!--  <bean id="gidConfig" class="com.zterc.uos.gid.service.GidConfig" init-method="init">
+		<property name="gidServerUrl" value="${gid-url}"></property>
+		<property name="sysCode" value="UOS-FAST" />
+		<property name="tryTimes" value="30" />
+		<property name="seqConfigMap">
+			<map>
+                <entry key="UOS_ACTIVITYINSTANCE" value="2000,2000,100000" />
+                <entry key="UOS_ATOM_ACTIVITYINSTANCE" value="2000,2000,100000" />
+                <entry key="UOS_EXCEPTION" value="2000,2000,100000" />
+                <entry key="UOS_PACKAGE" value="2000,2000,100000" />
+                <entry key="UOS_PACKAGECATALOG" value="2000,2000,100000" />
+                <entry key="UOS_PROCESSDEFINE" value="2000,2000,100000" />
+                <entry key="UOS_PROCESSINSTANCE" value="2000,2000,100000" />
+                <entry key="UOS_PROINSATTR" value="2000,2000,100000" />
+                <entry key="UOS_PROINSPARAM" value="2000,2000,100000" />
+                <entry key="UOS_REASON_CATALOG" value="2000,2000,100000" />
+                <entry key="UOS_REASON_CONFIG" value="2000,2000,100000" />
+                <entry key="UOS_RETURN_REASON" value="2000,2000,100000" />
+                <entry key="UOS_SYN_RULE" value="2000,2000,100000" />
+                <entry key="UOS_SYS_ORD_RELA" value="2000,2000,100000" />
+                <entry key="UOS_SYS_RULE_INST" value="2000,2000,100000" />
+                <entry key="UOS_TACHE" value="2000,2000,100000" />
+                <entry key="UOS_TACHE_CATALOG" value="2000,2000,100000" />
+                <entry key="UOS_TACHE_RETURN_REASON" value="2000,2000,100000" />
+                <entry key="UOS_TRANSITIONINSTANCE" value="2000,2000,100000" />
+                <entry key="UOS_WORKITEM" value="2000,2000,100000" />
+                <entry key="WO_WORK_ORDER_BATCH" value="2000,2000,100000" />
+                <entry key="UOS_DISPATCH_RULE" value="2000,2000,100000" />
+                <entry key="UOS_TACHE_DEF" value="2000,2000,100000" />
+                <entry key="UOS_COMMAND_QUEUE" value="2000,2000,100000" />
+            </map>
+		</property>
+	</bean> 
+	<bean class="com.zterc.uos.base.helper.SequenceHelper ">
+		<property name="sequenceService">
+			<bean class="com.zterc.uos.gid.service.SequenceServiceGid"  init-method="init">
+				<property name="gidConfig" ref="gidConfig" />
+				<property name="isUseNewGid" value="Y" />
+			</bean>
+		</property>
+		<property name="fact" value="10000"></property>
+		<property name="mod" value="10000"></property>
+	</bean>  -->
+	<!-- gid配置=====end -->
+
+	<!-- lock配置 =====start 内存模式用redis-->
+	<bean class="com.zterc.uos.base.lock.LockFactory">
+		<!-- Blank/Redis/Local -->
+		<property name="lockType" value="Local"></property>
+		<property name="LockConfig">
+			<bean class="com.zterc.uos.base.lock.LockConfig">
+				<!-- 锁失效时间 -->
+				<property name="expireMsecs" value="30000"></property>
+				<!-- 锁等待超时时间 -->
+				<property name="timeoutMsecs" value="10000"></property>
+				<!-- 锁等待休眠时间 -->
+				<property name="sleepTime" value="10"></property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="redisUtil" class="com.zterc.uos.base.lock.redis.RedisUtil"> 
+		<property name="uosJedisClient" ref="uosCacheClient"></property> </bean>
+	<!-- lock配置 =====end -->
+
+	<bean class="com.ztesoft.uosflow.core.util.CommandInvokeUtil">
+		<property name="uosCacheClient" ref="uosCacheClient"></property>
+		<property name="activityInstanceService" ref="activityInstanceService"></property>
+		<property name="transitionInstanceService" ref="transitionInstanceService"></property>
+		<property name="processInstanceService" ref="processInstanceService"></property>
+		<property name="workItemService" ref="workItemService"></property>
+		<property name="processParamService" ref="processParamService"></property>
+		<property name="processAttrService" ref="processAttrService"></property>
+	</bean>
+
+	<bean class="com.ztesoft.uosflow.core.util.CommandPropUtil" init-method="init">
+		<property name="commandCfgService" ref="commandCfgService"></property>
+	</bean>
+	<!-- （适用于内存模式，数据库模式注释掉） redis心跳检测进程 outTimes：与redis断开连接次数 sleepTime：进程休眠时间 -->
+ <!-- 	<bean id="errorProcessor" class="com.ztesoft.uosflow.core.processor.RedisHeartProcessor" init-method="init">
+		<property name="uosCacheClient" ref="uosCacheClient"></property>
+		<property name="outTimes" value="3"></property>
+		<property name="sleepTime" value="1000"></property>
+	</bean>  -->
+	
+	<bean class="com.ztesoft.uosflow.jmx.server.bl.cachemanager.StaticCacheManager">
+		<property name="tacheService" ref="tacheService"></property>
+		<property name="processParamDefService" ref="processParamDefService"></property>
+		<property name="processDefinitionService" ref="processDefinitionService"></property>
+		<property name="processPackageService" ref="processPackageService"></property>
+		<property name="returnReasonService" ref="returnReasonService"></property>
+	</bean>
+</beans>

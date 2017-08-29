@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkflowProcess>
+	<Activities>
+		<Activity id="A13126-38-21533-738-49709" isRuning="true"
+			type="Start" name="开始节点" tacheId="" direction="1" />
+		<Activity id="A90144-43-77438-440-35117" isRuning="true"
+			type="Tache" name="测试-1" tacheId="1000038" direction="1" />
+		<Activity id="A874-44-10030-918-65794" isRuning="true" type="Tache"
+			name="测试-2" tacheId="1000039" direction="1" />
+		<Activity id="A19063-46-86600-282-74508" isRuning="true"
+			type="Tache" name="测试-3" tacheId="1000040" direction="1" />
+		<Activity id="A89908-57-66824-490-21692" isRuning="true"
+			type="Control" name="控制节点" tacheId="" direction="1" />
+		<Activity id="A35918-47-22400-608-23622" isRuning="true"
+			type="Tache" name="测试-4" tacheId="1000041" direction="1" />
+		<Activity id="A90362-38-12576-739-62570" isRuning="true"
+			type="Finish" name="结束节点" tacheId="" direction="1" />
+	</Activities>
+	<Transitions>
+		<Transition id="A52902-43-18425-442-24653" from="A13126-38-21533-738-49709"
+			to="A90144-43-77438-440-35117" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A9695-44-84462-918-81212" from="A90144-43-77438-440-35117"
+			to="A874-44-10030-918-65794" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A5758-46-82782-285-11153" from="A874-44-10030-918-65794"
+			to="A19063-46-86600-282-74508" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A56206-57-58109-492-8134" from="A19063-46-86600-282-74508"
+			to="A89908-57-66824-490-21692" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A75828-47-26341-610-98154" from="A89908-57-66824-490-21692"
+			to="A35918-47-22400-608-23622" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A71084-58-58782-784-73416" from="A89908-57-66824-490-21692"
+			to="A874-44-10030-918-65794" isRunning="false" name="" lineType="Control" />
+		<Transition id="A86128-38-49958-742-90325" from="A35918-47-22400-608-23622"
+			to="A90362-38-12576-739-62570" isRunning="false" name="" lineType="Normal" />
+	</Transitions>
+</WorkflowProcess>

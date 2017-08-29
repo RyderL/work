@@ -1,0 +1,180 @@
+body {font-family:Tahoma,宋体; font-size: 12;margin: 0 3 3 3; width:100%; height:100%; overflow:auto;
+scrollbar-face-color:#CBE3FE;
+scrollbar-shadow-color:#E7E7E7;
+scrollbar-highlight-color:#FFFFFF;
+scrollbar-3dlight-color:#B2C9D8;
+scrollbar-darkshadow-color:#B2C9D8;
+scrollbar-track-color:#E7E7E7;
+scrollbar-arrow-color:#87B3D0;}
+input{border:1px solid #A8A8A8; font-size:12px; color:#000000; height:18px; padding-top: 1px; padding-left: 3px; background-color:#F8F8F8;}
+.input_datetime{border-top:1 solid #A8A8A8; border-left:1 solid #A8A8A8; border-right:1 solid #A8A8A8;  border-bottom:1 solid #A8A8A8; font-size:12; color:#000000; height:18px; padding-top: 2; padding-left: 3; background-color:#F8F8F8;}
+.input_array{font-size:12; border:1 solid #7998C4; padding-top: 2; padding-left: 3; height: 19;}
+.input_underline {border-right: #FFFFFF 1 solid;  border-top: #FFFFFF 1 solid;  border-left: #FFFFFF 1 solid;  border-bottom: #000000 1 solid;  font-size: 12;  color: #000000; background: #FFFFFF;padding-top: 2;padding-left: 3;height: 19;}
+.readInput{border:1 solid #FAFBFD;background:#FAFBFD;}
+.readInputLink{border:1 solid #FAFBFD;background:#FAFBFD;color:#0000ff;}/* add by zhou.yanfang 2013-8-9 ur109383 项目编码值显示链接蓝色*/
+td{font-family:Tahoma,宋体; font-size:12;}
+textarea {font-size: 12; border:1 solid #A8A8A8;}
+
+/* 表单中select和checkbox特殊效果的定义 */
+.checkbox {border:0;}
+.select_box_1{border:1 solid #A8A8A8;height:19; clip:rect(0,auto,18,0);overflow:hidden;}
+.select_box_2{border:1 solid #FFFFFF;height:17;clip:rect(0,auto,16,0);overflow:hidden;}
+.select_nohtc{position:relative;left:-2;top:-2;font-size:12;line-height:15;border:0;}
+/* 页面不同按钮的定义 */
+.button{border-top:1 solid #FFFFFF; border-left:1 solid #FFFFFF; border-right:1 solid #656668;  border-bottom:1 solid #656668; font-size:12; color:#000000; height:20px; background-image:url(/IOMPROJ/images/button/button_bg.gif);}
+.button_img{background-color:#BFDAED; border-top:1 solid #FFFFFF; border-left:1 solid #FFFFFF; border-right:1 solid #65666A;  border-bottom:1 solid #656668; font-size:12; color:#000000; height:20px;}
+.button_blue{background-color:#BFDAED; border-top:1 solid #FFFFFF; border-left:1 solid #FFFFFF; border-right:1 solid #65666A;  border-bottom:1 solid #656668; font-size:12; color:#000000; height:20px;}
+.button_pop{width:18; height:19; padding:0; border:0 none #FFFFFF; background-image:url(/IOMPROJ/public/htc/DateTimeText/popedit.gif);}
+.button_box{ padding-right:10; padding-top:20; height:60; align:right;}
+/* 页面中不同 td边框的定义 */
+.td_blue {background-color: #F8F8F8;}
+.td_grey {background-color: #F8F8F8;}
+.td_grey_txt {color: #3E4A59; background-color: #F8F8F8;}
+.td_blue_txt {color: #3E4A59; background-color: #F8F8F8; padding-left:3; padding-top:3;}
+.td_blue_title {color: #FFFFFF; background-color: #6193BB; height:20px; padding-top:2; font-weight:bold;}
+.td_blue_line {background-color: #C8DDEE;}
+.td_title_txt{color: #003399;background-color: #FFFFCC;}
+.box_bar {color:#000000; font-weight:bold}
+.div_cont_btn{padding:5; text-align:center}
+.subtab_bar {color:#1851D6; font-size:12px; padding-left: 6px;padding-right: 6px; filter:progid:DXImageTransform.Microsoft.Glow(color=#FFFFFF,Strength=1);}
+/* 控件 */
+.select_htc{width:130;behavior:url(/IOMPROJ/public/htc/SelectStyle/SelectStyle.htc);}
+.treelist{selectedBgColor:#D6EFFF; behaviorPath:/IOMPROJ/public/htc/TreeList/;}
+.datetimetext{behavior:url(/IOMPROJ/public/htc/DateTimeText/DateTimeText.htc);behaviorPath:/IOMPROJ/public/htc/DateTimeText/;}
+.tab_ioms{behavior:url(/IOMPROJ/public/htc/Tabstrip/Tabstrip.htc); skinPath:/IOMPROJ/public/htc/Tabstrip/images/ioms/;
+maxtabHeight:22; mintabHeight:19; fontColor:#000000; fontColorOver:#000000; fontColorSelect:#2A53B3;
+lightShadow:#FCFCFC; midShadow:#D3D3D3; pageBorder:#5699C6; lightColor:#FFFFFF; darkColor:#FFFFFF;}
+.tab_iomstop{behavior:url(/IOMPROJ/public/htc/Tabstrip/Tabstrip.htc); skinPath:/IOMPROJ/public/htc/Tabstrip/images/ioms/top_bar/;
+maxtabHeight:25; mintabHeight:23; fontColor:#FFFFFF; fontColorOver:#FFFFFF; fontColorSelect:#18467A;
+lightShadow:#FCFCFC; midShadow:#D3D3D3; pageBorder:#5699C6; lightColor:#FFFFFF; darkColor:#FFFFFF;}
+/* 显示链接 */
+A:link {color: #0033CC; text-decoration: none}
+A:visited {color: #0033CC;  text-decoration: none}
+A:active {color: #0033CC; text-decoration: none}
+A:hover {text-decoration: none; color: #000000;}
+A.link_black:link{text-decoration: none; color: #000000;}
+A.link_black:visited  {text-decoration: none; color: #000000}
+A.link_black:active {text-decoration: none; color: #000000}
+A.link_black:hover {text-decoration: none; color: #505050}
+A.link_download{height:14px;width:200px;clip:rect(0,0,0,0);overflow:hidden;}
+.star{font-size: 12;color:#ff4040;}
+
+.menu_main
+{
+  background-color: #F6F6F6;
+  border: 1px solid #2A86DD;
+  font: menu;
+  color: menutext;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.menu_main THEAD,
+.menu_main TFOOT
+{
+  background-color: #F6F6F6;
+  height: 1px;
+}
+
+.menu_main TBODY .menu_Item
+{
+  white-space: nowrap;
+  text-align: left;
+  font-size: 12px;
+}
+.menu_main TBODY .menu_Item .menu_Image
+{
+  background-image:url(/IOMPROJ/images/button/2k3MenuItem.gif);
+  background-position: center center;
+  background-repeat: repeat-y;
+  border: 0 none;
+  padding: 3px 0px 2px 6px;
+  width:24px;
+  height:22px;
+}
+.menu_main TBODY .menu_Item .menu_text
+{
+  background-color: #F6F6F6;
+  padding: 0px 18px 0px 4px;
+  overflow:hidden;
+  white-space: nowrap;
+}
+.menu_main TBODY .menu_Seperator .menu_Image
+{
+  background-image:url(/IOMPROJ/images/button/2k3MenuItem.gif);
+  background-position: center center;
+  background-repeat: repeat-y;
+}
+.menu_main TBODY .menu_Seperator .menu_text
+{
+  background-color: #6A8CCB;
+  border: 1px solid #F6F6F6;
+  overflow:hidden;
+}
+/* over */
+.menu_main TBODY .menu_Itemover
+{
+  white-space: nowrap;
+  text-align: left;
+  font-size: 12px;
+}
+.menu_main TBODY .menu_Itemover .menu_Image
+{
+  background-color: #C2DAF8;
+  border-width: 1px 0px 1px 0px;
+  border-style: solid;
+  border-color: #2A86DD;
+  padding: 2px 0px 2px 6px;
+  width:24px;
+  height:22px;
+}
+.menu_main TBODY .menu_Itemover .menu_text
+{
+  background-color: #C2DAF8;
+  padding: 0px 18px 0px 4px;
+  border-width: 1px 0px 1px 0px;
+  border-style: solid;
+  border-color: #2A86DD;
+  overflow:hidden;
+  white-space: nowrap;
+}
+/**仿Treelist表格样式***/
+.Tl_Header_table{border-color:#DDEBF3; cursor:default; background-color: #DDEBF3;}
+.Tl_Header_tr{position: relative; top: expression(document.getElementById("div9_").scrollTop)}
+.Tl_Header_td{font-family: Tahoma, Arial,"宋体";font-size:12px;color:#000000;height: 22px;border-left: 1px solid #FFF;border-right: 1px solid #DDEBF3; border-top: 1px solid #FFF; border-bottom: 1px solid #DDEBF3; background-color: #EBF4FB;}
+
+/**多行选择框**/
+.scrollMove {border: 1px solid #a8a8a8}
+
+/**left.jsp左面菜单的样式**/
+.border1_out { border-bottom: 1 solid; border-left: 1 solid; border-right: 1 solid; border-color:#0B4875; background-color:#1A6396; color: #FFFFFF; width:160px; height:20px; cursor: hand; }
+.border1_over { border-bottom: 1 solid; border-left: 1 solid; border-right: 1 solid; border-color:#0B4875; background-color:#3478A7; color: #FFFFFF; width:160px; height:20px; cursor: hand; }
+
+.border2_out { border-bottom: 1 solid; border-left: 1 solid; border-right: 1 solid; border-color:#0B4875; background-color:#4E7BA5; color: #FFFFFF; width:160px; height:20px; cursor: hand; }
+.border2_over { border-bottom: 1 solid; border-left: 1 solid; border-right: 1 solid; border-color:#0B4875; background-color:#7B9FC1; color: #FFFFFF; width:160px; height:20px; cursor: hand; }
+
+.border3_out { border-bottom: 1 solid; border-color:#0B4875; background-color:#6191BE; color: #FFFFFF; width:158px; height:20px; cursor: hand; }
+.border3_over { border-bottom: 1 solid; border-color:#0B4875; background-color:#7B9FC1; color: #FFFFFF; width:158px; height:20px; cursor: hand; }
+
+/**left.jsp左面菜单的背景色**/
+.menu_td_bg {background-color: #1A6396;}
+.menu_table_bg {background-color: #0B4875;}
+.left_td{height:14px;background-image:url(/IOMPROJ/common/darkblue/images/left_bottom.gif);}
+
+/**main.jsp版权字体**/
+.main_wh { font-size: 12px; COLOR: #FFFFFF; vertical-align:middle ;background-color:"#0A4774"  }
+
+
+/**选择职位**/
+.job_div {height:30;background-color:"#628FB0" };
+.job_div_mouseover {background-color:"#9EB9CC"};
+.job_div_mouseout {background-color:"#628FB0"};
+
+/**mydesk**/
+.b { background:#1A6396; height:22; width: 100%; border: 1 solid #1A6396; color:#F1F6FF }
+.b:active { background:#1A6396; height:22; width: 100%; border: 1 solid #1A6396; color:#F1F6FF }
+.b:link { background:#1A6396; height:22; width: 100%; border: 1 solid #1A6396; color:#F1F6FF }
+.b:visited { background:#1A6396; height:22; width: 100%; border: 1 solid #1A6396; color:#F1F6FF }
+.b:hover { background:#4885B0; height:22; width: 100%; border: 1 solid #F1F6FF; color:#FFFFFF }
+.wh { font-size: 12px; color: #FFFFFF;}
+.mydesk_body {margin:0;overflow:hidden;background-color:"#1A6396"};

@@ -1,0 +1,1394 @@
+{
+    "resourceId": "sid-21B51684-04F7-43FA-BF12-35A845EC56E7",
+    "properties": {
+        "type": -1,
+        "name": "Untitled",
+        "notes": "",
+        "extProperties": {},
+        "version": "1.0",
+        "effDate": "2015-09-15 13:30:21",
+        "expDate": "2016-09-15 13:30:21",
+        "width": "2000",
+        "height": "960"
+    },
+    "stencil": {
+        "type": "BPMNDiagram"
+    },
+    "childShapes": [
+        {
+            "resourceId": "sid-2EB65074-394D-4653-8C34-9E0EA0810904",
+            "properties": {
+                "type": 29,
+                "name": "Start",
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "StartNoneEvent"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-601B0909-224B-409A-AA34-1D4E977A5A30",
+                "sid-32AF635F-3B66-468C-9613-179F351C2304"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 50,
+                    "y": 20
+                },
+                "lowerRight": {
+                    "x": 90,
+                    "y": 60
+                }
+            }
+        },
+        {
+            "resourceId": "sid-415E8745-4377-42DC-8863-CCDAC446C904",
+            "properties": {
+                "type": -1,
+                "name": "Order Capturing",
+                "notes": "",
+                "extProperties": {},
+                "slotEvent": [
+                    "sid-495D6F3D-7855-41BC-9586-29FB03C33542"
+                ]
+            },
+            "stencil": {
+                "type": "SubProcess"
+            },
+            "childShapes": [
+                {
+                    "resourceId": "sid-790DAA58-49DA-45A8-8370-31BF711D4232",
+                    "properties": {
+                        "type": 29,
+                        "name": "Start",
+                        "notes": "",
+                        "extProperties": {}
+                    },
+                    "stencil": {
+                        "type": "StartNoneEvent"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-85A20E04-F58A-4529-B4A4-691D00426296",
+                        "sid-4DEBF046-5F0F-4234-8684-203BB17519F7"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 40,
+                            "y": 10
+                        },
+                        "lowerRight": {
+                            "x": 80,
+                            "y": 50
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-878DA305-C69D-4236-ADA4-40A5B23B0046",
+                    "properties": {
+                        "type": 17,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {}
+                    },
+                    "stencil": {
+                        "type": "ExclusiveGateway"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-0F1C4D8F-4C31-483E-8976-124DF1D365C4",
+                        "sid-5F2B0567-C0D3-4059-A202-673D3373A2D8"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 139.99999809265137,
+                            "y": 79.99999809265137
+                        },
+                        "lowerRight": {
+                            "x": 180,
+                            "y": 120
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-4DEBF046-5F0F-4234-8684-203BB17519F7",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-878DA305-C69D-4236-ADA4-40A5B23B0046",
+                        "sid-878DA305-C69D-4236-ADA4-40A5B23B0046"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 166.66666650772095,
+                            "y": 82.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "right",
+                        "ePos": "top"
+                    },
+                    "dockers": [
+                        {
+                            "x": 80,
+                            "y": 30
+                        },
+                        {
+                            "x": 110,
+                            "y": 30
+                        },
+                        {
+                            "x": 160,
+                            "y": 30
+                        },
+                        {
+                            "x": 160,
+                            "y": 49.999999046325684
+                        },
+                        {
+                            "x": 160,
+                            "y": 79.99999904632568
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-1B35415B-901C-426A-B911-5E1983E18734",
+                    "properties": {
+                        "type": 17,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {}
+                    },
+                    "stencil": {
+                        "type": "ExclusiveGateway"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-3F569537-9E9E-4404-8917-1271361102D3",
+                        "sid-61E8C422-BFF3-45FB-9C80-A60CD19DEDF4",
+                        "sid-3F15798B-A5E8-432B-99F2-BA5853F89564",
+                        "sid-607E2939-2996-4146-A136-B196F19A09A0",
+                        "sid-5F44A507-2444-486F-B105-4721B73AEA38",
+                        "sid-2536C73D-C7B7-42D9-A314-7080A0C3E650"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 49.99999809265137,
+                            "y": 139.99999809265137
+                        },
+                        "lowerRight": {
+                            "x": 90,
+                            "y": 180
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-5F2B0567-C0D3-4059-A202-673D3373A2D8",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-1B35415B-901C-426A-B911-5E1983E18734",
+                        "sid-1B35415B-901C-426A-B911-5E1983E18734"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 142.5,
+                            "y": 142.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "left",
+                        "ePos": "top"
+                    },
+                    "dockers": [
+                        {
+                            "x": 139.99999904632568,
+                            "y": 100
+                        },
+                        {
+                            "x": 109.99999904632568,
+                            "y": 100
+                        },
+                        {
+                            "x": 70,
+                            "y": 100
+                        },
+                        {
+                            "x": 70,
+                            "y": 109.99999904632568
+                        },
+                        {
+                            "x": 70,
+                            "y": 139.99999904632568
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-814C514F-9CA1-483B-BBD3-7608D6FFA831",
+                    "properties": {
+                        "type": 0,
+                        "name": "Business Change",
+                        "notes": "",
+                        "extProperties": {},
+                        "activityName": "Untitled"
+                    },
+                    "stencil": {
+                        "type": "UserTask"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-724C835F-6C76-4684-8FB8-B218E18C6896"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 20,
+                            "y": 230
+                        },
+                        "lowerRight": {
+                            "x": 120,
+                            "y": 290
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-607E2939-2996-4146-A136-B196F19A09A0",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-814C514F-9CA1-483B-BBD3-7608D6FFA831",
+                        "sid-814C514F-9CA1-483B-BBD3-7608D6FFA831"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 76.66666650772095,
+                            "y": 232.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "bottom",
+                        "ePos": "top"
+                    },
+                    "dockers": [
+                        {
+                            "x": 70,
+                            "y": 180.00000095367432
+                        },
+                        {
+                            "x": 70,
+                            "y": 210.00000095367432
+                        },
+                        {
+                            "x": 70,
+                            "y": 210.00000095367432
+                        },
+                        {
+                            "x": 70,
+                            "y": 200
+                        },
+                        {
+                            "x": 70,
+                            "y": 200
+                        },
+                        {
+                            "x": 70,
+                            "y": 230
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-07A83B7D-D936-48C8-A5B0-310491313D02",
+                    "properties": {
+                        "type": 0,
+                        "name": "Business Change",
+                        "notes": "",
+                        "extProperties": {},
+                        "activityName": "Untitled"
+                    },
+                    "stencil": {
+                        "type": "UserTask"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-16CA5488-6339-479A-B940-2CEDC184FE85"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 150,
+                            "y": 230
+                        },
+                        "lowerRight": {
+                            "x": 250,
+                            "y": 290
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-5F44A507-2444-486F-B105-4721B73AEA38",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-07A83B7D-D936-48C8-A5B0-310491313D02",
+                        "sid-07A83B7D-D936-48C8-A5B0-310491313D02"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 206.66666650772095,
+                            "y": 232.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "right",
+                        "ePos": "top"
+                    },
+                    "dockers": [
+                        {
+                            "x": 90.00000095367432,
+                            "y": 160
+                        },
+                        {
+                            "x": 120.00000095367432,
+                            "y": 160
+                        },
+                        {
+                            "x": 200,
+                            "y": 160
+                        },
+                        {
+                            "x": 200,
+                            "y": 200
+                        },
+                        {
+                            "x": 200,
+                            "y": 230
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-04C2227A-50C0-44C3-84B2-3BE5983E7BD8",
+                    "properties": {
+                        "type": 0,
+                        "name": "Business Change",
+                        "notes": "",
+                        "extProperties": {},
+                        "activityName": "Untitled"
+                    },
+                    "stencil": {
+                        "type": "UserTask"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-5EA01B3F-60D6-4284-AE70-74C4E80127C7"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 270,
+                            "y": 230
+                        },
+                        "lowerRight": {
+                            "x": 370,
+                            "y": 290
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-2536C73D-C7B7-42D9-A314-7080A0C3E650",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-04C2227A-50C0-44C3-84B2-3BE5983E7BD8",
+                        "sid-04C2227A-50C0-44C3-84B2-3BE5983E7BD8"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 326.66666650772095,
+                            "y": 232.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "right",
+                        "ePos": "top"
+                    },
+                    "dockers": [
+                        {
+                            "x": 90,
+                            "y": 159
+                        },
+                        {
+                            "x": 120,
+                            "y": 159
+                        },
+                        {
+                            "x": 320,
+                            "y": 159
+                        },
+                        {
+                            "x": 320,
+                            "y": 200
+                        },
+                        {
+                            "x": 320,
+                            "y": 230
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-8F753739-1AC7-4757-BB93-FD1C2046B768",
+                    "properties": {
+                        "type": 0,
+                        "name": "EbsQryOrderFee",
+                        "notes": "",
+                        "extProperties": {},
+                        "activityName": "Untitled"
+                    },
+                    "stencil": {
+                        "type": "UserTask"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-7B414E88-ACB6-4762-A175-B346E0858337"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 150,
+                            "y": 330
+                        },
+                        "lowerRight": {
+                            "x": 250,
+                            "y": 390
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-16CA5488-6339-479A-B940-2CEDC184FE85",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-8F753739-1AC7-4757-BB93-FD1C2046B768"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 206.66666650772095,
+                            "y": 332.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "bottom",
+                        "ePos": "top"
+                    },
+                    "dockers": [
+                        {
+                            "x": 200,
+                            "y": 290
+                        },
+                        {
+                            "x": 200,
+                            "y": 320
+                        },
+                        {
+                            "x": 200,
+                            "y": 320
+                        },
+                        {
+                            "x": 200,
+                            "y": 300
+                        },
+                        {
+                            "x": 200,
+                            "y": 300
+                        },
+                        {
+                            "x": 200,
+                            "y": 330
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-724C835F-6C76-4684-8FB8-B218E18C6896",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-8F753739-1AC7-4757-BB93-FD1C2046B768"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 152.5,
+                            "y": 366.66666650772095
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "bottom",
+                        "ePos": "left"
+                    },
+                    "dockers": [
+                        {
+                            "x": 70,
+                            "y": 290
+                        },
+                        {
+                            "x": 70,
+                            "y": 320
+                        },
+                        {
+                            "x": 70,
+                            "y": 360
+                        },
+                        {
+                            "x": 120,
+                            "y": 360
+                        },
+                        {
+                            "x": 150,
+                            "y": 360
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-5EA01B3F-60D6-4284-AE70-74C4E80127C7",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-8F753739-1AC7-4757-BB93-FD1C2046B768"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 322.5,
+                            "y": 366.66666650772095
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "bottom",
+                        "ePos": "right"
+                    },
+                    "dockers": [
+                        {
+                            "x": 320,
+                            "y": 290
+                        },
+                        {
+                            "x": 320,
+                            "y": 320
+                        },
+                        {
+                            "x": 320,
+                            "y": 360
+                        },
+                        {
+                            "x": 280,
+                            "y": 360
+                        },
+                        {
+                            "x": 250,
+                            "y": 360
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-5E992418-A843-483A-B3D5-706D4663FE16",
+                    "properties": {
+                        "type": 0,
+                        "name": "Charge Infomation",
+                        "notes": "",
+                        "extProperties": {},
+                        "activityName": "Untitled"
+                    },
+                    "stencil": {
+                        "type": "UserTask"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-57A17385-60A4-43AA-8A07-C21276F47700"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 150,
+                            "y": 430
+                        },
+                        "lowerRight": {
+                            "x": 250,
+                            "y": 490
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-7B414E88-ACB6-4762-A175-B346E0858337",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-5E992418-A843-483A-B3D5-706D4663FE16"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 206.66666650772095,
+                            "y": 432.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "bottom",
+                        "ePos": "top"
+                    },
+                    "dockers": [
+                        {
+                            "x": 200,
+                            "y": 390
+                        },
+                        {
+                            "x": 200,
+                            "y": 420
+                        },
+                        {
+                            "x": 200,
+                            "y": 420
+                        },
+                        {
+                            "x": 200,
+                            "y": 400
+                        },
+                        {
+                            "x": 200,
+                            "y": 400
+                        },
+                        {
+                            "x": 200,
+                            "y": 430
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-23791B65-53A0-4868-B7F4-3847802120E7",
+                    "properties": {
+                        "type": 0,
+                        "name": "SaveBilingAdvice",
+                        "notes": "",
+                        "extProperties": {},
+                        "activityName": "Untitled"
+                    },
+                    "stencil": {
+                        "type": "UserTask"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-8A53732F-B27C-46EC-BA14-51E8A1039F67"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 440,
+                            "y": 80
+                        },
+                        "lowerRight": {
+                            "x": 540,
+                            "y": 140
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-727D7814-6F23-43B7-BD92-3E54842D45A0",
+                    "properties": {
+                        "type": 4,
+                        "name": "Submit OrderWithOut Fee",
+                        "notes": "",
+                        "extProperties": {},
+                        "activityName": "Untitled"
+                    },
+                    "stencil": {
+                        "type": "ManualTask"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-5B612A44-46C1-4896-ADB5-9A553018E316"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 150,
+                            "y": 520
+                        },
+                        "lowerRight": {
+                            "x": 250,
+                            "y": 580
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-57A17385-60A4-43AA-8A07-C21276F47700",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-727D7814-6F23-43B7-BD92-3E54842D45A0"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 206.66666650772095,
+                            "y": 522.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "bottom",
+                        "ePos": "top"
+                    },
+                    "dockers": [
+                        {
+                            "x": 200,
+                            "y": 490
+                        },
+                        {
+                            "x": 200,
+                            "y": 520
+                        },
+                        {
+                            "x": 200,
+                            "y": 520
+                        },
+                        {
+                            "x": 200,
+                            "y": 490
+                        },
+                        {
+                            "x": 200,
+                            "y": 490
+                        },
+                        {
+                            "x": 200,
+                            "y": 520
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-5B612A44-46C1-4896-ADB5-9A553018E316",
+                    "properties": {
+                        "type": 14,
+                        "name": null,
+                        "notes": "",
+                        "extProperties": {}
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-23791B65-53A0-4868-B7F4-3847802120E7"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 442.5,
+                            "y": 552.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "right",
+                        "ePos": "left"
+                    },
+                    "dockers": [
+                        {
+                            "x": 250,
+                            "y": 550
+                        },
+                        {
+                            "x": 280,
+                            "y": 550
+                        },
+                        {
+                            "x": 280,
+                            "y": 110
+                        },
+                        {
+                            "x": 410,
+                            "y": 110
+                        },
+                        {
+                            "x": 440,
+                            "y": 110
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-64C84E36-EBE4-428D-8560-6B5C74B8FC42",
+                    "properties": {
+                        "type": 4,
+                        "name": "Update Flow Comments",
+                        "notes": "",
+                        "extProperties": {},
+                        "activityName": "Untitled"
+                    },
+                    "stencil": {
+                        "type": "ManualTask"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-1F464204-A8F7-43FC-9C70-955224097967"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 440,
+                            "y": 220
+                        },
+                        "lowerRight": {
+                            "x": 540,
+                            "y": 280
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-8A53732F-B27C-46EC-BA14-51E8A1039F67",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-64C84E36-EBE4-428D-8560-6B5C74B8FC42"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 542.5,
+                            "y": 252.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "bottom",
+                        "ePos": "top"
+                    },
+                    "dockers": [
+                        {
+                            "x": 490,
+                            "y": 140
+                        },
+                        {
+                            "x": 490,
+                            "y": 170
+                        },
+                        {
+                            "x": 490,
+                            "y": 190
+                        },
+                        {
+                            "x": 490,
+                            "y": 220
+                        }
+                    ]
+                },
+                {
+                    "resourceId": "sid-2A11015D-45DD-4536-9BE7-83D3727FFC73",
+                    "properties": {
+                        "type": 31,
+                        "name": "End",
+                        "notes": "",
+                        "extProperties": {}
+                    },
+                    "stencil": {
+                        "type": "EndNoneEvent"
+                    },
+                    "childShapes": [],
+                    "outgoing": [],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 470,
+                            "y": 360
+                        },
+                        "lowerRight": {
+                            "x": 510,
+                            "y": 400
+                        }
+                    }
+                },
+                {
+                    "resourceId": "sid-1F464204-A8F7-43FC-9C70-955224097967",
+                    "properties": {
+                        "type": 14,
+                        "name": "",
+                        "notes": "",
+                        "extProperties": {},
+                        "conditionExpr": "",
+                        "isLoop": "0",
+                        "isDefault": "0"
+                    },
+                    "stencil": {
+                        "type": "SequenceFlow"
+                    },
+                    "childShapes": [],
+                    "outgoing": [
+                        "sid-2A11015D-45DD-4536-9BE7-83D3727FFC73"
+                    ],
+                    "bounds": {
+                        "upperLeft": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "lowerRight": {
+                            "x": 496.66666650772095,
+                            "y": 382.5
+                        }
+                    },
+                    "style": {
+                        "lineType": "jagged",
+                        "sPos": "bottom",
+                        "ePos": "top"
+                    },
+                    "dockers": [
+                        {
+                            "x": 490,
+                            "y": 280
+                        },
+                        {
+                            "x": 490,
+                            "y": 310
+                        },
+                        {
+                            "x": 490,
+                            "y": 330
+                        },
+                        {
+                            "x": 490,
+                            "y": 360
+                        }
+                    ]
+                }
+            ],
+            "outgoing": [],
+            "bounds": {
+                "upperLeft": {
+                    "x": 150,
+                    "y": 90
+                },
+                "lowerRight": {
+                    "x": 750,
+                    "y": 730
+                }
+            }
+        },
+        {
+            "resourceId": "sid-495D6F3D-7855-41BC-9586-29FB03C33542",
+            "properties": {
+                "type": 75,
+                "name": "ThrowSignalEvent",
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "ThrowSignalEvent"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-5EA93E62-0A8E-43AB-8E74-3E1074191256",
+                "sid-3292DE3A-847E-41A3-9002-CF2F921D2590"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 740,
+                    "y": 290
+                },
+                "lowerRight": {
+                    "x": 760,
+                    "y": 310
+                }
+            }
+        },
+        {
+            "resourceId": "sid-49FCD563-0D2B-4851-A622-867A525CA7E8",
+            "properties": {
+                "type": 0,
+                "name": "Release Order Resource",
+                "notes": "",
+                "extProperties": {},
+                "activityName": "Untitled"
+            },
+            "stencil": {
+                "type": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-7A194F8B-EF9C-4461-90F5-37FC98309924",
+                "sid-690D5351-6278-4464-9C70-B87068006732"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 810,
+                    "y": 340
+                },
+                "lowerRight": {
+                    "x": 910,
+                    "y": 400
+                }
+            }
+        },
+        {
+            "resourceId": "sid-727A137F-E996-458F-9891-9EA8B09FA871",
+            "properties": {
+                "type": 31,
+                "name": "End",
+                "notes": "",
+                "extProperties": {}
+            },
+            "stencil": {
+                "type": "EndNoneEvent"
+            },
+            "childShapes": [],
+            "outgoing": [],
+            "bounds": {
+                "upperLeft": {
+                    "x": 840,
+                    "y": 470
+                },
+                "lowerRight": {
+                    "x": 880,
+                    "y": 510
+                }
+            }
+        },
+        {
+            "resourceId": "sid-32AF635F-3B66-468C-9613-179F351C2304",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-415E8745-4377-42DC-8863-CCDAC446C904",
+                "sid-415E8745-4377-42DC-8863-CCDAC446C904"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 456.66666650772095,
+                    "y": 92.5
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "right",
+                "ePos": "top"
+            },
+            "dockers": [
+                {
+                    "x": 90,
+                    "y": 40
+                },
+                {
+                    "x": 120,
+                    "y": 40
+                },
+                {
+                    "x": 450,
+                    "y": 40
+                },
+                {
+                    "x": 450,
+                    "y": 60
+                },
+                {
+                    "x": 450,
+                    "y": 90
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-3292DE3A-847E-41A3-9002-CF2F921D2590",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-49FCD563-0D2B-4851-A622-867A525CA7E8",
+                "sid-49FCD563-0D2B-4851-A622-867A525CA7E8"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 866.666666507721,
+                    "y": 342.5
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "right",
+                "ePos": "top"
+            },
+            "dockers": [
+                {
+                    "x": 760,
+                    "y": 300
+                },
+                {
+                    "x": 790,
+                    "y": 300
+                },
+                {
+                    "x": 860,
+                    "y": 300
+                },
+                {
+                    "x": 860,
+                    "y": 310
+                },
+                {
+                    "x": 860,
+                    "y": 340
+                }
+            ]
+        },
+        {
+            "resourceId": "sid-690D5351-6278-4464-9C70-B87068006732",
+            "properties": {
+                "type": 14,
+                "name": "",
+                "notes": "",
+                "extProperties": {},
+                "conditionExpr": "",
+                "isLoop": "0",
+                "isDefault": "0"
+            },
+            "stencil": {
+                "type": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                "sid-727A137F-E996-458F-9891-9EA8B09FA871",
+                "sid-727A137F-E996-458F-9891-9EA8B09FA871"
+            ],
+            "bounds": {
+                "upperLeft": {
+                    "x": 0,
+                    "y": 0
+                },
+                "lowerRight": {
+                    "x": 866.666666507721,
+                    "y": 472.5
+                }
+            },
+            "style": {
+                "lineType": "jagged",
+                "sPos": "bottom",
+                "ePos": "top"
+            },
+            "dockers": [
+                {
+                    "x": 860,
+                    "y": 400
+                },
+                {
+                    "x": 860,
+                    "y": 430
+                },
+                {
+                    "x": 860,
+                    "y": 440
+                },
+                {
+                    "x": 860,
+                    "y": 470
+                }
+            ]
+        }
+    ],
+    "outgoing": [],
+    "bounds": {
+        "upperLeft": {
+            "x": 0,
+            "y": 0
+        },
+        "lowerRight": {
+            "x": "2000",
+            "y": "960"
+        }
+    }
+}

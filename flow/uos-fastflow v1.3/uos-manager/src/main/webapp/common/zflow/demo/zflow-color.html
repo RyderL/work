@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>流程实例展示</title>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/raphael.js"></script>
+    <script type="text/javascript" src="../../zflow/js/jquery.color.js"></script>
+    <script type="text/javascript">
+        $(function($){
+        	var color = $.color;
+        	for(var key in color)
+        	{
+        		var htmlDiv = '<div class="block"><div class="color" style="background-color:'+color[key]+';"></div><div class="text">'+color[key]+'</div></div>';
+        		$("body").append(htmlDiv);
+        	}
+        });
+    </script>
+    <style type="text/css">
+    	.block
+    	{
+    		float:left;
+    		margin:10px 20px;
+    	}
+	   .color
+	   {
+	   		width:100px;
+	   		height:100px;
+	   }
+	   .text
+	   {
+	   		width:100px;
+	   		text-align:center;
+	   }
+    </style>
+</head>
+<body style="background:#eeeeee;">
+</body>
+</html>

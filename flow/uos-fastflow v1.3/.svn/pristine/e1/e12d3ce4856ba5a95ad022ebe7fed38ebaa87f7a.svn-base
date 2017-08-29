@@ -1,0 +1,24 @@
+################ FATAL, ERROR, WARN, INFO, DEBUG
+log4j.rootLogger=info, file
+log4j.logger.org.springframework.jdbc = info
+log4j.logger.org.springframework.transaction = info
+log4j.logger.com.ztesoft.uosflow.core.Interceptor = info
+
+### stdout ###
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target=System.out
+log4j.appender.console.ImmediateFlush = true
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern= [%d{HH\:mm\:ss\:SSS}][%p] (%c\:%L) - %m%n
+
+### logFile ###
+### save error to another file ###
+#log4j.appender.File=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.file=org.apache.log4j.RollingFileAppender
+log4j.appender.file.File=../logs/manager.txt
+log4j.appender.file.Append=true
+#log4j.appender.file.Threshold =ERROR
+log4j.appender.file.layout=org.apache.log4j.PatternLayout
+log4j.appender.file.layout.ConversionPattern= [%d{HH\:mm\:ss\:SSS}][%p] (%c\:%L) - %m%n
+log4j.appender.file.maxFileSize=100MB
+log4j.appender.file.maxBackupIndex=10

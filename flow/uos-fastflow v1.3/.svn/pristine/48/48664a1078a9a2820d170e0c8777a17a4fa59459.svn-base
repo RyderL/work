@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+	<!-- DataSource -->
+	<import resource="datasource.xml" />
+
+	<!-- flow配置 -->
+	<import resource="application-flow.xml" />
+
+	<!-- dubbo配置，如果是多租户模式，请选择dubbo-multi.xml，如果是单租户模式，请选择dubbo.xml，默认多租户模式 。
+			如果是单独部署的数据持久化服务，则选择dubbo-persist。xml-->
+	<!-- <import resource="dubbo/dubbo-persist.xml"/> -->
+	  <!--  	<import resource="dubbo/dubbo.xml"/> -->
+    <import resource="dubbo/dubbo-multi.xml"/>
+	
+	<!-- base配置 -->
+	<import resource="application-base.xml" />
+
+	<!-- MQ-Config，默认fq队列  如果使用了多种队列，则要加载相应的配置文件-->
+<!-- 	<import resource="activeMQ/activeMQ-config.xml" /> -->
+	<!--<import resource="rocketMQ/rocketMQ-config.xml" />-->
+          <import resource="fqueue/fqueue-config.xml" />
+
+	<!-- MQ-Producer，如要使用多种队列，则要使用queueCfg.xml文件，配置队列对应的队列模式，如其他队列都是fqueue，但是异步持久化队列配置的是activemq-->
+	<!-- <import resource="activeMQ/activeMQ-producer.xml"/> -->
+	<!-- <import resource="rocketMQ/rocketMQ-producer.xml" />-->
+           <import resource="fqueue/fqueue-producer.xml" />
+      <!--     <import resource="queueCfg.xml"/>
+ -->
+	<!-- MQ-Consumer 如果使用了多种队列，则要加载相应的配置文件-->
+	<!-- <import resource="activeMQ/activeMQ-consumer.xml"/> -->
+	<!--<import resource="rocketMQ/rocketMQ-consumer.xml" />-->
+         <import resource="fqueue/fqueue-consumer.xml" />
+
+	<!-- MQ-Persist 内存模式下要配置，数据库模式下注释掉    数据持久化队列若是多server模式，不能使用fqueue队列，推荐使用activemq或者rocketMq-->
+	<!-- <import resource="activeMQ/activeMQ-persist.xml"/> -->
+	<!--<import resource="rocketMQ/rocketMQ-persist.xml" />
+        <import resource="fqueue/fqueue-persist.xml" />-->
+
+</beans>

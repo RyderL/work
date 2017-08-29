@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>流程平台</title>
+<LINK rel=stylesheet type=text/css href="common/easyui/themes/icon.css"><LINK rel=stylesheet type=text/css href="common/css/default/spinner.css">
+<SCRIPT type=text/javascript src="common/js/json2.js"></SCRIPT>
+<SCRIPT type=text/javascript src="common/js/jquery.min.js"></SCRIPT>
+<SCRIPT type=text/javascript src="common/ext/jquery.session.js"></SCRIPT>
+<SCRIPT type=text/javascript src="common/ext/jquery.call.js"></SCRIPT>
+<SCRIPT type=text/javascript src="common/easyui/jquery.easyui.min.js"></SCRIPT>
+<SCRIPT type=text/javascript src="common/easyui/locale/easyui-lang-zh_CN.js"></SCRIPT>
+<SCRIPT type=text/javascript src="common/ext/jquery.util.js"></SCRIPT>
+<link rel="stylesheet" type="text/css" href="common/css/login/style_iom.css">
+<style type="text/css">
+ * {
+    line-height: 1;
+}
+.button1 {
+    font-size: 12px;
+    color: #003399;
+    text-decoration: none;
+    background-image: url(common/images/login/btn_logo_submit.gif);
+    display: compact;
+    height: 21px;
+    width: 48px;
+    border: none;
+} 
+.button2 {
+    font-size: 12px;
+    color: #003399;
+    text-decoration: none;
+    background-image: url(common/images/login/btn_logo_reset.gif);
+    display: compact;
+    height: 21px;
+    width: 48px;
+    border: none;
+} 
+.input {
+    background-color: #FFFFFF;
+    font-size: 12px;
+	border:1px solid #888888;
+} 
+.button3 {
+    font-size: 12px;
+    color: #003399;
+    text-decoration: none;
+    background-image: url(common/images/login/btn_bg.gif);
+    display: compact;
+    height: 21px;
+    width: 48px;
+    border: none;
+} 
+.checkboxi {
+    border: 0;
+    background-color: #F1F5F8
+}
+</style>
+<script type="text/javascript">
+	function LoadFlash(url,wmode,width,Height)
+	{ 
+		return "<embed src='" + url + "' wmode=" + wmode + " quality='high' pluginspage=http://www.macromedia.com/go/getflashplayer type='application/x-shockwave-flash' width='" + width + "' height='" + Height + "'></embed>"; 
+	}
+</script>
+</head>
+<body background="common/images/login/logo_bg.jpg" scroll="no" >
+<!-- TemplBeginEditable name="body" -->
+<table width="100%" height="100%"  border="0" cellpadding="0" cellspacing="0" >
+	<tr>
+		<td align="center">
+			<table width="580" height="352"  border="0" cellpadding="0" cellspacing="0" style="border:8px solid #557E9F;">
+				<tr>
+					<td height="298" id="flashTd">
+						<script>
+						document.write(LoadFlash('common/images/login/login.swf','transparent','564','298'));
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td bgcolor="#F1F5F8" style="border:1px solid #FFFFFF;">
+						<table width="100%"  border="0" cellspacing="1" cellpadding="0">
+						<form id="loginForm" class="easyui-form" method="post" data-options="novalidate:true">
+							<tr align="center">
+								<td>
+									用户名：
+									<input id="username" value='gongyi' type="text" class="input" style="behavior:url(#default#userData);width:90">
+									密码：
+									<input id="password" value='1' type="password" checkType="empty" class="input" style="width:90">
+									<input  id="certcode" type="hidden">
+								</td>
+								<td id='pintext' style="display:none">
+									验证码：
+									<input name="pin" type="text" checkType="empty"  value="" class="input" style="width:90">
+								</td>
+								<td id="pinimage" style="display:none">
+									<img id="imgcode" style="margin-left:10px;margin-bottom:-5px;" src="code.do">
+								</td>
+								<!-- end -->
+								<td>
+									<input type="submit" id="btnLogin" value="登录" style="cursor:hand;" class="button3">
+									<input type="reset" id="btnReset" value="重置" style="cursor:hand;" class="button3">
+								</td>
+							</tr>
+						</form>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<script type="text/javascript" src="view/login/js/login_iom.js"></script>
+<!-- TemplEndEditable -->
+</body>
+</html>

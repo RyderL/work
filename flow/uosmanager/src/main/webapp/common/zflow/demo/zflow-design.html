@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>流程实例展示</title>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/raphael.js"></script>
+    <script type="text/javascript" src="../../zflow/js/jquery.color.js"></script>
+    <script type="text/javascript" src="../../zflow/js/jquery.zflow.design.js"></script>
+    <script type="text/javascript" src="../../zflow/js/jquery.zflow.design.node.js"></script>
+    <script type="text/javascript">
+		//描绘图例        	
+	    $(function($){
+	    	var loadDefXML = function(name)
+	    	{
+	    		$.ajax({
+	                url:"xml/"+name+"-建模.xml",
+	                dataType:(!!(document.all && navigator.userAgent.indexOf('Opera') === -1))?"text":"xml",
+	                type:'get',
+	                error:function(xml){
+	                    $.messager.alert("提示","出现未知错误","error")
+	                },
+	                success:function(xml){
+	                    var xmlStr = "";
+	                    if((typeof xml) == "string"){
+	                        xmlStr = xml;
+	                    }else
+	                    {
+	                        xmlStr = xml.documentElement.outerHTML;
+	                    }
+	                    $("#xpdl").empty();
+	                    $("#xpdl").zflow(xmlStr,{mode:"def",direction:"vertical"});
+	                }
+	            });
+	    	};
+	    	loadDefXML("并行节点嵌套");
+        });
+    </script>
+    <style type="text/css">
+        tspan,div{
+            -moz-user-select: none; /*火狐*/
+            -webkit-user-select: none;  /*webkit浏览器*/
+            -ms-user-select: none;   /*IE10*/
+            -khtml-user-select: none; /*早期浏览器*/
+            user-select: none;
+        }
+		.toolbar
+		{
+			clear:both;
+		}
+        .toolbar .tool-node{
+        	cursor:pointer;
+        	float:left;
+        	padding:5px;
+        	margin:5px;
+        }
+        .toolbar .tool-node:hover{
+        	background-color: #e6d67c;
+        }
+        .toolbar .node-checked
+        {
+        	background-color:#b7f0e7;
+        }
+    </style>
+</head>
+<body style="background:#fafafa;">
+	<div style="float:left;display:block;boder:1px solid">
+		<h1>流程建模</h1>
+		<div class="toolbar">
+			<div id= "tool-choose" class="tool-node node-checked">选择</div>
+			<div id= "tool-tache" class="tool-node">环节</div>
+			<div id = "tool-parallel" class="tool-node">并行结构</div>
+		</div>
+		<div id="xpdl" style="border:3px solid blue;width:1000px;height:600px;overflow:auto"></div>
+	</div>
+</body>
+</html>

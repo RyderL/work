@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>异常原因管理</title>
+	<script type="text/javascript" src="../../../common/ext/boot.js"></script>
+	<style>
+		input{
+			width:150px;
+		}
+	</style>
+</head>
+
+<body class="easyui-layout">
+	<div data-options="region:'west',title:'目录',split:true"
+		style="width:200px;">
+		<ul id="cTree" class="easyui-tree"></ul>
+	</div>
+	<div data-options="region:'center'">
+		<div class="easyui-layout" id="main" data-options="fit:true">
+			<div data-options="region:'center',title:'异常原因列表'">
+				<table id="reasonTable" height="100%"></table>
+				<div id="reasonTb">
+					<div>
+						<select class="easyui-combobox" id="tState" data-options="panelHeight:'auto'" >
+							<option value="enabled">有效</option>
+							<option value="disable">失效</option>
+							<option value="all">全部</option>
+						</select>
+						<select class="easyui-combobox" id="tType" data-options="panelHeight:'auto'" >
+							<option value="1">业务异常</option>
+							<option value="2">系统异常</option>
+						</select>
+						<input id="tCode" class="easyui-textbox" >
+						<input id="tName" class="easyui-textbox" >
+						<a href="#" id="btnQry" class="easyui-linkbutton" iconCls="icon-search" plain="true">查询</a>
+					</div>
+					<div>
+						<a href="#" id="btnAdd" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,disabled:true" title="新增"></a>
+						<a href="#" id="btnMod" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true,disabled:true" title="修改"></a>
+						<a href="#" id="btnDel" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true,disabled:true" title="删除"></a>
+					</div>
+				</div>
+			</div>
+			<div data-options="region:'south',title:'异常原因适用环节',height:300">
+				<table id="relationTable" width="100%" height="100%"></table>
+				<div id="relationTb">
+					<a href="#" id="btnAddRelation" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,disabled:true" title="新增"></a>
+					<a href="#" id="btnDelRelation" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true,disabled:true" title="停用"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- MENU -->
+	<div id="ms" class="easyui-menu">
+		<div id="btnAddCatalogs">增加目录</div>
+	</div>
+	<div id="mm" class="easyui-menu">
+		<div id="btnAddCatalog">增加目录</div>
+		<div id="btnModCatalog">修改目录</div>
+		<div id="btnDelCatalog">删除目录</div>
+		<div class="menu-sep"></div>
+		<div id="btnAddSubCatalog">增加子目录</div>
+	</div>
+	<!-- WINDOW -->
+	<div id="dlg" class="easyui-dialog" data-options="closed:true">
+		<form id="reasonForm" method="post" style="padding:0px 20px;">
+			<table cellpadding="5">
+	    		<tr>
+	    			<td>异常原因编码<span style="color:red;">*</span></td>
+	    			<td><input class="easyui-textbox" type="text" id="reasonCode" data-options="required:true,validType:'minLength[1]'"/></td>
+	    		</tr>
+	    		<tr>
+	    			<td>异常原因名称<span style="color:red;">*</span></td>
+	    			<td><input class="easyui-textbox" type="text" id="returnReasonName" data-options="required:true,validType:'minLength[1]'"/></td>
+	    		</tr>
+	    		<tr id="tCatalogForm">
+	    			<td>所属目录<span style="color:red;">*</span></td>
+	    			<td><input class="easyui-combotree" id="reasonCatalogName" data-options="required:true"/></td>
+	    		</tr>
+	    		<tr>
+	    			<td>异常原因类型<span style="color:red;">*</span></td>
+	    			<td><input id="reasonType"/></td>
+	    		</tr>
+	    	</table>
+		</form>	
+	</div>
+	<div id="dlg2" class="easyui-dialog" data-options="closed:true">
+		<div style="padding:10px;">目录名称<span style="color:red;">*</span>
+		<input class="easyui-textbox" type="text" id="catalogName" data-options="required:true,validType:'minLength[1]'"/></div>
+	</div>
+	<div id="dlg3" class="easyui-dialog" data-options="closed:true">
+		<form id="relationForm" method="post" style="padding:0px 20px;">
+			<table cellpadding="5">
+	    		<tr>
+	    			<td colspan="2"><div class="easyui-panel" data-options="title:'环节列表'" style="width:243px;height:200px;padding:10px;">
+	    			<ul id="tacheCatalogTree" class="easyui-tree"></ul></div></td>
+	    		</tr>
+	    		<tr>
+	    			<td>模糊查询环节<span style="color:red;">*</span></td>
+	    			<td><input class="easyui-searchbox" id="tacheNameR"/></td>
+	    		</tr>
+	    		<tr id="tCatalogForm">
+	    			<td>区&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域<span style="color:red;">*</span></td>
+	    			<td><input type="hidden" id="areaIdR" /><input class="easyui-combotree" id="areaR" data-options="required:true"/></td>
+	    		</tr>
+	    		<tr>
+	    			<td>是否需要审核<span style="color:red;">*</span></td>
+	    			<td><input id="auditR"/></td>
+	    		</tr>
+	    		<tr>
+	    			<td>状态<span style="color:red;">*</span></td>
+	    			<td><input id="stateR"/></td>
+	    		</tr>
+	    	</table>
+		</form>	
+	</div>
+</body>
+
+<script type="text/javascript" src="js/exceptionManager.js"></script>
+</html>

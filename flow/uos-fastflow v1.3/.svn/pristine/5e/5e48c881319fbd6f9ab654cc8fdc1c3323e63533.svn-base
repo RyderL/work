@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+           http://www.springframework.org/schema/context     
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx.xsd 
+		   http://www.springframework.org/schema/cache   
+           http://www.springframework.org/schema/cache/spring-cache.xsd
+           http://www.springframework.org/schema/aop   
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<!-- apache.dbcp连接池的配置 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"> </property> 
+			<property name="url" value="jdbc:mysql://10.45.47.226:8089/dbtest?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=utf8"></property> 
+			<property name="username" value="root"></property> <property name="password" 
+			value="ztesoft"></property> -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@10.45.46.169:1521:iom"></property>
+		<property name="username" value="flow"></property>
+		<property name="password" value="flow"></property>
+		<property name="maxActive" value="10"></property>
+		<property name="maxIdle" value="5"></property>
+		<property name="maxWait" value="5"></property>
+		<property name="defaultAutoCommit" value="false"></property>
+	</bean>
+
+	<!-- jdbc注入 -->
+	<bean class="com.zterc.uos.fastflow.jdbc.JDBCHelper">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate" />
+		</property>
+	</bean>
+
+	<!-- jdbc注入 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<!-- inf -->
+	<bean id="workflowStateReport" class="com.zterc.uos.fastflow.inf.WorkflowStateReport"></bean>
+
+	<!-- engine -->
+	<bean id="engine" class="com.zterc.uos.fastflow.core.FastflowRunner">
+		<property name="processDefinitionService" ref="processDefinitionService"></property>
+		<property name="processInstanceService" ref="processInstanceService"></property>
+		<property name="processParamService" ref="processParamService"></property>
+		<property name="processAttrService" ref="processAttrService"></property>
+		<property name="activityInstanceService" ref="activityInstanceService"></property>
+		<property name="transitionInstanceService" ref="transitionInstanceService"></property>
+		<property name="workItemService" ref="workItemService"></property>
+		<property name="tacheService" ref="tacheService"></property>
+		<property name="workflowStateReport" ref="workflowStateReport"></property>
+	</bean>
+
+	<!-- dao注入 -->
+	<bean id="processDefinitionDAO"
+		class="com.zterc.uos.fastflow.dao.impl.ProcessDefinitionDAOImpl"></bean>
+	<bean id="processInstanceDAO" class="com.zterc.uos.fastflow.dao.impl.ProcessInstanceDAOImpl"></bean>
+	<bean id="processParamDAO" class="com.zterc.uos.fastflow.dao.impl.ProcessParamDAOImpl"></bean>
+	<bean id="activityInstanceDAO" class="com.zterc.uos.fastflow.dao.impl.ActivityInstanceDAOImpl"></bean>
+	<bean id="transitionInstanceDAO"
+		class="com.zterc.uos.fastflow.dao.impl.TransitionInstanceDAOImpl"></bean>
+	<bean id="workItemDAO" class="com.zterc.uos.fastflow.dao.impl.WorkItemDAOImpl"></bean>
+	<bean id="tacheDAO" class="com.zterc.uos.fastflow.dao.impl.TacheDAOImpl"></bean>
+	<bean id="processAttrDAO" class="com.zterc.uos.fastflow.dao.impl.ProcessAttrDAOImpl"></bean>
+	<bean id="processParamDefDAO" class="com.zterc.uos.fastflow.dao.impl.ProcessParamDefDAOImpl"></bean>
+
+	<!-- service -->
+	<bean id="processDefinitionService" class="com.zterc.uos.fastflow.service.ProcessDefinitionService">
+		<property name="processDefinitionDAO" ref="processDefinitionDAO"></property>
+		<property name="cacheManager" ref="cacheManager"></property>
+	</bean>
+	<bean id="processInstanceService" class="com.zterc.uos.fastflow.service.ProcessInstanceService">
+		<property name="processInstanceDAO" ref="processInstanceDAO"></property>
+	</bean>
+	<bean id="processParamService" class="com.zterc.uos.fastflow.service.ProcessParamService">
+		<property name="processParamDAO" ref="processParamDAO"></property>
+		<property name="processParamDefDAO" ref="processParamDefDAO"></property>
+	</bean>
+	<bean id="activityInstanceService" class="com.zterc.uos.fastflow.service.ActivityInstanceService">
+		<property name="activityInstanceDAO" ref="activityInstanceDAO"></property>
+	</bean>
+	<bean id="transitionInstanceService"
+		class="com.zterc.uos.fastflow.service.TransitionInstanceService">
+		<property name="transitionInstanceDAO" ref="transitionInstanceDAO"></property>
+	</bean>
+	<bean id="tacheService" class="com.zterc.uos.fastflow.service.TacheService">
+		<property name="tacheDAO" ref="tacheDAO"></property>
+	</bean>
+	<bean id="workItemService" class="com.zterc.uos.fastflow.service.WorkItemService">
+		<property name="workItemDAO" ref="workItemDAO"></property>
+	</bean>
+	<bean id="processAttrService" class="com.zterc.uos.fastflow.service.ProcessAttrService">
+		<property name="processAttrDAO" ref="processAttrDAO"></property>
+	</bean>
+	<bean id="processParamDefService" class="com.zterc.uos.fastflow.service.ProcessParamDefService">
+		<property name="processParamDefDAO" ref="processParamDefDAO"></property>
+	</bean>
+
+	<!-- 注解事务驱动 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<!-- 配置事务传播特性 -->
+	<tx:advice id="tranAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="start*" propagation="REQUIRED" />
+			<tx:method name="complete*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置参与事务的类 -->
+	<aop:config>
+		<aop:pointcut id="serviceMethod"
+			expression="execution(* com.zterc.uos.fastflow.service.*.*(..)) or execution(* com.zterc.uos.fastflow.core.*.*(..))" />
+		<aop:advisor pointcut-ref="serviceMethod" advice-ref="tranAdvice" />
+	</aop:config>
+
+	<!-- 缓存 属性 -->
+	<bean id="cacheManagerFactory"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml" />
+	</bean>
+
+	<!-- 支持缓存注解 -->
+	<cache:annotation-driven cache-manager="cacheManager" />
+
+	<!-- 默认是cacheManager -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="cacheManagerFactory" />
+	</bean>
+</beans>  

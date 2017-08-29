@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkflowProcess>
+	<Activities>
+		<Activity id="A6880-34-81064-904-85017" isRuning="true" type="Start"
+			name="开始节点" tacheId="" direction="1" />
+		<Activity id="A82095-39-19314-239-31095" isRuning="true"
+			type="Tache" name="测试-1" tacheId="1000038" direction="1" />
+		<Activity id="A93474-40-37945-784-41055" isRuning="true"
+			type="Tache" name="测试-2" tacheId="1000039" direction="1" />
+		<Activity id="A55516-45-14247-335-25477" isRuning="true"
+			type="Parallel" name="并行节点" tacheId="" direction="1" />
+		<Parallel>
+			<Branch>
+				<Activity id="A54311-48-96661-916-8429" isRuning="true"
+					type="Tache" name="测试-3" tacheId="1000040" direction="1" />
+			</Branch>
+			<Branch />
+		</Parallel>
+		<Activity id="A85714-45-50643-335-87605" isRuning="true"
+			type="Relation" name="合并条件" tacheId="" direction="1" />
+		<Activity id="A8736-50-53009-963-43355" isRuning="true" type="Tache"
+			name="测试-4" tacheId="1000041" direction="1" />
+		<Activity id="A69085-0-55237-771-75106" isRuning="true" type="Control"
+			name="控制节点" tacheId="" direction="1" />
+		<Activity id="A57732-34-43179-906-55593" isRuning="true"
+			type="Finish" name="结束节点" tacheId="" direction="1" />
+	</Activities>
+	<Transitions>
+		<Transition id="A13320-39-93963-241-24064" from="A6880-34-81064-904-85017"
+			to="A82095-39-19314-239-31095" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A28892-40-51184-786-15246" from="A82095-39-19314-239-31095"
+			to="A93474-40-37945-784-41055" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A16717-45-66311-342-73049" from="A93474-40-37945-784-41055"
+			to="A55516-45-14247-335-25477" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A73379-45-9952-340-12403" from="A55516-45-14247-335-25477"
+			to="A54311-48-96661-916-8429" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A62183-46-89610-246-66816" from="A55516-45-14247-335-25477"
+			to="A85714-45-50643-335-87605" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A1620-48-83863-917-49193" from="A54311-48-96661-916-8429"
+			to="A85714-45-50643-335-87605" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A53836-50-19944-965-64745" from="A85714-45-50643-335-87605"
+			to="A8736-50-53009-963-43355" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A63742-0-94677-771-78102" from="A8736-50-53009-963-43355"
+			to="A69085-0-55237-771-75106" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A18619-34-29625-908-87407" from="A69085-0-55237-771-75106"
+			to="A57732-34-43179-906-55593" isRunning="false" name="" lineType="Normal" />
+		<Transition id="A97295-2-91502-539-55449" from="A69085-0-55237-771-75106"
+			to="A93474-40-37945-784-41055" isRunning="false" name="" lineType="Control" />
+	</Transitions>
+</WorkflowProcess>

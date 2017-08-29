@@ -1,0 +1,10 @@
+
+##redis1
+redis1_host=127.0.0.1
+redis1_port=6379
+redis1_address=127.0.0.1\:6379 
+#redis1_host=127.0.0.1
+#redis1_port=6379
+#redis1_address=127.0.0.1\:6379 
+
+

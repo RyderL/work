@@ -1,0 +1,451 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Package xmlns='http://www.wfmc.org/2002/XPDL1.0' xmlns:xpdl='http://www.wfmc.org/2002/XPDL1.0'
+	xmlns:xsd='http://www.w3.org/2000/10/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='TC-1025_schema_10_xpdl.xsd' Id='A96145-34-43365-909-88457'
+	Name='并行+控制线条'>
+	<PackageHeader DurationUnit='m'>
+		<XPDLVersion>1.0</XPDLVersion>
+		<Vendor>ZTERC UOSFlow V5.0</Vendor>
+		<Created>2015-03-26 14:10:21</Created>
+		<Description></Description>
+		<Priority>1</Priority>
+		<ValidFrom>2015-03-26 14:10:21</ValidFrom>
+		<ValidTo>2020-03-26 00:00:00</ValidTo>
+	</PackageHeader>
+	<RedefinableHeader PublicationStatus='UNDER_TEST'>
+		<Author>IOM</Author>
+		<Version>1.0</Version>
+		<Countrykey>GB</Countrykey>
+	</RedefinableHeader>
+	<WorkflowProcesses>
+		<WorkflowProcess Id='A96145-34-43365-909-88457' Name='并行+控制线条'
+			AccessLevel='PUBLIC'>
+			<ProcessHeader DurationUnit='m'>
+				<Created>2015-03-26 14:10:21</Created>
+				<Description></Description>
+				<Priority>1</Priority>
+				<ValidFrom>2015-03-26 14:10:21</ValidFrom>
+				<ValidTo>2020-03-26 00:00:00</ValidTo>
+			</ProcessHeader>
+			<RedefinableHeader PublicationStatus='UNDER_TEST'>
+				<Author>IOM</Author>
+				<Version>1.0</Version>
+				<Countrykey>GB</Countrykey>
+			</RedefinableHeader>
+			<xpdl:FormalParameters></xpdl:FormalParameters>
+			<Participants></Participants>
+			<DataFields></DataFields>
+			<Applications></Applications>
+			<Activities>
+				<Activity Id='A6880-34-81064-904-85017' Name='开始节点'>
+					<Description />
+					<Limit />
+					<Performer />
+					<StartMode>Automatic</StartMode>
+					<FinishMode>Automatic</FinishMode>
+					<Priority />
+					<Implementation>
+						<No />
+					</Implementation>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='branchIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeType'
+							Value='Start' />
+					</xpdl:ExtendedAttributes>
+				</Activity>
+				<Activity Id='A82095-39-19314-239-31095' Name='测试-1'>
+					<Description />
+					<Limit />
+					<Performer />
+					<StartMode>Automatic</StartMode>
+					<FinishMode>Automatic</FinishMode>
+					<TransitionRestrictions>
+						<TransitionRestriction>
+							<Join Type='AND' />
+							<Split Type='AND' />
+						</TransitionRestriction>
+					</TransitionRestrictions>
+					<Priority />
+					<Implementation>
+						<Tool Id='A26270-39-36488-591-2330' Type='Application'></Tool>
+					</Implementation>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='branchIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeIndex'
+							Value='1' />
+						<xpdl:ExtendedAttribute Name='nodeType'
+							Value='Tache' />
+						<xpdl:ExtendedAttribute Name='ExTacheId'
+							Value='1000038' />
+						<xpdl:ExtendedAttribute Name='ExTacheCode'
+							Value='test-1' />
+						<xpdl:ExtendedAttribute Name='ExTacheName'
+							Value='测试-1' />
+						<xpdl:ExtendedAttribute Name='ExOperType'
+							Value='1' />
+						<xpdl:ExtendedAttribute Name='ExWithdraw'
+							Value='true' />
+						<xpdl:ExtendedAttribute Name='ExChange'
+							Value='true' />
+					</xpdl:ExtendedAttributes>
+				</Activity>
+				<Activity Id='A93474-40-37945-784-41055' Name='测试-2'>
+					<Description />
+					<Limit />
+					<Performer />
+					<StartMode>Automatic</StartMode>
+					<FinishMode>Automatic</FinishMode>
+					<TransitionRestrictions>
+						<TransitionRestriction>
+							<Join Type='AND' />
+							<Split Type='AND' />
+						</TransitionRestriction>
+					</TransitionRestrictions>
+					<Priority />
+					<Implementation>
+						<Tool Id='A38552-39-56540-592-40580' Type='Application'></Tool>
+					</Implementation>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='branchIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeIndex'
+							Value='2' />
+						<xpdl:ExtendedAttribute Name='nodeType'
+							Value='Tache' />
+						<xpdl:ExtendedAttribute Name='ExTacheId'
+							Value='1000039' />
+						<xpdl:ExtendedAttribute Name='ExTacheCode'
+							Value='test-2' />
+						<xpdl:ExtendedAttribute Name='ExTacheName'
+							Value='测试-2' />
+						<xpdl:ExtendedAttribute Name='ExOperType'
+							Value='1' />
+						<xpdl:ExtendedAttribute Name='ExWithdraw'
+							Value='true' />
+						<xpdl:ExtendedAttribute Name='ExChange'
+							Value='true' />
+					</xpdl:ExtendedAttributes>
+				</Activity>
+				<Activity Id='A55516-45-14247-335-25477' Name='并行节点'>
+					<Route />
+					<TransitionRestrictions>
+						<TransitionRestriction>
+							<Join Type='AND' />
+							<Split Type='AND' />
+						</TransitionRestriction>
+					</TransitionRestrictions>
+					<Description />
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='branchIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeIndex'
+							Value='3' />
+						<xpdl:ExtendedAttribute Name='nodeType'
+							Value='Parallel' />
+						<xpdl:ExtendedAttribute Name='numOfBranch'
+							Value='2' />
+					</xpdl:ExtendedAttributes>
+				</Activity>
+				<Activity Id='A54311-48-96661-916-8429' Name='测试-3'>
+					<Description />
+					<Limit />
+					<Performer />
+					<StartMode>Automatic</StartMode>
+					<FinishMode>Automatic</FinishMode>
+					<TransitionRestrictions>
+						<TransitionRestriction>
+							<Join Type='AND' />
+							<Split Type='AND' />
+						</TransitionRestriction>
+					</TransitionRestrictions>
+					<Priority />
+					<Implementation>
+						<Tool Id='A60140-39-58454-597-97211' Type='Application'></Tool>
+					</Implementation>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='branchIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeType'
+							Value='Tache' />
+						<xpdl:ExtendedAttribute Name='ExTacheId'
+							Value='1000040' />
+						<xpdl:ExtendedAttribute Name='ExTacheCode'
+							Value='test-3' />
+						<xpdl:ExtendedAttribute Name='ExTacheName'
+							Value='测试-3' />
+						<xpdl:ExtendedAttribute Name='ExOperType'
+							Value='1' />
+						<xpdl:ExtendedAttribute Name='ExWithdraw'
+							Value='true' />
+						<xpdl:ExtendedAttribute Name='ExChange'
+							Value='true' />
+					</xpdl:ExtendedAttributes>
+				</Activity>
+				<Activity Id='A85714-45-50643-335-87605' Name='合并条件'>
+					<Route />
+					<TransitionRestrictions>
+						<TransitionRestriction>
+							<Join Type='AND' />
+							<Split Type='AND' />
+						</TransitionRestriction>
+					</TransitionRestrictions>
+					<Description />
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='nodeType'
+							Value='Relation' />
+					</xpdl:ExtendedAttributes>
+				</Activity>
+				<Activity Id='A8736-50-53009-963-43355' Name='测试-4'>
+					<Description />
+					<Limit />
+					<Performer />
+					<StartMode>Automatic</StartMode>
+					<FinishMode>Automatic</FinishMode>
+					<TransitionRestrictions>
+						<TransitionRestriction>
+							<Join Type='AND' />
+							<Split Type='AND' />
+						</TransitionRestriction>
+					</TransitionRestrictions>
+					<Priority />
+					<Implementation>
+						<Tool Id='A6466-39-34194-603-28726' Type='Application'></Tool>
+					</Implementation>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='branchIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeIndex'
+							Value='4' />
+						<xpdl:ExtendedAttribute Name='nodeType'
+							Value='Tache' />
+						<xpdl:ExtendedAttribute Name='ExTacheId'
+							Value='1000041' />
+						<xpdl:ExtendedAttribute Name='ExTacheCode'
+							Value='test-4' />
+						<xpdl:ExtendedAttribute Name='ExTacheName'
+							Value='测试-4' />
+						<xpdl:ExtendedAttribute Name='ExOperType'
+							Value='1' />
+						<xpdl:ExtendedAttribute Name='ExWithdraw'
+							Value='true' />
+						<xpdl:ExtendedAttribute Name='ExChange'
+							Value='true' />
+					</xpdl:ExtendedAttributes>
+				</Activity>
+				<Activity Id='A69085-0-55237-771-75106' Name='控制节点'>
+					<Route />
+					<TransitionRestrictions>
+						<TransitionRestriction>
+							<Join Type='AND' />
+							<Split Type='AND' />
+						</TransitionRestriction>
+					</TransitionRestrictions>
+					<Description />
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='branchIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeIndex'
+							Value='5' />
+						<xpdl:ExtendedAttribute Name='nodeType'
+							Value='Control' />
+					</xpdl:ExtendedAttributes>
+				</Activity>
+				<Activity Id='A57732-34-43179-906-55593' Name='结束节点'>
+					<Description />
+					<Limit />
+					<Performer />
+					<StartMode>Automatic</StartMode>
+					<FinishMode>Automatic</FinishMode>
+					<TransitionRestrictions>
+						<TransitionRestriction>
+							<Join Type='AND' />
+							<Split Type='AND' />
+						</TransitionRestriction>
+					</TransitionRestrictions>
+					<Priority />
+					<Implementation>
+						<No />
+					</Implementation>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='branchIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeIndex'
+							Value='6' />
+						<xpdl:ExtendedAttribute Name='nodeType'
+							Value='Finish' />
+					</xpdl:ExtendedAttributes>
+				</Activity>
+				<Activity Id='A44007-34-44751-907-67341' Name='异常节点'>
+					<Description />
+					<Limit />
+					<Performer />
+					<StartMode>Automatic</StartMode>
+					<FinishMode>Automatic</FinishMode>
+					<Priority />
+					<Implementation>
+						<No />
+					</Implementation>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='branchIndex'
+							Value='0' />
+						<xpdl:ExtendedAttribute Name='nodeIndex'
+							Value='7' />
+						<xpdl:ExtendedAttribute Name='nodeType'
+							Value='Exception' />
+					</xpdl:ExtendedAttributes>
+				</Activity>
+			</Activities>
+			<Transitions>
+				<Transition Id='A18619-34-29625-908-87407' Name=''
+					From='A69085-0-55237-771-75106' To='A57732-34-43179-906-55593'>
+					<Description />
+					<xpdl:Condition>
+						<xpdl:Xpression />
+					</xpdl:Condition>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='LineType'
+							Value='Normal' />
+						<xpdl:ExtendedAttribute Name='parentId'
+							Value='0' />
+					</xpdl:ExtendedAttributes>
+				</Transition>
+				<Transition Id='A13320-39-93963-241-24064' Name=''
+					From='A6880-34-81064-904-85017' To='A82095-39-19314-239-31095'>
+					<Description />
+					<xpdl:Condition>
+						<xpdl:Xpression />
+					</xpdl:Condition>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='LineType'
+							Value='Normal' />
+						<xpdl:ExtendedAttribute Name='parentId'
+							Value='0' />
+					</xpdl:ExtendedAttributes>
+				</Transition>
+				<Transition Id='A28892-40-51184-786-15246' Name=''
+					From='A82095-39-19314-239-31095' To='A93474-40-37945-784-41055'>
+					<Description />
+					<xpdl:Condition>
+						<xpdl:Xpression />
+					</xpdl:Condition>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='LineType'
+							Value='Normal' />
+						<xpdl:ExtendedAttribute Name='parentId'
+							Value='0' />
+					</xpdl:ExtendedAttributes>
+				</Transition>
+				<Transition Id='A16717-45-66311-342-73049' Name=''
+					From='A93474-40-37945-784-41055' To='A55516-45-14247-335-25477'>
+					<Description />
+					<xpdl:Condition>
+						<xpdl:Xpression />
+					</xpdl:Condition>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='LineType'
+							Value='Normal' />
+						<xpdl:ExtendedAttribute Name='parentId'
+							Value='0' />
+					</xpdl:ExtendedAttributes>
+				</Transition>
+				<Transition Id='A53836-50-19944-965-64745' Name=''
+					From='A85714-45-50643-335-87605' To='A8736-50-53009-963-43355'>
+					<Description />
+					<xpdl:Condition>
+						<xpdl:Xpression />
+					</xpdl:Condition>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='LineType'
+							Value='Normal' />
+						<xpdl:ExtendedAttribute Name='parentId'
+							Value='0' />
+					</xpdl:ExtendedAttributes>
+				</Transition>
+				<Transition Id='A63742-0-94677-771-78102' Name=''
+					From='A8736-50-53009-963-43355' To='A69085-0-55237-771-75106'>
+					<Description />
+					<xpdl:Condition>
+						<xpdl:Xpression />
+					</xpdl:Condition>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='LineType'
+							Value='Normal' />
+						<xpdl:ExtendedAttribute Name='parentId'
+							Value='0' />
+					</xpdl:ExtendedAttributes>
+				</Transition>
+				<Transition Id='A1620-48-83863-917-49193' Name=''
+					From='A54311-48-96661-916-8429' To='A85714-45-50643-335-87605'>
+					<xpdl:Condition>
+						<xpdl:Xpression />
+					</xpdl:Condition>
+					<Description />
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='LineType'
+							Value='Normal' />
+						<xpdl:ExtendedAttribute Name='parentId'
+							Value='A55516-45-14247-335-25477' />
+					</xpdl:ExtendedAttributes>
+				</Transition>
+				<Transition Id='A73379-45-9952-340-12403' Name=''
+					From='A55516-45-14247-335-25477' To='A54311-48-96661-916-8429'>
+					<xpdl:Condition>
+						<xpdl:Xpression />
+					</xpdl:Condition>
+					<Description />
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='LineType'
+							Value='Normal' />
+						<xpdl:ExtendedAttribute Name='parentId'
+							Value='A55516-45-14247-335-25477' />
+					</xpdl:ExtendedAttributes>
+				</Transition>
+				<Transition Id='A62183-46-89610-246-66816' Name=''
+					From='A55516-45-14247-335-25477' To='A85714-45-50643-335-87605'>
+					<xpdl:Condition>
+						<xpdl:Xpression />
+					</xpdl:Condition>
+					<Description />
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='LineType'
+							Value='Normal' />
+						<xpdl:ExtendedAttribute Name='parentId'
+							Value='A55516-45-14247-335-25477' />
+					</xpdl:ExtendedAttributes>
+				</Transition>
+				<Transition Id='A97295-2-91502-539-55449' Name=''
+					From='A69085-0-55237-771-75106' To='A93474-40-37945-784-41055'>
+					<Description />
+					<xpdl:Condition>
+						<xpdl:Xpression />
+					</xpdl:Condition>
+					<xpdl:ExtendedAttributes>
+						<xpdl:ExtendedAttribute Name='LineType'
+							Value='Control' />
+					</xpdl:ExtendedAttributes>
+				</Transition>
+			</Transitions>
+			<xpdl:ExtendedAttributes>
+				<xpdl:ExtendedAttribute Name='ExStartOfWF'
+					Value='A6880-34-81064-904-85017' />
+				<xpdl:ExtendedAttribute Name='ExExceptionOfWF'
+					Value='A44007-34-44751-907-67341' />
+				<xpdl:ExtendedAttribute Name='ExEndOfWFs'>
+					<xpdl:ExEndOfWFs>
+						<xpdl:ExEndOfWF Name='ExEndOfWF' Value='A57732-34-43179-906-55593' />
+					</xpdl:ExEndOfWFs>
+				</xpdl:ExtendedAttribute>
+				<xpdl:ExtendedAttribute Name='ExStateOfWF'
+					Value='10A' />
+				<xpdl:ExtendedAttribute Name='ExTypeOfWF'
+					Value='ATOM' />
+			</xpdl:ExtendedAttributes>
+		</WorkflowProcess>
+	</WorkflowProcesses>
+</Package>

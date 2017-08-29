@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/uos-base/uos-base.iml" filepath="$PROJECT_DIR$/uos-base/uos-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uos-dubbo/uos-dubbo.iml" filepath="$PROJECT_DIR$/uos-dubbo/uos-dubbo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uos-fastflow/uos-fastflow.iml" filepath="$PROJECT_DIR$/uos-fastflow/uos-fastflow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uos-gid/uos-gid.iml" filepath="$PROJECT_DIR$/uos-gid/uos-gid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uos-manager/uos-manager.iml" filepath="$PROJECT_DIR$/uos-manager/uos-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uos-server/uos-server.iml" filepath="$PROJECT_DIR$/uos-server/uos-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uos-test/uos-test.iml" filepath="$PROJECT_DIR$/uos-test/uos-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uosfast.iml" filepath="$PROJECT_DIR$/uosfast.iml" />
+    </modules>
+  </component>
+</project>

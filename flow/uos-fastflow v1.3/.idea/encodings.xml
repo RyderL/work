@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/uos-base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/uos-base/src/main/java/com/zterc/uos/base/jdbc/AbstractDAOImpl.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/uos-dubbo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/uos-dubbo/src/main/java/com/ztesoft/uosflow/dubbo/dto/DubboCommandDto.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/uos-dubbo/src/main/java/com/ztesoft/uosflow/dubbo/dto/DubboCommandResultDto.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/uos-fastflow/src/main/java/com/zterc/uos/fastflow/dao/specification/impl/FormManagerDAOImpl.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/uos-gid" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/uos-test" charset="UTF-8" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>
