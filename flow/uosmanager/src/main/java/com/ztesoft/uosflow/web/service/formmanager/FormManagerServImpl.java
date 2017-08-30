@@ -3,13 +3,11 @@ package com.ztesoft.uosflow.web.service.formmanager;
 import java.sql.SQLException;
 import java.util.*;
 
+import com.zterc.uos.base.helper.*;
 import com.zterc.uos.fastflow.dto.specification.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
-import com.zterc.uos.base.helper.DateHelper;
-import com.zterc.uos.base.helper.LongHelper;
-import com.zterc.uos.base.helper.StringHelper;
 import com.zterc.uos.base.jdbc.Page;
 import com.ztesoft.uosflow.web.service.error.ExceptionHisServ;
 import org.apache.commons.collections.MapUtils;
@@ -17,7 +15,6 @@ import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zterc.uos.base.helper.GsonHelper;
 import com.zterc.uos.fastflow.service.FormManagerService;
 import org.springframework.transaction.annotation.Transactional;
 import sun.rmi.runtime.Log;
@@ -118,6 +115,39 @@ public class FormManagerServImpl implements FormManagerServ {
 	    	throw ex;
 		}
 	}
+
+	@Override
+	@Transactional
+	public String addTemplateDetail(Map<String, Object> map) throws SQLException {
+	    try {
+            PageTemplateDetailDto templateDetailDto = new PageTemplateDetailDto();
+            templateDetailDto.setAlign(StringHelper.valueOf(map.get("align")));
+            templateDetailDto.setComments(StringHelper.valueOf(map.get("comments")));
+            templateDetailDto.setPageCode(StringHelper.valueOf(map.get("pageCode")));
+            templateDetailDto.setPageTitle(StringHelper.valueOf(map.get("pageTitle")));
+            templateDetailDto.setTemplateCode(StringHelper.valueOf(map.get("templateCode")));
+            templateDetailDto.setElementCode(StringHelper.valueOf(map.get("elementName")));
+            templateDetailDto.setLocateColumn(IntegerHelper.valueOf(map.get("locateColumn")));
+            templateDetailDto.setLocateRow(IntegerHelper.valueOf(map.get("locateRow")));
+            templateDetailDto.setIsDisplay(StringHelper.valueOf(map.get("isDisplay")));
+            templateDetailDto.setIsEnabled(StringHelper.valueOf(map.get("isEnabled")));
+            templateDetailDto.setIsInit(StringHelper.valueOf(map.get("isInit")));
+            templateDetailDto.setIsMust(StringHelper.valueOf(map.get("isMust")));
+            templateDetailDto.setIsRet(StringHelper.valueOf(map.get("isRet")));
+            templateDetailDto.setRouteId(IntegerHelper.valueOf(map.get("routeId")));
+
+            formManagerService.addTemplateDetail(templateDetailDto);
+            Map<String, Long> result=new HashMap<>();
+            Long templateDetailId= templateDetailDto.getTemplateDetailId();
+            result.put("templateDetailId", templateDetailId);
+            logger.debug("result: "+GsonHelper.toJson(result));
+            return GsonHelper.toJson(result);
+        }catch (Exception ex){
+            logger.error("formManagerService-addTemplateDetail error: ", ex);
+            throw ex;
+        }
+	}
+
 
 	@Override
 	@Transactional

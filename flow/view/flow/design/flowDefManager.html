@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>流程建模</title>
+<link rel="stylesheet" type="text/css" href="css/flowDefManager.css" />
+<script type="text/javascript" src="../../../common/ext/boot.js"></script>
+<script type="text/javascript" src="../../../common/js/raphael.js"></script>
+<script type="text/javascript" src="../../../common/zflow/js/jquery.color.js"></script>
+<script type="text/javascript" src="js/design/node-image.js"></script>
+<script type="text/javascript" src="js/design/activity.js"></script>
+<script type="text/javascript" src="js/design/transition.js"></script>
+<script type="text/javascript" src="js/design/flow.js"></script>
+<script type="text/javascript" src="js/design/workArea.js"></script>
+<script type="text/javascript" src="js/flowDefManager.js"></script>
+</head>
+
+<body class="easyui-layout">
+	<div id="north" region="north" style="overflow:hidden;height:32px;">
+		<div id="flowbar" style="background:#F5F5F5;padding:2px">
+			<a id="select" href="javascript:void(0)"  class="easyui-linkbutton edit" data-options="iconCls:'icon-select'" title="鼠标状态" ></a>
+			<a id="addParallel" href="javascript:void(0)" class="easyui-linkbutton edit" data-options="iconCls:'icon-addParallel'" title="并行结构" ></a>
+			<a id="addControl" href="javascript:void(0)" class="easyui-linkbutton edit" data-options="iconCls:'icon-addControl'" title="控制结构" ></a>
+			<span class="separator"></span>
+			<a id="saveVersion" href="javascript:void(0)" class="easyui-linkbutton edit" data-options="iconCls:'icon-saveVersion'" title="保存" > </a>
+			<!--<a id="validate" href="javascript:void(0)" class="easyui-linkbutton edit" data-options="iconCls:'icon-validate'" title="校验" ></a>-->
+			<!--<a id="exportImage" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-exportImage'" title="导出流程图" ></a>-->
+			<a id="viewXPDL" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-viewXPDL'" title="查看xpdl" ></a>
+			<span class="separator"></span>
+			<a id="setFlowParam" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-setFlowParam'" title="设置流程参数" ></a>
+			<!--<a id="setFlowVariale" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-setFlowVariale'" title="设置流程变量" ></a>-->
+			<a id="setException" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-large-smartart'" title="设置异常原因" ></a>
+	    </div>
+    </div>
+	
+	<div id="west" region="west"  style="width:250px;padding-right:2px">
+		<div class="easyui-tabs" border="false" data-options="fit:true">
+			<div title="流程库" style="height:100%">
+				<div id='flowPanel' class="easyui-layout"  class="easyui-panel"  data-options="fit:true">
+					<div  data-options="region:'north',title:'区域'" style="height:200px;"  border="false">
+						<div class="easyui-panel" data-options="fit:true">
+							<ul id="areaTree"  class="easyui-tree">
+							</ul>
+						</div>
+					</div>
+					<div region="center" border="false">
+						<div title="流程库" class="easyui-panel" style="height:80%;" data-options="fit:true">
+							<ul id="flowTree"  class="easyui-tree">
+							</ul>
+						</div>
+					</div>
+					<div data-options="region:'south'" border="false" style="height:30px;">
+							<input id="pName" class="easyui-textbox" >
+							<a href="#" id="btnFlowQry" class="easyui-linkbutton" iconCls="icon-search" plain="true">查询</a>
+					</div>
+				</div>
+			</div>
+			<div title="环节库" style="height:100%">
+				<div title="环节名称" class="easyui-panel" data-options="fit:true">
+					<div data-options="region:'north'" border="false">
+						<div style="height: 380px;overflow: auto">
+							<ul id="tacheTree"  class="easyui-tree">
+							</ul>
+						</div>
+					</div>
+					<div data-options="region:'south'" border="false" style="height:30px;">
+						<input id="tName" class="easyui-textbox" >
+						<a href="#" id="btnQry" class="easyui-linkbutton" iconCls="icon-search" plain="true">查询</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="center" region="center" class="easyui-layout" border="false" style="padding-left:2px;padding-right:2px;">
+		<div region="north" style="height:55px;"  border="false">
+			<div class="easyui-tabs" border="false" id="flowTab">
+			</div>
+			<div id="flow_title" style="padding-top:4px;"></div>
+		</div>  
+		<div region="center" border="false">
+			 <div class="easyui-panel" id="flow" border="false"  data-options="fit:true">
+			 </div>
+		</div>  
+	</div>
+	
+	<!-- MENU -->
+	<div id="catalogMenu" class="easyui-menu" style="width:120px;">  
+		<div name="newSubCatalog">新增流程子目录</div>  
+		<div class='topflag' name="modifyCatalog">修改流程目录</div>  
+		<div class='topflag' name="deleteCatalog">删除流程目录</div>  
+		<div name="newPackage">新增流程模板</div>  
+	</div> 
+	<div id="packageMenu" class="easyui-menu" style="width:120px;">  
+		<div name="modifyPackage">修改流程模板</div>  
+		<div name="deletePackage">删除流程模板</div>  
+		<!--<div name="saveAsPackage">另存流程模板</div>-->
+		<div name="newVersion">新增流程版本</div>  
+	</div> 
+	<div id="flowMenu" class="easyui-menu" style="width:120px;"> 
+		<div name="startFlow">启动流程</div>   
+		<div name="deleteVersion">删除流程版本</div>  
+		<div name="saveAsVersion">另存流程版本</div>
+		<div name="openVersion">打开流程版本</div>  
+		<div name="editVersion">绘制流程版本</div>  
+		<div name="editVersionFish">绘制流程版本(Fish)</div>  
+		<div name="disableVersion">版本强制失效</div>  
+		<div name="enableVersion">版本强制生效</div>  
+	</div>  
+	<div id="tacheMenu" class="easyui-menu" style="width:120px;">  
+		<div name="deleteTache" class="edit">删除节点</div>  
+		<div name="editFlowParams">配置流程参数</div>
+		<div name="editDispatchRules">配置派发规则</div>
+		<div name="editFlowException">配置异常原因</div>
+	</div>  
+	<div id="lineMenu" class="easyui-menu" style="width:120px;">  
+		<div name="viewCondition">查看线条属性</div>  
+		<div name="setCondition" class="edit">设置线条属性</div>  
+		<div id='deleteBranch' name="deleteBranch" class="edit">删除分支</div>  
+	</div>  
+	
+	<!-- WINDOW	 -->
+	<!--查看xpdl-->
+	<div id="xpdlWin" class="easyui-dialog" title="XPDL" style="width:400px;height:200px;"
+			data-options="closed:true,iconCls: 'icon-save',cache:false,modal:true">
+		<input id="xpdlWin-xpdl" class="easyui-textbox" data-options="multiline:true" readonly="readonly" value="xx" style="width:386px;height:164px">
+	</div>
+	<!--新建流程目录-->
+	<div id="catalogWin" class="easyui-dialog" title="新增目录" style="width:360px;height:200px"
+			data-options="closed:true,iconCls: 'icon-save',buttons: '#catalogWin-buttons'">
+		<div style="padding:10px 60px 20px 60px">
+	    	<table cellpadding="5">
+	    		<tr>
+	    			<td>目录：</td>
+	    			<td><input id="catalogWin-catalogText" class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'minLength[1]'"></input></td>
+	    		</tr>
+	    	</table>
+	    </div>
+	</div>
+	<div id="catalogWin-buttons">
+		<a id="catalogWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#catalogWin').dialog('close')">取消</a>
+	</div>
+	<!--查看和设置线条组件-->
+	<div id="lineWin" class="easyui-dialog" title="线条属性" style="width:620px;height:400px"
+			data-options="closed:true,iconCls: 'icon-save',buttons: '#lineWin-buttons',cache:false,modal:true">
+    	<table cellpadding="5" border="0" style='margin:5px;'>
+			<tr id="tr0">
+    			<td>条件名称：</td>
+				<td colspan="3">
+					<input id="condName" class="easyui-textbox" type="text" data-options="required:true,validType:'minLength[1]'"></input>
+				</td>
+    		</tr>
+    		<tr id="tr1">
+    			<td colspan="4"><table id="paramGrid" height="120px"></table></td>
+    		</tr>
+    		<tr id="tr2">
+    			<td>左表达式</td>
+				<td>操作符</td>
+				<td>右表达式</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr id="tr3">
+    			<td>
+					<input id="leftArea" class="easyui-textbox" type="text" data-options="required:true,validType:'minLength[1]'" editable="false"></input>
+				</td>
+				<td>
+					<select name="operTypeSel" id="operType" class="easyui-combobox" data-options="valueField:'value',textField:'label',panelHeight:50" >
+						<option value="=">等于</option>
+						<option value=">=">大于等于</option>
+						<option value=">">大于</option>
+						<option value="<=">小于等于</option>
+						<option value="<">小于</option>
+						<option value="!=">不等于</option>
+						<option value="@">包含</option>
+						<option value="!@">不包含</option>
+					</select>
+				</td>
+				<td >
+					<input type="text" id="rightArea" class="easyui-textbox" data-options="required:true,validType:'minLength[1]'"/>
+				</td>
+				<td >
+					<a id="addBtn" href="javascript:void(0)" class="easyui-linkbutton">添加</a>
+					<a id="delBtn" href="javascript:void(0)" class="easyui-linkbutton">删除</a>
+				</td>
+    		</tr>
+    		<tr>
+				<td colspan="4">
+					适用条件
+				</td>
+			</tr>
+			<tr>
+				<td colspan=4>
+					<table width="100%"	border="1" cellpadding="0" cellspacing="0">
+						<tr id="operTr">
+							<td colspan="2" align="center" valign="middle">
+								<a id="andBtn" href="javascript:void(0)" class="easyui-linkbutton">与(AND)</a>
+								<a id="orBtn" href="javascript:void(0)" class="easyui-linkbutton">或(OR)</a>
+								<a id="leftParenthesesBtn" href="javascript:void(0)" class="easyui-linkbutton">(</a>
+								<a id="rightParenthesesBtn" href="javascript:void(0)" class="easyui-linkbutton">)</a>
+							</td>
+						</tr>
+						<tr>
+							<td>线条表达式</td>
+							<td>
+								<textarea cols=30 rows=6 id="condition" name="condition" class="textarea easyui-validatebox"  data-options="required:true,validType:'minLength[1]'"></textarea>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+    	</table>
+	</div>
+	<div id="lineWin-buttons">
+		<a id="lineWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#lineWin').dialog('close')">取消</a>
+	</div>
+	<!--新增流程模板-->
+	<div id="packageWin" class="easyui-dialog" title="新增流程模板" style="width:400px;height:300px"
+			data-options="closed:true,iconCls: 'icon-save',buttons: '#packageWin-buttons',cache:false,modal:true">
+		<div style="padding:10px 60px 20px 60px">
+		  <form id="packageForm" method="post">
+	    	<table cellpadding="5">
+	    		<tr>
+	    			<td>模板名称：</td>
+	    			<td><input id="packageWin-packageName" class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'minLength[1]'"></input></td>
+	    		</tr>
+				<tr>
+	    			<td>模板类型：</td>
+	    			<td>
+	    				<select id="packageWin-packageType" class="easyui-combobox" name="packageWin-packageType">
+							<option value="ATOM">原子流程</option>
+							<option value="COMP">一级流程</option>
+						</select>
+					</td>
+	    		</tr>
+	    		<tr>
+	    			<td>生效时间：</td>
+	    			<td><input class="easyui-datetimebox" id="effDate" required="true"/></td>
+	    		</tr>
+	    		<tr>
+	    			<td>失效时间：</td>
+	    			<td><input class="easyui-datetimebox" id="expDate" required="true"/></td>
+	    		</tr>
+	    	</table>
+	      </form>
+	    </div>
+	</div>
+	<div id="packageWin-buttons">
+		<a id="packageWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#packageWin').dialog('close')">取消</a>
+	</div>
+	<!--新增流程定义-->
+	<div id="pDefWin" class="easyui-dialog" title="新增流程定义" style="width:400px;height:200px"
+			data-options="closed:true,iconCls: 'icon-save',buttons: '#pDefWin-buttons',cache:false,modal:true">
+		<div style="padding:10px 60px 20px 60px">
+	    	<table cellpadding="5">
+	    		<tr>
+	    			<td>定义编码：</td>
+	    			<td><input id="pDefWin-defCode" class="easyui-textbox" type="text" data-options="required:true,validType:'minLength[1]'"></input></td>
+	    		</tr>
+	    	</table>
+	    </div>
+	</div>
+	<div id="pDefWin-buttons">
+		<a id="pDefWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#pDefWin').dialog('close')">取消</a>
+	</div>
+	<!--查看和设置异常原因-->
+	<div id="exceptionWin" class="easyui-dialog" title="设置异常原因" style="width:600px;height:300px"
+			data-options="closed:true,iconCls:'icon-save',buttons:'#exceptionWin-buttons',cache:false,modal:true">
+		<table id="exceptionGrid" height="100%"></table>
+	</div>
+	<div id='reasonTab'>
+		<a href="#" id="exceptionGridAdd" class="easyui-linkbutton edit" data-options="iconCls:'icon-add',plain:true,disabled:true" title="新增"></a>
+		<!-- <a href="#" id="exceptionGridModify" class="easyui-linkbutton edit" data-options="iconCls:'icon-edit',plain:true,disabled:true" title="修改"></a> -->
+		<a href="#" id="exceptionGridDelete" class="easyui-linkbutton edit" data-options="iconCls:'icon-remove',plain:true,disabled:true" title="删除"></a>
+		<a href="#" id="exceptionGridClear" class="easyui-linkbutton edit" data-options="iconCls:'icon-clear',plain:true,disabled:true" title="清空"></a>
+	</div>
+	<div id="exceptionWin-buttons">
+		<a id="exceptionWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#exceptionWin').dialog('close')">取消</a>
+	</div>
+	<!--异常原因信息-->
+	<div id="exceptionInfoWin" class="easyui-dialog" title="设置异常原因" style="width:420px;height:450px"
+			data-options="closed:true,iconCls:'icon-save',buttons:'#exceptionInfoWin-buttons',cache:false,modal:true">
+		<table cellpadding="5" style='margin:5px;'>
+    		<tr>
+    			<td>异常发生环节：</td>
+    			<td>
+    				<select id="exceptionInfoWin-startActivity" class="easyui-combobox" editable="false"
+						data-options="valueField:'value',textField:'label',panelHeight:80" style='width:150px'>
+					</select>
+				</td>
+    		</tr>
+			<tr>
+    			<td>回滚目标环节：</td>
+    			<td>
+    				<select id="exceptionInfoWin-endActivity" class="easyui-combobox" editable="false" 
+    					data-options="valueField:'value',textField:'label',panelHeight:80" style='width:150px'>
+					</select>
+				</td>
+    		</tr>
+			<tr>
+    			<td>是否自动转人工：</td>
+    			<td>
+    				<select id="exceptionInfoWin-autoToManual" class="easyui-combobox" editable="false" 
+						data-options="valueField:'value',textField:'label',panelHeight:50" style='width:150px'>
+    					<option value='true'>是</option>
+						<option value='false'>否</option>
+					</select>
+				</td>
+    		</tr>
+			<tr>
+    			<td>异常原因类型：</td>
+    			<td>
+    				<select id="exceptionInfoWin-reasonType" class="easyui-combobox" editable="false" 
+						data-options="valueField:'value',textField:'label',panelHeight:65" style='width:150px'>
+    					<option value='10R'>退单</option>
+						<option value='10W'>待装</option>
+						<!-- <option value='10C'>撤单</option> -->
+						<option value='10Q'>改单</option>
+						<!-- <option value='10P'>缓装</option> -->
+					</select>
+				</td>
+				<td><a id="exceptionInfoWin-qryBtn" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true">查询</a></td>
+    		</tr>
+			<tr>
+    			<td colspan='3'>
+					<table id='exceptionInfoWin-returnReasonGrid' class="easyui-datagrid" style="width:350px;height:200px" data-options="fitColumns:true,singleSelect:true">
+						<thead>
+							<tr>
+								<th data-options="field:'returnReasonName',width:310,halign:'center'">异常原因</th>
+								<th data-options="field:'id',hidden:true">异常原因ID</th>
+								<th data-options="field:'reasonCode',hidden:true">异常原因编码</th>
+							</tr>
+						</thead>
+					</table>
+				</td>
+    		</tr>
+    	</table>
+	</div>
+	<div id="exceptionInfoWin-buttons">
+		<a id="exceptionInfoWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#exceptionInfoWin').dialog('close')">取消</a>
+	</div>
+	<!--查看和设置流程参数-->
+	<div id="flowParamWin" class="easyui-dialog" title="设置流程参数" style="width:600px;height:450px"
+			data-options="closed:true,maximizable:true,iconCls:'icon-save',buttons:'#flowParamWin-buttons',cache:false,modal:true">
+		<table id="commonFlowParamGrid" height="50%"></table>
+		<div id="flowParamGrid-title" class="panel-title" style="padding:6px;">选定应用于当前流程的参数</div>
+		<table id="flowParamGrid" height="40%"></table>
+	</div>
+	<div id='commonFlowParamTab'>
+		<a href="#" id="commonFlowParamGridAdd" class="easyui-linkbutton edit" data-options="iconCls:'icon-add',plain:true,disabled:true" title="新增"></a>
+		<a href="#" id="commonFlowParamGridModify" class="easyui-linkbutton edit" data-options="iconCls:'icon-edit',plain:true,disabled:true" title="修改"></a>
+		<a href="#" id="commonFlowParamGridDelete" class="easyui-linkbutton edit" data-options="iconCls:'icon-remove',plain:true,disabled:true" title="删除"></a>
+	</div>
+	<div id="flowParamWin-buttons">
+		<a id="flowParamWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#flowParamWin').dialog('close')">取消</a>
+	</div>
+	<!--配置流程参数-->
+	<div id="flowParamInfoWin" class="easyui-dialog" title="配置流程参数" style="width:450px;height:300px"
+			data-options="closed:true,iconCls: 'icon-save',buttons: '#flowParamInfoWin-buttons',cache:false,modal:true">
+		<div style="padding:10px 60px 20px 60px">
+			<form id="flowParamInfoWin-form" method="post">
+		    	<table cellpadding="5">
+		    		<tr>
+		    			<td>参数编码：</td>
+		    			<td><input id="flowParamInfoWin-code" class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'minLength[1]'"></input></td>
+		    		</tr>
+		    		<tr>
+		    			<td>参数名称：</td>
+		    			<td><input id="flowParamInfoWin-name" class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'minLength[1]'"></input></td>
+		    		</tr>
+		    		<tr>
+		    			<td>参数值：</td>
+		    			<td><input id="flowParamInfoWin-value" class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'minLength[1]'"></input></td>
+		    		</tr>
+		    		<tr>
+		    			<td>是否可变：</td>
+		    			<td><input id="flowParamInfoWin-isVariable" class="easyui-combobox" name="name" data-options="required:true,validType:'minLength[1]'"></input></td>
+		    		</tr>
+					<tr>
+		    			<td>备注：</td>
+		    			<td>
+		    				<input id="flowParamInfoWin-comments" class="easyui-textbox" data-options="multiline:true" style="height:80px">
+						</td>
+		    		</tr>
+		    	</table>
+	    	</form>
+	    </div>
+	</div>
+	<div id="flowParamInfoWin-buttons">
+		<a id="flowParamInfoWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#flowParamInfoWin').dialog('close')">取消</a>
+	</div>
+	<!-- 启动流程 设置流程参数 -->
+	<div id="startFlowParamWin"  class="easyui-dialog" title="启动流程设置流程参数" style="width:600px;height:350px"
+			data-options="closed:true,maximizable:true,iconCls:'icon-save',buttons:'#startFlowParamWin-buttons',cache:false,modal:true">
+		<p id="flowCatalog" ></p>
+		<table id="startflowParamGrid" height="40%"></table>
+		<a href="#" id="startFlowParamModify" class="easyui-linkbutton edit" data-options="iconCls:'icon-edit',plain:true" style="display: none" title="修改"></a>
+		<div id="startFlowParamWin-buttons">
+			<a id="startFlowParamWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">启动</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#startFlowParamWin').dialog('close')">取消</a>
+		</div>
+		<div id="startResult" style="display: none">
+			<p id="flowInstId"></p>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#startFlowParamWin').dialog('close')">关闭</a>
+		</div>
+	</div>
+	<!--修改流程参数值-->
+	<div id="startflowParamInfoWin" class="easyui-dialog" title="修改流程参数值" style="width:400px;height:300px"
+			data-options="closed:true,iconCls: 'icon-save',buttons: '#startflowParamInfoWin-buttons',cache:false,modal:true">
+		<div style="padding:10px 60px 20px 60px">
+			<form id="startflowParamInfoWin-form" method="post">
+		    	<table cellpadding="5">
+		    		<tr>
+		    			<td>参数编码：</td>
+		    			<td><input id="startflowParamInfoWin-code" class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'minLength[1]'"></input></td>
+		    		</tr>
+		    		<tr>
+		    			<td>参数值：</td>
+		    			<td><input id="startflowParamInfoWin-value" class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'minLength[1]'"></input></td>
+		    			<input id="startflowParamInfoWin-packageDefineId" type="text" style="display: none"></input>
+		    			<input id="startflowParamInfoWin-type" type="text" style="display: none"></input>
+		    			<input id="startflowParamInfoWin-tacheCode" type="text" style="display: none"></input>
+		    		</tr>
+		    	</table>
+	    	</form>
+	    </div>
+	</div>
+	<div id="startflowParamInfoWin-buttons">
+		<a id="startflowParamInfoWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#startflowParamInfoWin').dialog('close')">取消</a>
+	</div>
+	<!--派发规则配置-->
+	<div id="dispatchRulesWin" class="easyui-dialog" title="派发规则配置" style="width:720px;height:300px"
+			data-options="closed:true,iconCls:'icon-save',buttons:'#dispatchRulesWin-buttons',cache:false,modal:true,href: 'dialog/dispatchRuleConfig.html',loadingMessage:$('#loading')">
+	</div>
+	<div id="dispatchRulesWin-buttons">
+		<a id="dispatchRulesWin-confirmBtn" href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#dispatchRulesWin').dialog('close')">确定</a>
+		<!-- <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#dispatchRulesWin').dialog('close')">取消</a> -->
+	</div>
+</body>
+</html>

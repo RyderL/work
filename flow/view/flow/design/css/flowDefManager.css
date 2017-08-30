@@ -1,0 +1,37 @@
+.separator{    
+    border-left:solid 1px #ADB3B9;
+    margin-top:5px;
+    margin-left:5px;
+    margin-right:8px;
+    height:18px; 
+}
+.icon-select{
+	background:url('../images/button/mouse_small.png') no-repeat center center;
+}
+.icon-addParallel{
+	background:url('../images/button/parallel_small.png') no-repeat center center;
+}
+.icon-addControl{
+	background:url('../images/button/control_small.png') no-repeat center center;
+}
+.icon-addDataDriver{
+	background:url('../images/button/datadriver_small.png') no-repeat center center;
+}
+.icon-saveVersion{
+	background:url('../images/button/save_small.png') no-repeat center center;
+}
+.icon-validate{
+	background:url('../images/button/verify_small.png') no-repeat center center;
+}
+.icon-exportImage{
+	background:url('../images/button/export_small.png') no-repeat center center;
+}
+.icon-viewXPDL{
+	background:url('../images/button/xpdl_small.png') no-repeat center center;
+}
+.icon-setFlowParam{
+	background:url('../images/button/parameter_small.png') no-repeat center center;
+}
+.icon-setFlowVariale{
+	background:url('../images/button/variable_small.png') no-repeat center center;
+}

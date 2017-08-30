@@ -20,6 +20,7 @@ public interface FormManagerDAO {
 	public void delTemplate(PageTemplateDto templateDto);
 
 	public PageDto qryTemplateDetail(Map<String, Object> params);
+	public void addTemplateDetail(PageTemplateDetailDto templateDetailDto);
 
 	public List<PageTemplateRuleDto> qryTemplateRule(Map<String, Object> params);
 	public void addTemplateRule(PageTemplateRuleDto templateRuleDto);
@@ -33,4 +34,5 @@ public interface FormManagerDAO {
 	public void delPageConstraint(PageConstraintDto pageConstraintDto);
 
 	public List<PageElementDto> qryWidgetType(Map<String, Object> params);
+
 }

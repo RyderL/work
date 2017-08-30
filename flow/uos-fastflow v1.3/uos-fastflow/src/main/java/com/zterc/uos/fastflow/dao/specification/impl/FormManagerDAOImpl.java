@@ -21,6 +21,7 @@ public class FormManagerDAOImpl extends AbstractDAOImpl implements FormManagerDA
 
     @Override
     public List<ComboboxDto> qryCombox(Map<String, Object> params) {
+        List<Object> keys = new ArrayList<Object>();
         String codeColumn = params.get("codeColumn").toString();
         String tableName = params.get("tableName").toString();
         String nameColumn = params.get("nameColumn").toString();
@@ -39,12 +40,11 @@ public class FormManagerDAOImpl extends AbstractDAOImpl implements FormManagerDA
                 .append(" WHERE ROUTE_ID = 1 ");
 
         if(StringUtils.isNotEmpty(whereColumnName) && StringUtils.isNotEmpty(whereColumnValue)){
-            qrySql.append(" AND ").append(whereColumnName).append(" = ?");
+            qrySql.append(" AND ").append(whereColumnName).append(" = ? ");
+            keys.add(whereColumnValue);
         }
 
-        List<Object> keys = new ArrayList<Object>();
-        keys.add(whereColumnName);
-        return queryList(ComboboxDto.class, qrySql.toString(), keys.toArray(new Object[]{}));
+        return queryList(ComboboxDto.class,qrySql.toString(),keys.toArray(new Object[]{}));
     }
 
     /**
@@ -127,6 +127,19 @@ public class FormManagerDAOImpl extends AbstractDAOImpl implements FormManagerDA
         pageDto.setTotal(list.size());
         return pageDto;
     }
+
+    private static final String INSERT_TEMPLATE_DETAIL="INSERT INTO UOS_PAGE_TEMPLATE_DETAIL(TEMPLATE_DETAIL_ID, TEMPLATE_CODE, ELEMENT_CODE, PAGE_TITLE, PAGE_CODE, " +
+            "LOCATE_ROW, LOCATE_COLUMN, ALIGN, IS_RET, IS_MUST, IS_ENABLED, IS_DISPlAY, IS_INIT, COMMENTS, ROUTE_ID, TENANT_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    @Override
+    public void addTemplateDetail(PageTemplateDetailDto templateDetailDto) {
+            templateDetailDto.setTemplateDetailId(SequenceHelper.getId("UOS_PAGE_TEMPLATE_DETAIL"));
+            Object[] args = new Object[]{templateDetailDto.getTemplateDetailId(), templateDetailDto.getTemplateCode(),templateDetailDto.getElementCode(),
+                    templateDetailDto.getPageTitle(), templateDetailDto.getPageCode(), templateDetailDto.getLocateRow(),templateDetailDto.getLocateColumn(),
+                    templateDetailDto.getAlign(), templateDetailDto.getIsRet(), templateDetailDto.getIsMust(), templateDetailDto.getIsEnabled(),
+                    templateDetailDto.getIsDisplay(), templateDetailDto.getIsInit(), templateDetailDto.getComments(), templateDetailDto.getRouteId(), templateDetailDto.getTenantId()};
+
+            saveOrUpdate(buildMap(INSERT_TEMPLATE_DETAIL, args));
+        }
 
     /**
      * 查询模板适用规则

@@ -1,0 +1,90 @@
+<meta charset="utf-8">
+<script type="text/javascript" src="dialog/js/dispatchRuleConfig.js"></script>
+<!--派发规则列表-->
+<div class="easyui-panel" style="height:100%;border:0px;"> 
+	<table id="dispatchRulesGrid" height="100%"></table>
+	<div id='dispatchRulesTab'>
+		<a href="#" id="dispatchRulesGridAdd" class="easyui-linkbutton edit" data-options="iconCls:'icon-add',plain:true" title="新增"></a>
+		<a href="#" id="dispatchRulesGridModify" class="easyui-linkbutton edit" data-options="iconCls:'icon-edit',plain:true,disabled:true" title="修改"></a>
+		<a href="#" id="dispatchRulesGridDelete" class="easyui-linkbutton edit" data-options="iconCls:'icon-remove',plain:true,disabled:true" title="删除"></a>
+	</div>
+</div>
+
+<!--派发规则信息(href加载片段不支持组件格式的样式渲染，所以写在js中实现)-->
+<div id="dispatchRuleInfoWin" title="派发规则配置">
+	<table cellpadding="8" style='margin:5px;'>
+		<tbody>
+	   		<tr>
+	   			<td>区域：</td>
+	   			<td><input id="dispatchRuleInfoWin-area"/></td>
+	   			<td>派发规则类型：</td>
+	   			<td><input id="dispatchRuleInfoWin-type"/></td>
+	   		</tr>
+	   		<tr>
+	   			<td>回退方式：</td>
+	   			<td><input id="dispatchRuleInfoWin-rollbackType"/></td>
+	   			<td>是否使用于所有流程：</td>
+	   			<td><input id="dispatchRuleInfoWin-applyAll"/></td>
+	   		</tr>
+	   		<tr>
+	   			<td style="width:100px;">参与人类型：</td>
+	   			<td><input id="dispatchRuleInfoWin-partyType" /></td>
+	  			<td id="dispatchRuleInfoWin-partyName">参与人名称：</td>
+	  			<td><input id="dispatchRuleInfoWin-party"/></td>
+  			</tr>
+ 		</tbody><tbody id="dispatchRuleInfoWin-partyType-sys">
+  			<tr>
+  				<td>人工执行类型：</td>
+   				<td><input id="dispatchRuleInfoWin-manual-partyType"/></td>
+  				<td id="dispatchRuleInfoWin-manual-partyName">执行人名称：</td>
+   				<td><input id="dispatchRuleInfoWin-manual-party"/></td>
+  			</tr>
+  			<tr>
+  				<td>调用方式：</td>
+   				<td><input id="dispatchRuleInfoWin-callType"/></td>
+  				<td>调用组件：</td>
+   				<td><input id="dispatchRuleInfoWin-sys-biz"/></td>
+  			</tr>
+  			<tr>
+				<td>自动组件是否自动回单：</td>
+   				<td><input id="dispatchRuleInfoWin-isAutomaticReturn"/></td>
+  				<td>失败是否自动转人工：</td>
+   				<td><input id="dispatchRuleInfoWin-isAutoManual"/></td>
+  			</tr>
+  			<tr>
+  				<td style="width:100px;">回滚是否自动回单：</td>
+	   			<td><input id="dispatchRuleInfoWin-isReverseAutomaticReturn"/></td>
+				<td style="width:100px;">反向失败是否自动转人工：</td>
+	   			<td><input id="dispatchRuleInfoWin-isReverseAutomaticManual"/></td>
+  			</tr>
+  		</tbody>
+   	</table>
+</div>
+<!--区域-->
+<div id="dispatchRule-areaWin" class="easyui-dialog">
+	<div class="easyui-panel" data-options="title:'区域',fit:true">
+		<ul id="dispatchRule-areaTree"  class="easyui-tree"></ul>
+	</div>
+</div>
+<!--系统-->
+<div id="dispatchRule-sysWin" class="easyui-dialog">
+	<table id="dispatchRule-sysWin-datagrid"></table>
+</div>
+<!--组织-->
+<div id="dispatchRule-orgWin" class="easyui-dialog">
+	<div class="easyui-panel" data-options="title:'组织',fit:true">
+		<ul id="dispatchRule-orgTree"  class="easyui-tree"></ul>
+	</div>
+</div>
+<!--职位-->
+<div id="dispatchRule-jobWin" class="easyui-dialog">
+	<div id="dispatchRule-jobWin-layout"></div>
+</div>
+<!--人员-->
+<div id="dispatchRule-staWin" class="easyui-dialog">
+	<div id="dispatchRule-staWin-layout"></div>
+</div>
+<!--组件-->
+<div id="dispatchRule-bizWin" class="easyui-dialog">
+	<table id="dispatchRule-bizWin-datagrid"></table>
+</div>

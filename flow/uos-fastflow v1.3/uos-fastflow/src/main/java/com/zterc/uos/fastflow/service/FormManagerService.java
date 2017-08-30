@@ -43,6 +43,9 @@ public class FormManagerService {
 	public PageDto qryTemplateDetail(Map<String, Object> params){
 		return formManagerDAO.qryTemplateDetail(params);
 	}
+	public void addTemplateDetail(PageTemplateDetailDto templateDetailDto){
+		formManagerDAO.addTemplateDetail(templateDetailDto);
+	}
 
 	public List<PageTemplateRuleDto> qryTemplateRule(Map<String, Object> params){
 		return formManagerDAO.qryTemplateRule(params);

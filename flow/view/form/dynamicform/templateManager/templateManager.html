@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>templateManage</title>
+   	<script src="../../../../common/ext/boot.js"></script>
+    <style>
+        .inputStyle{
+            padding: 5px;
+        }
+        .label{
+            display: inline-block;
+            width: 100px;
+        }
+        input.propertiesInputStyle{
+            width:98%;
+        }
+        select.propertiesInputStyle{
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="easyui-layout">
+    <div id="layoutCenter" data-options="region:'center',title:'模板列表',fit:true">
+        <table id="templateTable" style="height: 100%"></table>
+    </div>
+    <div data-options="region:'south',title:'',height:300">
+        <div id = "templateSetting" class="easyui-tabs"
+             data-options="fit:true">
+            <div class="templateSetting" id="templateDetail" title="模板详情">
+                <table id="templateDetailTable"></table>
+            </div>
+            <div class="templateSetting" id="templateRule" title="模板适用条件配置">
+                <div id="ruleToolBar">
+                    <a href="#" id="addRule" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,disabled:true" title="增加"></a>
+                    <a href="#" id="modRule" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true,disabled:true" title="修改"></a>
+                    <a href="#" id="delRule" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true,disabled:true" title="删除"></a>
+                </div>
+                <table id="templateRuleTable"></table>
+            </div>
+            <div class="templateSetting" id="templateConstraint" title="模板约束条件配置">
+                 <div id = "constraintToolBar">
+                    <a href="#" id="addConstraint" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,disabled:true" title="增加"></a>
+                    <a href="#" id="modConstraint" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true,disabled:true" title="修改"></a>
+                    <a href="#" id="delConstraint" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true,disabled:true" title="删除"></a>
+                </div>
+                <table id="templateConstraintTable"></table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 菜单 -->
+    <div id="templateMenu" class="easyui-menu">
+        <div id="addTemplate" data-options="iconCls:'icon-add'">增加模板</div>
+        <div id="modTemplate" data-options="iconCls:'icon-edit'">修改模板</div>
+        <div id="delTemplate" data-options="iconCls:'icon-remove'">删除模板</div>
+        <div class="menu-sep"></div>
+        <div id="designTemplate" >设计模板</div>
+    </div>
+
+    <!-- 增加模板弹窗 -->
+    <div id="addTemplateDialog" class="easyui-dialog"
+         data-options="closed:true">
+        <form action="" id="editTemplateInfo" style="padding: 10px;">
+            <div class="inputStyle">
+                <label for="templateName" class="label">模板名称</label>
+                <input  id="templateName" class="easyui-textbox"
+                        data-options="width:'200px', required:true">
+                <span style="color: red;">*</span>
+            </div>
+            <div class="inputStyle">
+                <label for="templateCode" class="label">模板编码</label>
+                <input id="templateCode" class="easyui-textbox" 
+                       data-options="width:'200px', required:true">
+                <span style="color: red;">*</span>
+            </div>
+            <div class="inputStyle">
+                <label for = "comments" class="label">备注</label>
+                <input id="comments" class="easyui-textbox" 
+                       data-options="multiline:true, width:'200px',height:'100px'" >
+            </div>
+        </form>
+    </div>
+
+    <!-- 增加模板适用条件弹窗 -->
+    <div id="addRuleDialog" class="easyui-dialog"
+         data-options="closed:true">
+        <form action="" id="addRuleForm" style="padding: 10px;">
+            <div class="inputStyle">
+                <label for="packageCode" class="label">流程模板</label>
+                <input  id="packageCode" class="easyui-textbox"
+                        data-options="width:'200px', required:true">
+                <span style="color: red;">*</span>
+                <input type="hidden" id="packageId"/>
+            </div>
+            <div class="inputStyle">
+                <label for="tacheCode" class="label">环节</label>
+                <input id="tacheCode" class="easyui-textbox" 
+                       data-options="width:200">
+                <span style="color: red;">*</span>
+                <input type="hidden" id="tacheId"/>
+            </div>
+            <div class="inputStyle">
+                <label for = "funcCode" class="label">功能</label>
+                <input id="funcCode" class="easyui-combobox" 
+                       data-options="width:'200px'">
+            </div>
+            <div class="inputStyle">
+                <label for = "framePageUrl" class="label">框架页面URL</label>
+                <input id="framePageUrl" class="easyui-textbox" 
+                       data-options="width:'200px'">
+            </div>
+            <div class="inputStyle">
+                <label for = "createDate" class="label">创建时间</label>
+                <input id="createDate" class="easyui-datetimebox" 
+                       data-options="width:'200px'">
+            </div>
+        </form>
+    </div>
+
+    <!--选择环节弹窗 -->
+    <div id="selectTacheDialog" class="easyui-dialog" 
+            data-options="closed:true">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'center'">
+                <div class="easyui-panel" data-options="title:'环节库',fit:true">
+                    <ul id="tacheWinTree"  class="easyui-tree"></ul>
+                </div>
+            </div>
+        </div>  
+    </div>
+
+    <!--选择流程弹窗-->
+    <div id="selectPackageDialog" class="easyui-dialog" title="选择流程" style="width:350px;height:350px"
+            data-options="closed:true,maximizable:true,iconCls:'icon-save',buttons:'#flowWin-buttons',cache:false,modal:true">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'center'">
+                <div class="easyui-panel" data-options="title:'流程库',fit:true">
+                    <ul id="flowWinTree"  class="easyui-tree"></ul>
+                </div>
+            </div>
+        </div>  
+    </div>
+
+
+    <!-- 配置板约束条件弹窗 -->
+    <div id="addConstraintDialog" class="easyui-dialog"
+         data-options="closed:true">
+         <div class="easyui-layout" data-options="height:400"> 
+             <div data-options="region:'north',title:'',height:50">
+                 <form id="pageAndTypeForm" class="inputStyle">
+                     <label for="pageCode" class="label">被约束控件</label>
+                     <input id="pageCode" class="easyui-combobox" 
+                           data-options="width:'150px'">
+
+                     <label for="consType" class="label" style="padding-left: 60px;">约束类型</label>
+                     <input  id="consType" class="easyui-combobox"
+                            data-options="width:'150px'">
+                 </form>
+             </div>
+             <div data-options="region:'center', title:'约束条件'"> 
+                 <div class="inputStyle">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>依赖控件</td>
+                            <td>操作符</td>
+                            <td>值</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="relyWidget" type="text" class="easyui-combobox">
+                            </td>
+                            <td>
+                                <input id="operator" type="text" class="easyui-combobox">
+                            </td>
+                            <td>
+                                 <div id="valueDiv">
+                                    <input id="value" class="easyui-textbox">
+                                 </div>
+                                 <div id="optionDiv" hidden="hidden">
+                                    <input id="optionValue" class="easyui-combobox">
+                                 </div>
+                            </td>
+                            <td>
+                                <input id="addExpression" type="button" value="添加">
+                            </td>
+                        </tr>
+                    </table> 
+                 </div>
+                 <div class="inputStyle">
+                     <label class="label" for="consCondition">条件表达式</label>
+                     <input id="consCondition" type="text" class="easyui-textbox"
+                         data-options="multiline:true,height:100,width:450"> 
+                 </div>
+                 <div class="inputStyle" style="text-align: center;">
+                     <button class="conditionButton" value=" & ">与(AND)</button>
+                     <button class="conditionButton" value=" | ">或(OR)</button>
+                     <button class="conditionButton" value="(">(</button>
+                     <button class="conditionButton" value=")">)</button>
+                 </div>
+             </div>
+             <div data-options="region:'south',title:'约束结果', collapsible:false, height:110">
+                 <form id="resultForm" class="inputStyle">
+                     <label class="label">约束结果值</label>
+                     <div id="optionResultDiv" style="display: inline-block;">
+                        <input id="optionResultValue" class="easyui-combobox"      data-options="width:150"> 
+                     </div>
+                     <div id="textResultDiv" hidden="hidden" style="display: inline-block;">
+                         <input id="textResultValue" class="easyui-textbox" data-options="required:true,width:150">
+                     </div>
+                 </form>
+                 <div id="resultCMDiv" class="inputStyle" hidden="hidden">
+                     <label for = "resultClass" class="label">约束结果类</label>
+                     <input id="resultClass" class="easyui-textbox"      data-options="width:'150px'"> 
+
+                     <label for = "resultMethod" class="label" style="padding-left: 60px">约束结果类</label>
+                     <input id="resultMethod" class="easyui-textbox"      data-options="width:'150px'"> 
+                 </div>
+                 <div style="padding-bottom: 10px"></div>
+             </div>
+         </div>
+    </div>
+
+    <!-- 模板设计弹窗 -->
+    <div id="templateDesignWindow" class="easyui-window" title="模板设计" style="width:700px;height:400px"
+            data-options="closed:true, modal:true">
+        <div id = "menu" style="text-align: center; padding: 5px">
+            <a id="addNewLine" href="#" class="easyui-linkbutton"
+               data-options="iconCls:'icon-add'" >新增一行</a>
+            <a id="addNewLineAfterOne" href="#" class="easyui-linkbutton"
+               data-options="iconCls:'icon-add'">新增一行（在指定的行之后）</a>
+            <input id = "lineNumber" class = "easyui-combobox">
+            <a id="removeOneLine" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除一行</a>
+            <a id="closedWindow" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">保存模板</a>
+        </div>
+
+        <!-- 设计的模板预览 -->
+        <div>
+            <table id="templatePreviewTable">
+                <tr id="templateTableHeader">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </table>
+        </div> 
+
+        <!-- 新增一行的对话框弹窗 -->
+        <div id="addNewLineDialog" class="easyui-dialog" data-options="closed:true">
+            <div id="propertiesTableBar">
+               <a id="addProperties" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增属性</a>
+            </div>
+            <table id = "propertiesTable" class = "easyui-datagrid"></table>
+        </div>
+
+        <!-- 新增属性对话框弹窗 -->
+        <div id="addPropertiesDialog" class="easyui-dialog" data-options="closed:true">
+            <form action="" id = "addPropertiesForm" style="padding: 5px">
+                <div style="margin-bottom: 5px;">
+                    <label for="elementName">选择元素:</label>
+                    <input id="elementName" class="easyui-combobox">
+                </div>
+                <table id = "elementEditTable" style="width:100%;">
+                    <tr style = "background:#efefef;">
+                        <th style="width: 40%; ">属性</th>
+                        <th style="width: 60%;">值</th>
+                    </tr>
+                    <tr>
+                        <td>显示标签</td>
+                        <td>
+                            <input id = "pageTitle" class="easyui-textbox" required="required" data-options="width:219"> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>控件编码</td>
+                        <td>
+                            <input id = "widgetCode" class="easyui-textbox" required="required" type="text" data-options="width:219">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>对齐方式</td>
+                        <td>
+                            <select name="align" id="align" class="propertiesInputStyle">
+                                <option value="left">左对齐</option>
+                                <option value="right">右对齐</option>
+                                <option value="center">居中</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>是否回填</td>
+                        <td>
+                            <select id="isRet" class="propertiesInputStyle">
+                                <option value="yes">是</option>
+                                <option value="no">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>是否必填</td>
+                        <td>
+                            <select id="isMust" class="propertiesInputStyle">
+                                <option value="yes">是</option>
+                                <option value="no">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>是否使能</td>
+                        <td>
+                            <select id="isEnable" class="propertiesInputStyle">
+                                <option value="yes">是</option>
+                                <option value="no">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>是否显示</td>
+                        <td>
+                            <select  id="isDisplay" class="propertiesInputStyle">
+                                <option value="yes">是</option>
+                                <option value="no">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>是否赋初值</td>
+                        <td>
+                            <select id="isInit" class="propertiesInputStyle">
+                                <option value="yes">是</option>
+                                <option value="no">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>备注</td>
+                        <td>
+                            <input class="propertiesInputStyle" type="textarea" id="propertiesComments" style="height: 50px"> 
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/templateManager.js"></script>
+</body>
+</html>

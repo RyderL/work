@@ -18,6 +18,7 @@ public interface FormManagerServ {
 	public String delTemplate(Map<String, Object> map) throws SQLException;
 
 	public String qryTemplateDetail(Map<String, Object> map) throws SQLException;
+	public String addTemplateDetail(Map<String, Object> map) throws SQLException;
 
 	public String qryTemplateRule(Map<String, Object> map) throws SQLException;
 	public String addTemplateRule(Map<String, Object> mpa) throws SQLException;
